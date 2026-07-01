@@ -151,38 +151,6 @@ body {
   animation: live-pulse 2s ease-in-out infinite;
 }
 
-/* ───────── Hero card (3D tilt) ───────── */
-.hero-card-wrap {
-  perspective: 1000px;
-  width: min(620px, 92vw);
-}
-.hero-card {
-  position: relative;
-  background: linear-gradient(180deg, rgba(19, 28, 56, 0.92), rgba(13, 21, 40, 0.92));
-  border: 1px solid rgba(255, 255, 255, 0.10);
-  border-radius: 16px;
-  box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.06) inset,
-    0 30px 70px rgba(0, 0, 0, 0.55),
-    0 0 50px rgba(74, 98, 245, 0.10);
-  overflow: hidden;
-  transition:
-    transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
-    box-shadow 0.5s ease,
-    border-color 0.5s ease;
-}
-.hero-card:hover {
-  transform: translateY(-5px);
-  border-color: rgba(74, 98, 245, 0.35);
-  box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.08) inset,
-    0 40px 90px rgba(0, 0, 0, 0.6),
-    0 0 80px rgba(74, 98, 245, 0.20);
-}
-.hc-shine {
-  display: none;
-}
-
 /* ───────── Demo / feature cards ───────── */
 .showcase-demo {
   position: relative;

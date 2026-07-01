@@ -5,6 +5,33 @@ import { Magnetic } from "@/components/effects/magnetic";
 import { DemoFrame } from "./live-demo";
 import { useNewsletter } from "./newsletter-dialog";
 
+function CalloutChip({
+  className,
+  delay,
+  icon,
+  label,
+}: {
+  className: string;
+  delay: string;
+  icon: React.ReactNode;
+  label: string;
+}) {
+  return (
+    <div
+      className={`hero-anim hidden sm:flex absolute z-[3] pointer-events-none items-center gap-2 rounded-full border border-white/[0.12] bg-[rgba(13,21,40,0.92)] backdrop-blur-md px-3.5 py-2 shadow-[0_12px_30px_rgba(0,0,0,0.5)] ${className}`}
+      style={{ animationDelay: delay }}
+      aria-hidden="true"
+    >
+      <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[rgba(74,98,245,0.16)] text-accent-b">
+        {icon}
+      </span>
+      <span className="font-display text-[12px] font-semibold text-white whitespace-nowrap">
+        {label}
+      </span>
+    </div>
+  );
+}
+
 export function Hero() {
   const { open } = useNewsletter();
 
@@ -54,8 +81,32 @@ export function Hero() {
               "radial-gradient(ellipse 55% 60% at 50% 38%, rgba(74,98,245,0.28), rgba(123,92,255,0.12) 55%, transparent 75%)",
           }}
         />
-        <div className="hero-anim relative z-[1] w-full" style={{ animationDelay: "0.25s" }}>
-          <DemoFrame boot="idle" className="max-w-[1000px]" />
+        <div
+          className="hero-anim relative z-[1] w-full max-w-[1000px]"
+          style={{ animationDelay: "0.25s" }}
+        >
+          <CalloutChip
+            className="-right-3 lg:-right-9 top-[16%]"
+            delay="0.5s"
+            label="Instant triage"
+            icon={
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M13 2 3 14h9l-1 8 10-12h-9l1-8Z" />
+              </svg>
+            }
+          />
+          <CalloutChip
+            className="-left-3 lg:-left-9 bottom-[18%]"
+            delay="0.65s"
+            label="Drafts in your voice"
+            icon={
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M12 20h9" />
+                <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z" />
+              </svg>
+            }
+          />
+          <DemoFrame boot="idle" className="max-w-none" />
         </div>
       </div>
     </section>
