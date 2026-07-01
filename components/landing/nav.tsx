@@ -37,19 +37,11 @@ export function Nav() {
       className="site-nav sticky top-0 z-50 flex items-center justify-between border-b border-white/[0.06] backdrop-blur-md px-6 sm:px-12"
     >
       <Logo />
-      <div className="flex items-center gap-5 sm:gap-7">
-        <a
-          href="#try-it-live"
-          className="hidden sm:inline-flex font-display text-[13px] font-semibold text-fg-2 transition-colors hover:text-white link-underline"
-        >
-          Live demo
-        </a>
-        <Magnetic>
-          <Button variant="primary" size="md" onClick={() => open("nav-primary")}>
-            Join waitlist
-          </Button>
-        </Magnetic>
-      </div>
+      <Magnetic>
+        <Button variant="primary" size="md" onClick={() => open("nav-primary")}>
+          Join waitlist
+        </Button>
+      </Magnetic>
       <ScrollProgress />
     </nav>
   );

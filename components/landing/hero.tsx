@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Magnetic } from "@/components/effects/magnetic";
-import { HeroCard } from "./hero-card";
+import { DemoFrame } from "./live-demo";
 import { useNewsletter } from "./newsletter-dialog";
 
 export function Hero() {
@@ -30,43 +30,32 @@ export function Hero() {
         voice, and clears the noise. Your email stays yours.
       </p>
 
-      <div
-        className="hero-anim mb-4 flex flex-col sm:flex-row items-center justify-center gap-3"
-        style={{ animationDelay: "0.14s" }}
-      >
+      <div className="hero-anim mb-4" style={{ animationDelay: "0.14s" }}>
         <Magnetic>
           <Button variant="hero" size="lg" onClick={() => open("hero-primary")}>
             Join the waitlist
           </Button>
         </Magnetic>
-        <Button asChild variant="ghost" size="lg">
-          <a href="#try-it-live">Try the live demo</a>
-        </Button>
       </div>
 
       <p
         className="hero-anim font-body text-[12px] text-fg-3 mb-12 sm:mb-16"
         style={{ animationDelay: "0.2s" }}
       >
-        Launching soon for Chrome &amp; Firefox · We never store your email · Zero tracking
+        The real product, live below — no install, nothing to sign up for
       </p>
 
       <div className="relative w-full flex justify-center">
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute left-1/2 top-[6%] -translate-x-1/2 w-[min(900px,98vw)] h-[88%] z-0"
+          className="pointer-events-none absolute left-1/2 top-[2%] -translate-x-1/2 w-[min(1100px,98vw)] h-[92%] z-0"
           style={{
             background:
-              "radial-gradient(ellipse 55% 60% at 50% 42%, rgba(74,98,245,0.30), rgba(123,92,255,0.12) 55%, transparent 75%)",
+              "radial-gradient(ellipse 55% 60% at 50% 38%, rgba(74,98,245,0.28), rgba(123,92,255,0.12) 55%, transparent 75%)",
           }}
         />
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute left-1/2 bottom-0 -translate-x-1/2 w-[min(560px,80vw)] h-10 z-0 rounded-[50%]"
-          style={{ background: "radial-gradient(ellipse, rgba(0,0,0,0.45), transparent 70%)", filter: "blur(8px)" }}
-        />
-        <div className="relative z-[1] float-soft">
-          <HeroCard />
+        <div className="hero-anim relative z-[1] w-full" style={{ animationDelay: "0.25s" }}>
+          <DemoFrame boot="idle" className="max-w-[1000px]" />
         </div>
       </div>
     </section>

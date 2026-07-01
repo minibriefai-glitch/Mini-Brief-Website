@@ -8,7 +8,6 @@ import { FounderNote } from "@/components/landing/founder-note";
 import { Hero } from "@/components/landing/hero";
 import { HowItWorks } from "@/components/landing/how-it-works";
 import { IntroSplash } from "@/components/landing/intro-splash";
-import { LiveDemo } from "@/components/landing/live-demo";
 import { Nav } from "@/components/landing/nav";
 import { NewsletterProvider } from "@/components/landing/newsletter-dialog";
 import { OutcomeBand } from "@/components/landing/outcome-band";
@@ -27,7 +26,6 @@ export default function HomePage() {
       <main className="relative min-h-screen flex flex-col">
         <Nav />
         <Hero />
-        <LiveDemo />
         <OutcomeBand />
         <AtAGlance />
         <TrustBand />
