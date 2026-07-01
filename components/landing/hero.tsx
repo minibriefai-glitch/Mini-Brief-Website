@@ -30,12 +30,18 @@ export function Hero() {
         voice, and clears the noise. Your email stays yours.
       </p>
 
-      <div className="hero-anim mb-4" style={{ animationDelay: "0.14s" }}>
+      <div
+        className="hero-anim mb-4 flex flex-col sm:flex-row items-center justify-center gap-3"
+        style={{ animationDelay: "0.14s" }}
+      >
         <Magnetic>
           <Button variant="hero" size="lg" onClick={() => open("hero-primary")}>
             Join the waitlist
           </Button>
         </Magnetic>
+        <Button asChild variant="ghost" size="lg">
+          <a href="#try-it-live">Try the live demo</a>
+        </Button>
       </div>
 
       <p
