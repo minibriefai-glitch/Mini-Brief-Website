@@ -48,7 +48,7 @@ const STEPS = [
 
 export function HowItWorks() {
   return (
-    <Reveal as="section" variant="left" className="relative z-[1] px-6 sm:px-12 py-14 sm:py-20 border-t border-white/[0.05]">
+    <Reveal as="section" variant="up" className="relative z-[1] px-6 sm:px-12 py-14 sm:py-20 section-seam">
       <div className="font-body text-[12px] font-semibold tracking-[0.08em] uppercase text-accent-b/70 text-center mb-3">
         How it works
       </div>

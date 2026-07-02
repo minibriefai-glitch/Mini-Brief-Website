@@ -25,18 +25,20 @@ function CalloutChip({
       aria-hidden="true"
     >
       <div
-        className="float-soft flex items-center gap-2.5 rounded-full border border-white/[0.14] bg-[rgba(13,21,40,0.82)] backdrop-blur-md pl-2 pr-4 py-2 shadow-[0_10px_30px_rgba(0,0,0,0.55),0_0_24px_rgba(74,98,245,0.22)]"
-        style={{ animationDelay: floatDelay }}
+        className="float-soft rounded-full p-[1.5px] shadow-[0_16px_40px_rgba(0,0,0,0.6),0_0_38px_rgba(74,98,245,0.4)]"
+        style={{ animationDelay: floatDelay, backgroundImage: "var(--grad)" }}
       >
-        <span
-          className="flex h-7 w-7 items-center justify-center rounded-full text-white shadow-[0_3px_12px_rgba(74,98,245,0.6)] ring-1 ring-white/20"
-          style={{ backgroundImage: "var(--grad)" }}
-        >
-          {icon}
-        </span>
-        <span className="font-display text-[12px] font-semibold text-white whitespace-nowrap">
-          {label}
-        </span>
+        <div className="flex items-center gap-3 rounded-full bg-[rgba(11,18,36,0.9)] backdrop-blur-md pl-2.5 pr-5 py-2.5">
+          <span
+            className="flex h-9 w-9 items-center justify-center rounded-full text-white shadow-[0_4px_16px_rgba(74,98,245,0.75)] ring-1 ring-white/25"
+            style={{ backgroundImage: "var(--grad)" }}
+          >
+            {icon}
+          </span>
+          <span className="font-display text-[14px] font-semibold tracking-[-0.01em] text-white whitespace-nowrap">
+            {label}
+          </span>
+        </div>
       </div>
     </div>
   );
@@ -85,14 +87,14 @@ export function Hero() {
       <div className="relative w-full flex justify-center">
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute left-1/2 top-[2%] -translate-x-1/2 w-[min(1100px,98vw)] h-[92%] z-0"
+          className="pointer-events-none absolute left-1/2 top-[2%] -translate-x-1/2 w-[min(1160px,98vw)] h-[92%] z-0"
           style={{
             background:
               "radial-gradient(ellipse 55% 60% at 50% 38%, rgba(74,98,245,0.28), rgba(123,92,255,0.12) 55%, transparent 75%)",
           }}
         />
         <div
-          className="hero-anim relative z-[1] w-full max-w-[900px]"
+          className="hero-anim relative z-[1] w-full max-w-[960px]"
           style={{ animationDelay: "0.25s" }}
         >
           <CalloutChip
@@ -101,7 +103,7 @@ export function Hero() {
             floatDelay="0s"
             label="Triage"
             icon={
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <path d="M13 2 3 14h9l-1 8 10-12h-9l1-8Z" />
               </svg>
             }
@@ -112,7 +114,7 @@ export function Hero() {
             floatDelay="2.4s"
             label="Unsubscribe"
             icon={
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <path d="M3 6h18" />
                 <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6" />
                 <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
@@ -127,7 +129,7 @@ export function Hero() {
             floatDelay="1.6s"
             label="Summaries"
             icon={
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <path d="M4 6h16" />
                 <path d="M4 12h11" />
                 <path d="M4 18h7" />
@@ -140,7 +142,7 @@ export function Hero() {
             floatDelay="0.8s"
             label="Your voice"
             icon={
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <path d="M12 20h9" />
                 <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z" />
               </svg>

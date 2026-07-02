@@ -9,7 +9,7 @@ export function CtaSection() {
   const { open } = useNewsletter();
 
   return (
-    <Reveal as="section" variant="zoom" className="cta-divider relative z-[1] px-6 pt-16 pb-20 flex flex-col items-center text-center border-t border-white/[0.05]">
+    <Reveal as="section" variant="zoom" className="cta-divider relative z-[1] px-6 pt-16 pb-20 flex flex-col items-center text-center">
       <div
         className="absolute w-[500px] h-[220px] top-0 left-1/2 -translate-x-1/2 pointer-events-none"
         style={{ background: "radial-gradient(ellipse, rgba(74,98,245,0.18), transparent 70%)" }}

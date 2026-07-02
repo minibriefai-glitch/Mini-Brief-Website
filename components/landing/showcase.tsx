@@ -109,7 +109,7 @@ const DEMOS: DemoConfig[] = [
 
 export function Showcase() {
   return (
-    <section className="relative z-[1] px-6 sm:px-12 py-14 sm:py-20 border-t border-white/[0.05]">
+    <section className="relative z-[1] px-6 sm:px-12 py-14 sm:py-20 section-seam">
       <div className="font-body text-[12px] font-semibold tracking-[0.08em] uppercase text-accent-b/70 text-center mb-3">
         What it does
       </div>
@@ -135,7 +135,7 @@ function ShowcaseRow({ demo, flip }: { demo: DemoConfig; flip: boolean }) {
   const Demo = demo.Demo;
 
   return (
-    <Reveal variant="right" className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-14 items-center">
+    <Reveal variant="up" className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-14 items-center">
       <div className={flip ? "md:order-2" : ""}>
         <span className="font-body text-[12px] font-semibold tracking-[0.08em] uppercase text-accent-b/80 inline-block mb-4">
           {demo.tag}
