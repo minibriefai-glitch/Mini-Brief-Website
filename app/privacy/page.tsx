@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function PrivacyPage() {
   return (
-    <LegalShell title="Privacy Policy" updated="June 12, 2026">
+    <LegalShell title="Privacy Policy" updated="July 4, 2026">
       <section>
         <p>
           MiniBrief is built so that we hold as little of your data as
@@ -149,7 +149,66 @@ export default function PrivacyPage() {
       </section>
 
       <section>
-        <h2>5. Your choices and rights</h2>
+        <h2>5. How we protect your data</h2>
+        <p>
+          We treat the email and calendar data you access through Google and
+          Microsoft as <strong>sensitive data</strong> and protect it with
+          layered, industry-standard safeguards:
+        </p>
+        <ul>
+          <li>
+            <strong>Encryption in transit.</strong> All data moving between the
+            extension, our backend, the Google and Microsoft APIs, and our AI
+            provider travels over encrypted connections (HTTPS/TLS). Nothing is
+            transmitted in cleartext.
+          </li>
+          <li>
+            <strong>Encryption at rest.</strong> The limited account data we do
+            store — your account identifier, authentication details, settings,
+            and licensing status — is held in a managed database that encrypts
+            data at rest using industry-standard AES-256 encryption. Your email
+            content, subjects, and snippets are never stored on our servers at
+            all.
+          </li>
+          <li>
+            <strong>Data minimization.</strong> By design, the contents of your
+            messages and calendar events stay in your browser. Only the minimum
+            each feature needs ever leaves your device — a subject line and a
+            short preview snippet for triage and briefings, or, for an action you
+            explicitly trigger (summarize or draft a reply), the body of that one
+            message.
+          </li>
+          <li>
+            <strong>Authenticated, least-privilege access.</strong> Requests to
+            our backend require your authenticated account token, which the
+            server verifies before processing, and are rate-limited per user.
+            Our database restricts each account to its own records, and billing
+            and subscription status can be written only by verified server-side
+            processes — never by the browser.
+          </li>
+          <li>
+            <strong>Secret management.</strong> API keys and other secrets are
+            stored only in server-side secret storage and are never shipped in
+            the extension or exposed to your browser.
+          </li>
+          <li>
+            <strong>Restricted human access.</strong> We do not allow our staff
+            to read your Google or Microsoft user data except in the limited
+            circumstances described in the Limited Use section above (for
+            example, with your affirmative consent, where necessary for
+            security, or to comply with applicable law).
+          </li>
+          <li>
+            <strong>On-device protection.</strong> Any local cache lives in your
+            browser&rsquo;s sandboxed extension storage, isolated from websites
+            and other extensions. You can clear it at any time by disconnecting
+            the mailbox or uninstalling the extension.
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>6. Your choices and rights</h2>
         <ul>
           <li>You can ask us to access or delete your waitlist data or account data at any time by emailing <a href="mailto:privacy@minibrief.app">privacy@minibrief.app</a>.</li>
           <li>You can uninstall the extension, which removes its local data from your browser; contact us to delete the account itself.</li>
@@ -162,7 +221,7 @@ export default function PrivacyPage() {
       </section>
 
       <section>
-        <h2>6. Children</h2>
+        <h2>7. Children</h2>
         <p>
           MiniBrief is intended for working professionals and is not directed
           to children. We do not knowingly collect data from anyone under 16.
@@ -170,7 +229,7 @@ export default function PrivacyPage() {
       </section>
 
       <section>
-        <h2>7. Changes</h2>
+        <h2>8. Changes</h2>
         <p>
           We may update this policy as the product evolves. If we change how we
           use Google or Microsoft user data in a materially different way than
