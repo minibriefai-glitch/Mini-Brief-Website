@@ -37,10 +37,10 @@ export function Footer() {
               Connect
             </span>
             <a
-              href="https://www.linkedin.com/company/minibrief-ai"
+              href="https://www.linkedin.com/company/minibrief"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="MiniBriefAI on LinkedIn"
+              aria-label="MiniBrief on LinkedIn"
               className="group relative inline-flex h-11 w-11 items-center justify-center rounded-xl border border-white/[0.08] bg-[rgba(13,21,40,0.5)] text-fg-2 shadow-[0_8px_24px_rgba(0,0,0,0.3)] transition-all duration-300 hover:-translate-y-0.5 hover:border-accent-border hover:text-accent-b hover:shadow-[0_12px_32px_rgba(0,0,0,0.45)]"
             >
               <span
@@ -62,7 +62,7 @@ export function Footer() {
 
       <div className="max-w-[1040px] mx-auto mt-9 pt-5 border-t border-white/[0.05]">
         <p className="font-body text-[12px] text-fg-3">
-          © {new Date().getFullYear()} MiniBriefAI · Private by design. Your email is never stored.
+          © {new Date().getFullYear()} MiniBrief · Private by design. Your email is never stored.
         </p>
       </div>
     </footer>

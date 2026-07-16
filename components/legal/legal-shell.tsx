@@ -26,7 +26,7 @@ export function LegalShell({ title, updated, children }: Props) {
               className="rounded-[22%]"
             />
             <span className="font-display text-[17px] font-extrabold tracking-[-0.02em] leading-none">
-              <span className="text-mini">Mini</span>Brief<span className="text-accent-b">AI</span>
+              <span className="text-mini">Mini</span>Brief
             </span>
           </Link>
         </header>
@@ -63,7 +63,7 @@ export function LegalShell({ title, updated, children }: Props) {
 
         <footer className="border-t border-white/[0.06] px-6 sm:px-12 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
           <div className="font-body text-[12px] text-fg-3">
-            © {new Date().getFullYear()} MiniBriefAI · Private by design.
+            © {new Date().getFullYear()} MiniBrief · Private by design.
           </div>
           <nav className="flex items-center gap-5 font-body text-[12px] text-fg-3">
             <Link href="/privacy" className="hover:text-fg-2 transition-colors">Terms &amp; Privacy</Link>

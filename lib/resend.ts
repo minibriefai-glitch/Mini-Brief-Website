@@ -31,7 +31,7 @@ export function buildConfirmationEmail(toEmail: string) {
             <table width="520" cellpadding="0" cellspacing="0" style="max-width:520px;background:#0d1528;border:1px solid rgba(74,98,245,0.25);border-radius:18px;overflow:hidden">
               <tr><td style="padding:32px 32px 24px">
                 <div style="font-family:Outfit,Arial,sans-serif;font-size:22px;font-weight:700;letter-spacing:-0.02em;color:#ffffff">
-                  <span style="color:#6b7299">Mini</span>Brief<span style="color:#5b72ff">AI</span>
+                  <span style="color:#6b7299">Mini</span>Brief
                 </div>
               </td></tr>
               <tr><td style="padding:8px 32px 24px">

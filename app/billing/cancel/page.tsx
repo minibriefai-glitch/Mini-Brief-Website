@@ -4,7 +4,7 @@ import { Logo } from "@/components/landing/logo";
 import { Button } from "@/components/ui/button";
 
 export const metadata: Metadata = {
-  title: "Checkout canceled — MiniBriefAI",
+  title: "Checkout canceled — MiniBrief",
   description: "Your checkout was canceled and no charge was made.",
   robots: { index: false, follow: false },
 };
@@ -29,7 +29,7 @@ export default function BillingCancel() {
         </h1>
 
         <p className="font-body text-fg-2 mb-4 text-[clamp(15px,1.8vw,18px)] max-w-[520px] leading-[1.65]">
-          No charge was made. You can upgrade any time from the MiniBriefAI
+          No charge was made. You can upgrade any time from the MiniBrief
           extension &mdash; just open the popup and click Subscribe.
         </p>
 
@@ -45,7 +45,7 @@ export default function BillingCancel() {
         </p>
 
         <Button asChild variant="ghost" size="lg">
-          <Link href="/">Back to MiniBriefAI</Link>
+          <Link href="/">Back to MiniBrief</Link>
         </Button>
       </section>
     </main>

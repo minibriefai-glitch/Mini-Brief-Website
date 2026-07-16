@@ -36,7 +36,7 @@ export const metadata: Metadata = {
       "Triage your inbox, surface what needs a reply, and draft responses in your own voice. Your email content is processed in your browser and never stored on our servers.",
     type: "website",
     url: siteUrl,
-    siteName: "MiniBriefAI",
+    siteName: "MiniBrief",
   },
   twitter: {
     card: "summary_large_image",

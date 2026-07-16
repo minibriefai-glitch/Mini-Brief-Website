@@ -86,4 +86,4 @@ These terms, together with our [Privacy Policy](https://minibrief.app/privacy), 
 
 We may update these terms as the product develops; the "Last updated" date above will change accordingly. Questions can be sent to legal@minibrief.app.
 
-© 2026 MiniBriefAI · Private by design.
+© 2026 MiniBrief · Private by design.

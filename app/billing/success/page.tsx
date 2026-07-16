@@ -3,8 +3,8 @@ import { Logo } from "@/components/landing/logo";
 import { Button } from "@/components/ui/button";
 
 export const metadata: Metadata = {
-  title: "You're all set — MiniBriefAI",
-  description: "Your MiniBriefAI subscription is active.",
+  title: "You're all set — MiniBrief",
+  description: "Your MiniBrief subscription is active.",
   robots: { index: false, follow: false },
 };
 
@@ -28,11 +28,11 @@ export default function BillingSuccess() {
         </h1>
 
         <p className="font-body text-fg-2 mb-4 text-[clamp(15px,1.8vw,18px)] max-w-[520px] leading-[1.65]">
-          Thanks for subscribing to MiniBriefAI. Your subscription is active.
+          Thanks for subscribing to MiniBrief. Your subscription is active.
         </p>
 
         <p className="font-body text-fg-3 mb-9 text-[clamp(14px,1.6vw,16px)] max-w-[520px] leading-[1.65]">
-          Head back to the MiniBriefAI extension &mdash; open the popup and
+          Head back to the MiniBrief extension &mdash; open the popup and
           you&rsquo;ll have full access. If your status doesn&rsquo;t update
           within a minute, close and reopen the popup.
         </p>
