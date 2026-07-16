@@ -51,9 +51,21 @@ export function Hero() {
 
   return (
     <section className="relative z-[1] flex flex-col items-center text-center px-5 sm:px-6 pt-16 sm:pt-24 pb-10 sm:pb-14">
-      <div className="hero-anim mb-6 inline-flex items-center gap-2 rounded-full border border-accent-border bg-accent-dim px-3.5 py-1.5 font-mono text-[10px] tracking-[0.16em] uppercase text-accent-b">
-        <span className="pulse-soft w-[5px] h-[5px] rounded-full bg-accent-b shadow-[0_0_5px_var(--accent-b)]" />
-        Private by design · Gmail &amp; Outlook
+      <div
+        className="hero-anim mb-6 inline-flex rounded-full p-px shadow-[0_10px_32px_rgba(74,98,245,0.22)]"
+        style={{
+          backgroundImage:
+            "linear-gradient(100deg, rgba(91,114,255,0.7), rgba(123,92,255,0.22) 35%, rgba(91,114,255,0.1) 65%, rgba(123,92,255,0.6))",
+        }}
+      >
+        <span className="inline-flex items-center gap-2 rounded-full bg-[rgba(9,14,30,0.92)] backdrop-blur-md pl-3 pr-4 py-[7px]">
+          <span className="live-dot" aria-hidden="true" />
+          <span className="font-body text-[12.5px] font-medium leading-none text-fg-2">
+            <span className="font-semibold text-white">Private by design</span>
+            <span className="mx-1.5 text-fg-3">·</span>
+            Gmail &amp; Outlook
+          </span>
+        </span>
       </div>
 
       <h1 className="hero-anim font-display font-extrabold tracking-[-0.04em] leading-[0.98] text-white mb-6 max-w-[900px] text-[clamp(42px,7.6vw,76px)]" style={{ animationDelay: "0.04s" }}>
