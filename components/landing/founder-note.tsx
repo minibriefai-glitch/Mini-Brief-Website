@@ -1,16 +1,16 @@
 import { Reveal } from "@/components/effects/reveal-on-scroll";
+import { SectionHeader } from "./section-header";
 
 export function FounderNote() {
   return (
     <Reveal as="section" variant="up" className="relative z-[1] px-6 sm:px-12 py-14 sm:py-20 section-seam">
-      <div className="font-body text-[12px] font-semibold tracking-[0.08em] uppercase text-accent-b/70 text-center mb-3">
-        Why we built it
-      </div>
-      <h2 className="font-display font-bold tracking-[-0.02em] text-white text-center mb-10 leading-[1.15] text-[clamp(26px,3.8vw,40px)]">
-        A note from the founder.
-      </h2>
+      <SectionHeader
+        kicker="Why we built it"
+        title="A note from the founder."
+        className="mb-10"
+      />
 
-      <div className="max-w-[720px] mx-auto rounded-2xl border border-white/[0.08] bg-[rgba(13,21,40,0.5)] backdrop-blur-md shadow-[0_20px_56px_rgba(0,0,0,0.38)] p-7 sm:p-10">
+      <div className="card-glass-static max-w-[720px] mx-auto backdrop-blur-md shadow-[0_20px_56px_rgba(0,0,0,0.38)] p-7 sm:p-10">
         <blockquote className="font-body text-[15px] sm:text-[16px] text-fg-2 leading-[1.8] space-y-4">
           <p>I built Mini Brief because my inbox was beating me.</p>
           <p>

@@ -1,4 +1,5 @@
 import { Reveal } from "@/components/effects/reveal-on-scroll";
+import { SectionHeader } from "./section-header";
 
 type Row = { label: string; them: string; us: string; highlight?: boolean };
 
@@ -35,17 +36,14 @@ function Dash() {
 export function Comparison() {
   return (
     <Reveal as="section" variant="up" className="relative z-[1] px-6 sm:px-12 py-14 sm:py-20 section-seam">
-      <div className="font-body text-[12px] font-semibold tracking-[0.08em] uppercase text-accent-b/70 text-center mb-3">
-        Side by side
-      </div>
-      <h2 className="font-display font-bold tracking-[-0.02em] text-white text-center mb-2 leading-[1.15] text-[clamp(26px,3.8vw,40px)]">
-        Mini Brief vs. the usual approach.
-      </h2>
-      <p className="font-body text-[15px] text-fg-2 text-center mb-10 max-w-[520px] mx-auto leading-relaxed">
-        Same inbox help. A fundamentally different deal with your data.
-      </p>
+      <SectionHeader
+        kicker="Side by side"
+        title="Mini Brief vs. the usual approach."
+        sub="Same inbox help. A fundamentally different deal with your data."
+        className="mb-10"
+      />
 
-      <div className="max-w-[860px] mx-auto overflow-hidden rounded-2xl border border-white/[0.08] bg-[rgba(13,21,40,0.5)]">
+      <div className="card-glass-static max-w-[860px] mx-auto overflow-hidden">
         {/* Header */}
         <div className="grid grid-cols-[1.1fr_1fr_1fr] sm:grid-cols-[1.3fr_1fr_1fr]">
           <div className="px-4 sm:px-6 py-4" />

@@ -1,4 +1,5 @@
 import { Reveal } from "@/components/effects/reveal-on-scroll";
+import { SectionHeader } from "./section-header";
 
 const iconProps = {
   width: 20,
@@ -61,23 +62,24 @@ const PILLARS = [
 export function TrustBand() {
   return (
     <Reveal as="section" variant="fade" className="relative z-[1] px-6 sm:px-12 py-14 sm:py-20 section-seam">
-      <div className="font-body text-[12px] font-semibold tracking-[0.08em] uppercase text-accent-b/70 text-center mb-3">
-        Why you can trust it
-      </div>
-      <h2 className="font-display font-bold tracking-[-0.02em] text-white text-center mb-2 leading-[1.15] text-[clamp(26px,3.8vw,40px)] max-w-[720px] mx-auto">
-        Most AI email tools upload your inbox to their servers.{" "}
-        <span className="text-grad">Mini Brief never does.</span>
-      </h2>
-      <p className="font-body text-[15px] text-fg-2 text-center mb-10 max-w-[560px] mx-auto leading-relaxed">
-        Trust here is structural, not a badge we bought. It comes from how the
-        product is built.
-      </p>
+      <SectionHeader
+        kicker="Why you can trust it"
+        title={
+          <>
+            Most AI email tools upload your inbox to their servers.{" "}
+            <span className="text-grad">Mini Brief never does.</span>
+          </>
+        }
+        titleClassName="max-w-[760px]"
+        sub="Trust here is structural, not a badge we bought. It comes from how the product is built."
+        className="mb-10"
+      />
 
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 max-w-[1040px] mx-auto">
+      <Reveal stagger className="grid grid-cols-2 lg:grid-cols-4 gap-3.5 max-w-[1040px] mx-auto">
         {PILLARS.map((p) => (
           <div
             key={p.label}
-            className="group flex flex-col items-center text-center rounded-xl border border-white/[0.08] bg-[rgba(13,21,40,0.5)] px-5 py-7 transition-colors duration-300 hover:border-accent-b/30"
+            className="card-glass group flex flex-col items-center text-center px-5 py-7"
           >
             <div className="mb-3.5 w-11 h-11 rounded-xl flex items-center justify-center bg-[rgba(74,98,245,0.10)] border border-[rgba(74,98,245,0.20)] text-accent-b transition-transform duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-0.5 group-hover:scale-105">
               {p.icon}
@@ -90,7 +92,7 @@ export function TrustBand() {
             </div>
           </div>
         ))}
-      </div>
+      </Reveal>
     </Reveal>
   );
 }

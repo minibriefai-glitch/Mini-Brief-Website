@@ -1,4 +1,5 @@
 import { Reveal } from "@/components/effects/reveal-on-scroll";
+import { SectionHeader } from "./section-header";
 
 const STEPS = [
   {
@@ -49,38 +50,35 @@ const STEPS = [
 export function HowItWorks() {
   return (
     <Reveal as="section" variant="up" className="relative z-[1] px-6 sm:px-12 py-14 sm:py-20 section-seam">
-      <div className="font-body text-[12px] font-semibold tracking-[0.08em] uppercase text-accent-b/70 text-center mb-3">
-        How it works
-      </div>
-      <h2 className="font-display font-bold tracking-[-0.02em] text-white text-center mb-2 leading-[1.15] text-[clamp(26px,3.8vw,40px)]">
-        Four steps to a managed inbox.
-      </h2>
-      <p className="font-body text-[15px] text-fg-2 text-center mb-10 max-w-[520px] mx-auto leading-relaxed">
-        Mini Brief runs in your browser. Your account keeps settings and VIPs in sync — your email content never reaches our servers.
-      </p>
+      <SectionHeader
+        kicker="How it works"
+        title="Four steps to a managed inbox."
+        sub="Mini Brief runs in your browser. Your account keeps settings and VIPs in sync — your email content never reaches our servers."
+        className="mb-10"
+      />
 
-      <Reveal stagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-[1040px] mx-auto">
-        {STEPS.map((s) => (
-          <div key={s.n} className="feat-inner h-full !p-6 relative overflow-hidden">
-            <span
-              className="absolute -top-4 right-3 font-display text-[68px] font-extrabold leading-none text-white/[0.045] select-none pointer-events-none"
-              aria-hidden="true"
-            >
-              {s.n}
-            </span>
-            <div className="feat-icon relative w-11 h-11 rounded-xl flex items-center justify-center bg-[rgba(74,98,245,0.10)] border border-[rgba(74,98,245,0.20)] text-accent-b mb-4">
-              {s.icon}
+      <div className="relative max-w-[1040px] mx-auto">
+        <div className="steps-track hidden lg:block" aria-hidden="true" />
+        <Reveal stagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {STEPS.map((s) => (
+            <div key={s.n} className="feat-inner h-full !p-6 relative overflow-hidden">
+              <span
+                className="absolute -top-3 right-4 font-display text-[72px] font-extrabold leading-none text-white/[0.05] select-none pointer-events-none"
+                aria-hidden="true"
+              >
+                {s.n}
+              </span>
+              <div className="feat-icon relative w-11 h-11 rounded-xl flex items-center justify-center bg-[rgba(74,98,245,0.10)] border border-[rgba(74,98,245,0.20)] text-accent-b mb-4">
+                {s.icon}
+              </div>
+              <h3 className="font-display text-[16px] font-semibold text-white mb-1.5 tracking-[-0.01em]">
+                {s.title}
+              </h3>
+              <p className="font-body text-[13px] text-fg-2 leading-[1.6]">{s.desc}</p>
             </div>
-            <div className="font-body text-[11px] font-semibold tracking-[0.10em] uppercase text-accent-b/70 mb-1.5">
-              Step {s.n}
-            </div>
-            <h3 className="font-display text-[16px] font-semibold text-white mb-1.5 tracking-[-0.01em]">
-              {s.title}
-            </h3>
-            <p className="font-body text-[13px] text-fg-2 leading-[1.6]">{s.desc}</p>
-          </div>
-        ))}
-      </Reveal>
+          ))}
+        </Reveal>
+      </div>
     </Reveal>
   );
 }

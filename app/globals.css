@@ -18,6 +18,11 @@
   --ba: rgba(74, 98, 245, 0.3);
   --live: #22d3a0;
   --grad: linear-gradient(135deg, #4a62f5 0%, #5b72ff 45%, #7b5cff 100%);
+  /* Light "device screen" palette for the cinematic product window. */
+  --paper: #faf9f5;
+  --paper-2: #f1efe9;
+  --ink: #202433;
+  --ink-2: #6a7080;
 }
 
 *,
@@ -36,7 +41,11 @@ body {
   background: var(--bg);
   color: var(--fg);
   font-family: var(--font-body), Inter, sans-serif;
+  /* `hidden` turns body into a scroll container and silently breaks every
+     position:sticky descendant (nav, cinematic stage). `clip` cuts overflow
+     without creating a scroller; `hidden` stays as the legacy fallback. */
   overflow-x: hidden;
+  overflow-x: clip;
 }
 
 ::selection {
@@ -53,6 +62,15 @@ body {
   background:
     radial-gradient(ellipse 90% 50% at 50% -10%, rgba(74, 98, 245, 0.10), transparent 70%),
     var(--bg);
+}
+/* A violet under-glow rises as the visitor scrolls deeper (--bd-depth is
+   written by AmbientDepth). Opacity-only crossfade — compositor cheap. */
+.site-backdrop::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 85% 55% at 50% 112%, rgba(123, 92, 255, 0.12), transparent 70%);
+  opacity: var(--bd-depth, 0);
 }
 
 /* ───────── Hero entrance / scroll reveal ───────── */
@@ -489,6 +507,619 @@ body {
 @keyframes splash-pop {
   from { opacity: 0; transform: translateY(8px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+/* ───────── Section system ─────────
+   One kicker + one card treatment shared by every section, so the page
+   reads as a single design system instead of thirteen ad-hoc blocks. */
+.section-kicker {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(91, 114, 255, 0.78);
+}
+.section-kicker::before,
+.section-kicker::after {
+  content: "";
+  width: 22px;
+  height: 1px;
+  flex-shrink: 0;
+}
+.section-kicker::before {
+  background: linear-gradient(90deg, transparent, rgba(91, 114, 255, 0.55));
+}
+.section-kicker::after {
+  background: linear-gradient(90deg, rgba(91, 114, 255, 0.55), transparent);
+}
+
+/* Glass card: top-light gradient over deep surface, hairline border. */
+.card-glass,
+.card-glass-static {
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.035), transparent 32%),
+    rgba(13, 21, 40, 0.55);
+}
+.card-glass {
+  transition:
+    transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.35s ease,
+    box-shadow 0.45s ease;
+}
+.card-glass:hover {
+  transform: translateY(-3px);
+  border-color: rgba(74, 98, 245, 0.35);
+  box-shadow:
+    0 14px 40px rgba(0, 0, 0, 0.35),
+    0 0 24px rgba(74, 98, 245, 0.1);
+}
+
+/* ───────── Cinematic showcase ─────────
+   A sticky 100svh stage inside a tall scroll track. The orchestrator writes
+   CSS vars (--p page progress, --cp chapter progress) and data attributes;
+   everything here is transform/opacity only — no blur transitions, no
+   backdrop-filter, no layout animation. */
+.cine-track {
+  position: relative;
+  height: 460vh;
+}
+.cine-stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+  contain: layout paint;
+  padding-top: 56px; /* clear the sticky nav */
+}
+
+/* Pre-blurred ambient glows, drifting at different rates on scrub. */
+.cine-glow {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+.cine-glow-a {
+  width: 720px;
+  height: 720px;
+  left: 2%;
+  top: -14%;
+  background: radial-gradient(circle, rgba(74, 98, 245, 0.15), transparent 65%);
+  transform: translate3d(0, calc(var(--p, 0) * -70px), 0);
+}
+.cine-glow-b {
+  width: 640px;
+  height: 640px;
+  right: -6%;
+  bottom: -18%;
+  background: radial-gradient(circle, rgba(123, 92, 255, 0.12), transparent 65%);
+  transform: translate3d(0, calc(var(--p, 0) * 90px), 0);
+}
+
+.cine-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 360px minmax(0, 840px);
+  gap: 56px;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 0 48px;
+}
+
+/* Caption rail — all captions stay mounted (SR/SEO); crossfade via data. */
+.cine-rail {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+.cine-captions {
+  position: relative;
+  height: 400px;
+}
+.cine-cap {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 0.45s ease,
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+.cine-cap[data-active="1"] {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.cine-dots {
+  display: flex;
+  gap: 7px;
+  margin-top: 8px;
+}
+.cine-dots span {
+  width: 24px;
+  height: 3px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+  transition: background 0.4s ease, box-shadow 0.4s ease;
+}
+.cine-dots span[data-active="1"] {
+  background: var(--accent-b);
+  box-shadow: 0 0 8px rgba(91, 114, 255, 0.8);
+}
+
+/* Typographic overlay for the opening chapters. */
+.cine-intro {
+  position: absolute;
+  top: 6vh;
+  top: 6svh;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  text-align: center;
+  pointer-events: none;
+}
+.cine-intro-slide {
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 0.45s ease,
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.cine-intro-slide[data-on="1"] {
+  opacity: 1;
+  transform: none;
+}
+
+/* Product window — three framing layers:
+   wrap   → continuous scroll parallax (var-driven, no transition) + 3D depth
+   camera → chapter-driven push/pull/tilt (transitioned)
+   window → finale dim (opacity only) */
+.cine-window-wrap {
+  transform: translate3d(0, calc(var(--p, 0) * -14px), 0);
+  perspective: 1500px;
+}
+.cine-camera {
+  transform-origin: 62% 45%;
+  transition: transform 1.15s cubic-bezier(0.16, 1, 0.3, 1);
+}
+/* arrive/ignite: window centered under the intro type (rail is empty),
+   starting tilted like a device on a desk, then leveling out. -208px =
+   half of (rail 360px + gap 56px). */
+.cine-stage[data-chapter="arrive"] .cine-camera {
+  transform: translateX(-208px) translateY(6vh) rotateX(9deg) scale(0.96);
+}
+.cine-stage[data-chapter="ignite"] .cine-camera {
+  transform: translateX(-208px) translateY(6vh) rotateX(0deg) scale(1);
+}
+/* Reading chapters: camera pushes toward the panel. */
+.cine-stage[data-chapter="brief"] .cine-camera,
+.cine-stage[data-chapter="drafts"] .cine-camera,
+.cine-stage[data-chapter="clients"] .cine-camera {
+  transform: translateX(0) scale(1.045);
+}
+/* sweep: pull wide to watch the inbox compact. */
+.cine-stage[data-chapter="sweep"] .cine-camera {
+  transform: none;
+}
+/* zero: recede behind the finale. */
+.cine-stage[data-chapter="zero"] .cine-camera {
+  transform: scale(0.94);
+}
+.cine-window {
+  transition: opacity 0.9s ease;
+}
+.cine-stage[data-chapter="zero"] .cine-window {
+  opacity: 0.14;
+}
+.cine-screen {
+  height: min(560px, calc(100svh - 240px));
+  min-height: 380px;
+  background: var(--paper);
+}
+
+/* Light inbox pane */
+.cine-inbox {
+  background: var(--paper);
+  color: var(--ink);
+}
+.cine-row-slot {
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.cine-row {
+  background: #fff;
+  border: 1px solid rgba(32, 36, 51, 0.07);
+  /* Hidden until the cascade drops it in during "arrive". */
+  opacity: 0;
+  transform: translateY(30px);
+  transition:
+    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.45s ease,
+    border-color 0.4s ease,
+    box-shadow 0.4s ease;
+}
+.cine-row-slot[data-arrived="1"] .cine-row {
+  opacity: 1;
+  transform: translateY(0);
+}
+.cine-row-slot[data-focus="1"] .cine-row {
+  border-color: rgba(74, 98, 245, 0.45);
+  box-shadow:
+    inset 3px 0 0 var(--accent),
+    0 4px 18px rgba(74, 98, 245, 0.14);
+}
+/* Once triaged, low-signal rows recede so the eye lands on what matters. */
+.cine-row-slot[data-labeled="1"] .cine-row[data-label="newsletter"],
+.cine-row-slot[data-labeled="1"] .cine-row[data-label="fyi"] {
+  opacity: 0.66;
+}
+/* Sweep wins over arrive/dim states — declared last on purpose. */
+.cine-row-slot[data-swept="1"] .cine-row,
+.cine-row-slot[data-swept="1"] .cine-row[data-label="newsletter"] {
+  transform: translateX(72px);
+  opacity: 0;
+}
+
+/* Triage beam — sweeps the list during "ignite"; --sweep is continuous. */
+.cine-beam {
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  top: 8px;
+  height: 46px;
+  z-index: 2;
+  border-radius: 10px;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(74, 98, 245, 0),
+    rgba(74, 98, 245, 0.16) 45%,
+    rgba(123, 92, 255, 0.1) 65%,
+    rgba(74, 98, 245, 0)
+  );
+  box-shadow: 0 0 30px rgba(74, 98, 245, 0.25);
+  opacity: 0;
+  transform: translateY(calc(var(--sweep, 0) * 420px));
+  transition: opacity 0.3s ease;
+}
+.cine-stage[data-chapter="ignite"] .cine-beam {
+  opacity: 1;
+}
+
+/* The MiniBrief pill sits dormant, then ignites and stays lit. */
+.cine-mb-pill {
+  border-radius: 999px;
+  opacity: 0.35;
+  filter: saturate(0.1);
+  transition:
+    opacity 0.5s ease,
+    filter 0.5s ease,
+    box-shadow 0.5s ease;
+}
+.cine-stage:not([data-chapter="arrive"]) .cine-mb-pill {
+  opacity: 1;
+  filter: none;
+  box-shadow: 0 0 18px rgba(74, 98, 245, 0.55);
+}
+
+/* Triage chips pop on (and un-pop scrolling back). */
+.cine-chip {
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0;
+  transform: scale(0.55);
+  transition:
+    opacity 0.35s ease,
+    transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.cine-row-slot[data-labeled="1"] .cine-chip {
+  opacity: 1;
+  transform: scale(1);
+}
+.cine-chip-urgent {
+  background: rgba(224, 77, 60, 0.1);
+  color: #c2371f;
+  border: 1px solid rgba(224, 77, 60, 0.28);
+}
+.cine-chip-client {
+  background: rgba(24, 160, 120, 0.1);
+  color: #0d7a5c;
+  border: 1px solid rgba(24, 160, 120, 0.3);
+}
+.cine-chip-team {
+  background: rgba(74, 98, 245, 0.09);
+  color: #3b52d4;
+  border: 1px solid rgba(74, 98, 245, 0.26);
+}
+.cine-chip-newsletter {
+  background: rgba(122, 74, 153, 0.09);
+  color: #7a4a99;
+  border: 1px solid rgba(122, 74, 153, 0.26);
+}
+.cine-chip-fyi {
+  background: rgba(90, 100, 120, 0.09);
+  color: #5a6478;
+  border: 1px solid rgba(90, 100, 120, 0.26);
+}
+
+/* MiniBrief side panel slides over the inbox like the real extension. */
+.cine-panel {
+  transform: translateX(103%);
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.cine-stage[data-panel="open"] .cine-panel {
+  transform: translateX(0);
+}
+
+/* Panel bodies crossfade per chapter (zero keeps the last one under the dim). */
+.cine-body {
+  opacity: 0;
+  transform: translateY(10px);
+  transition:
+    opacity 0.45s ease,
+    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+.cine-stage[data-chapter="brief"] [data-body="brief"],
+.cine-stage[data-chapter="drafts"] [data-body="drafts"],
+.cine-stage[data-chapter="clients"] [data-body="clients"],
+.cine-stage[data-chapter="sweep"] [data-body="sweep"],
+.cine-stage[data-chapter="zero"] [data-body="sweep"] {
+  opacity: 1;
+  transform: none;
+}
+
+/* Brief streaming caret + "generating…" only while mid-stream. */
+.cine-generating,
+.cine-caret {
+  visibility: hidden;
+}
+.cine-stage[data-streaming="1"] .cine-generating,
+.cine-stage[data-streaming="1"] .cine-caret {
+  visibility: visible;
+}
+
+/* Tone pills + stacked drafts. */
+.cine-pill {
+  padding: 7px 14px;
+  border-radius: 999px;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: 1px solid var(--ba);
+  background: var(--accent-dim);
+  color: var(--accent-b);
+  transition:
+    background 0.35s ease,
+    color 0.35s ease,
+    border-color 0.35s ease;
+}
+.cine-stage[data-tone="voice"] .cine-pill[data-pill="voice"],
+.cine-stage[data-tone="brief"] .cine-pill[data-pill="brief"],
+.cine-stage[data-tone="warm"] .cine-pill[data-pill="warm"] {
+  background: rgba(74, 98, 245, 0.3);
+  border-color: rgba(74, 98, 245, 0.6);
+  color: #fff;
+}
+.cine-draft {
+  opacity: 0;
+  transform: translateY(8px);
+  transition:
+    opacity 0.4s ease,
+    transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.cine-stage[data-tone="voice"] .cine-draft[data-draft="voice"],
+.cine-stage[data-tone="brief"] .cine-draft[data-draft="brief"],
+.cine-stage[data-tone="warm"] .cine-draft[data-draft="warm"] {
+  opacity: 1;
+  transform: none;
+}
+
+/* Client watch → going-quiet alert. */
+.cine-watching {
+  opacity: 1;
+  transition: opacity 0.35s ease;
+}
+.cine-alert {
+  opacity: 0;
+  transform: translateY(8px);
+  transition:
+    opacity 0.4s ease 0.05s,
+    transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.05s;
+}
+.cine-stage[data-alert="1"] .cine-watching {
+  opacity: 0;
+}
+.cine-stage[data-alert="1"] .cine-alert {
+  opacity: 1;
+  transform: none;
+}
+
+/* Unsubscribe stages. */
+.cine-unsub-idle,
+.cine-unsub-filtering,
+.cine-unsub-done {
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+.cine-stage[data-unsub="idle"] .cine-unsub-idle,
+.cine-stage[data-unsub="filtering"] .cine-unsub-filtering,
+.cine-stage[data-unsub="done"] .cine-unsub-done {
+  opacity: 1;
+}
+.cine-sweep-note {
+  opacity: 0;
+  transition: opacity 0.4s ease 0.2s;
+}
+.cine-stage[data-unsub="done"] .cine-sweep-note {
+  opacity: 1;
+}
+
+/* Finale — real content (headline + CTA), keyboard-reachable only when shown. */
+.cine-finale {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 56px 24px 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(26px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    visibility 0s linear 0.6s;
+}
+.cine-stage[data-chapter="zero"] .cine-finale {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition:
+    opacity 0.7s ease 0.15s,
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.15s,
+    visibility 0s;
+}
+
+/* Layered finale entrance: counter → masked headline → sub → CTA. */
+.cine-finale-item {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.5s ease,
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.cine-finale-mask {
+  overflow: hidden;
+}
+.cine-finale-headline {
+  transform: translateY(112%);
+  transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.cine-stage[data-chapter="zero"] .cine-finale-item {
+  opacity: 1;
+  transform: none;
+}
+.cine-stage[data-chapter="zero"] .cine-finale-headline {
+  transform: none;
+  transition-delay: 0.3s;
+}
+.cine-stage[data-chapter="zero"] .cine-finale > :nth-child(1) {
+  transition-delay: 0.15s;
+}
+.cine-stage[data-chapter="zero"] .cine-finale > :nth-child(3) {
+  transition-delay: 0.45s;
+}
+.cine-stage[data-chapter="zero"] .cine-finale > :nth-child(4) {
+  transition-delay: 0.6s;
+}
+
+/* will-change only while the scene is actually scrubbing. */
+.cine-stage[data-live="1"] .cine-panel,
+.cine-stage[data-live="1"] .cine-glow,
+.cine-stage[data-live="1"] .cine-camera,
+.cine-stage[data-live="1"] .cine-cap {
+  will-change: transform, opacity;
+}
+
+/* Belt-and-braces: JS never mounts the scene under reduced motion, but if
+   the preference flips mid-session the track disappears instantly too. */
+@media (prefers-reduced-motion: reduce) {
+  .cine-track {
+    display: none;
+  }
+}
+
+/* ───────── Hero cinematics ───────── */
+/* The demo frame rises and settles like a device being set down. */
+.hero-anim-frame {
+  animation: hero-frame-in 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@keyframes hero-frame-in {
+  from {
+    opacity: 0;
+    transform: translateY(28px) scale(0.975);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.scroll-cue {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--fg3);
+  animation:
+    fade-up 0.7s ease 0.9s both,
+    cue-bounce 2.2s ease-in-out 2s infinite;
+}
+@keyframes cue-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  45% {
+    transform: translateY(6px);
+  }
+}
+
+/* ───────── Skip link (a11y) ───────── */
+.skip-link {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 300;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  font-family: var(--font-body), Inter, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  transform: translateY(-64px);
+  opacity: 0;
+  pointer-events: none;
+}
+.skip-link:focus-visible {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+  outline: 2px solid #fff;
+  outline-offset: 2px;
 }
 
 /* ───────── Premium interaction polish ───────── */

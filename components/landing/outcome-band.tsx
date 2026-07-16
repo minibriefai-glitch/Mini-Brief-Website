@@ -1,4 +1,5 @@
 import { Reveal } from "@/components/effects/reveal-on-scroll";
+import { SectionHeader } from "./section-header";
 
 const SHIFTS = [
   { before: "187 emails a day", after: "one ranked brief" },
@@ -9,26 +10,30 @@ const SHIFTS = [
 export function OutcomeBand() {
   return (
     <Reveal as="section" variant="fade" className="relative z-[1] px-6 sm:px-12 py-12 sm:py-16">
-      <div className="font-body text-[12px] font-semibold tracking-[0.08em] uppercase text-accent-b/70 text-center mb-3">
-        What changes
-      </div>
-      <h2 className="font-display font-bold tracking-[-0.02em] text-white text-center mb-10 leading-[1.15] text-[clamp(26px,3.8vw,40px)] max-w-[680px] mx-auto">
-        What used to eat your morning now takes{" "}
-        <span className="text-grad">minutes</span>.
-      </h2>
+      <SectionHeader
+        kicker="What changes"
+        title={
+          <>
+            What used to eat your morning now takes{" "}
+            <span className="text-grad">minutes</span>.
+          </>
+        }
+        titleClassName="max-w-[720px]"
+        className="mb-10"
+      />
 
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-[920px] mx-auto">
+      <Reveal stagger className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 max-w-[920px] mx-auto">
         {SHIFTS.map((s) => (
           <div
             key={s.after}
-            className="flex flex-col items-center text-center gap-2 rounded-xl border border-white/[0.08] bg-[rgba(13,21,40,0.5)] px-5 py-7"
+            className="card-glass flex flex-col items-center text-center gap-2.5 px-5 py-7"
           >
-            <span className="font-display text-[15px] font-medium text-fg-3 line-through decoration-fg-3/40">
+            <span className="font-mono text-[11px] tracking-[0.08em] uppercase text-fg-3 line-through decoration-fg-3/50">
               {s.before}
             </span>
             <svg
-              width="20"
-              height="20"
+              width="16"
+              height="16"
               viewBox="0 0 24 24"
               fill="none"
               stroke="#5b72ff"
@@ -41,12 +46,12 @@ export function OutcomeBand() {
               <path d="M5 12h14" />
               <path d="m13 6 6 6-6 6" />
             </svg>
-            <span className="font-display text-[18px] font-bold text-white tracking-[-0.01em]">
+            <span className="font-display text-[19px] font-bold text-white tracking-[-0.015em]">
               {s.after}
             </span>
           </div>
         ))}
-      </div>
+      </Reveal>
     </Reveal>
   );
 }

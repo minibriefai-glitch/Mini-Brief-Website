@@ -65,7 +65,7 @@ function ScaledDemo({ fit, onLoad }: { fit: "width" | "contain"; onLoad?: () => 
   );
 }
 
-function BrowserBar({ children }: { children?: React.ReactNode }) {
+export function BrowserBar({ children }: { children?: React.ReactNode }) {
   return (
     <div className="relative z-[3] flex items-center gap-2 px-4 py-2.5 border-b border-white/[0.07] bg-white/[0.02]">
       <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]" />

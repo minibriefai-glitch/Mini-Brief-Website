@@ -2,8 +2,10 @@
 
 import { Button } from "@/components/ui/button";
 import { Magnetic } from "@/components/effects/magnetic";
+import { ParallaxDrift } from "@/components/effects/parallax-drift";
 import { DemoFrame } from "./live-demo";
 import { useNewsletter } from "./newsletter-dialog";
+import { ScrollCue } from "./scroll-cue";
 
 function CalloutChip({
   className,
@@ -78,23 +80,31 @@ export function Hero() {
       </div>
 
       <p
-        className="hero-anim font-body text-[12px] text-fg-3 mb-12 sm:mb-16"
+        className="hero-anim font-body text-[12px] text-fg-3 mb-3"
         style={{ animationDelay: "0.2s" }}
       >
         The real product, live below — no install, nothing to sign up for
       </p>
 
+      <div className="mb-7 sm:mb-10">
+        <ScrollCue />
+      </div>
+
       <div className="relative w-full flex justify-center">
-        <div
-          aria-hidden="true"
+        <ParallaxDrift
+          rate={-0.08}
           className="pointer-events-none absolute left-1/2 top-[2%] -translate-x-1/2 w-[min(1160px,98vw)] h-[92%] z-0"
-          style={{
-            background:
-              "radial-gradient(ellipse 55% 60% at 50% 38%, rgba(74,98,245,0.28), rgba(123,92,255,0.12) 55%, transparent 75%)",
-          }}
-        />
+        >
+          <div
+            className="h-full w-full"
+            style={{
+              background:
+                "radial-gradient(ellipse 55% 60% at 50% 38%, rgba(74,98,245,0.28), rgba(123,92,255,0.12) 55%, transparent 75%)",
+            }}
+          />
+        </ParallaxDrift>
         <div
-          className="hero-anim relative z-[1] w-full max-w-[960px]"
+          className="hero-anim-frame relative z-[1] w-full max-w-[960px]"
           style={{ animationDelay: "0.25s" }}
         >
           <CalloutChip

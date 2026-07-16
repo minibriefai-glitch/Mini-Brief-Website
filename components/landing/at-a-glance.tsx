@@ -87,9 +87,7 @@ export function AtAGlance() {
 
         {/* Providers */}
         <div className="flex flex-col items-center text-center px-6 py-9 sm:py-11">
-          <div className="font-body text-[12px] font-semibold tracking-[0.08em] uppercase text-accent-b/70 mb-4">
-            Built for Gmail and Outlook
-          </div>
+          <div className="section-kicker justify-center">Built for Gmail and Outlook</div>
           <div className="flex flex-wrap items-center justify-center gap-3">
             {[
               { name: "Gmail", status: "Available now", live: true },

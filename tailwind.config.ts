@@ -25,6 +25,14 @@ const config: Config = {
         mini: "#6b7299",
         live: "#22d3a0",
         border: "rgba(255,255,255,0.08)",
+        paper: {
+          DEFAULT: "#faf9f5",
+          2: "#f1efe9",
+        },
+        ink: {
+          DEFAULT: "#202433",
+          2: "#6a7080",
+        },
       },
       fontFamily: {
         display: ["var(--font-display)", "Outfit", "sans-serif"],

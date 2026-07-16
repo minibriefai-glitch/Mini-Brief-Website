@@ -1,4 +1,5 @@
 import { Reveal } from "@/components/effects/reveal-on-scroll";
+import { SectionHeader } from "./section-header";
 
 const FAQS: Array<{ q: string; a: React.ReactNode }> = [
   {
@@ -64,17 +65,14 @@ function Chevron() {
 export function Faq() {
   return (
     <Reveal as="section" className="relative z-[1] px-6 sm:px-12 py-14 sm:py-20 section-seam">
-      <div className="font-body text-[12px] font-semibold tracking-[0.08em] uppercase text-accent-b/70 text-center mb-3">
-        FAQ
-      </div>
-      <h2 className="font-display font-bold tracking-[-0.02em] text-white text-center mb-2 leading-[1.15] text-[clamp(26px,3.8vw,40px)]">
-        Questions, answered straight.
-      </h2>
-      <p className="font-body text-[15px] text-fg-2 text-center mb-10 max-w-[520px] mx-auto leading-relaxed">
-        The things people ask before they trust an extension with their inbox.
-      </p>
+      <SectionHeader
+        kicker="FAQ"
+        title="Questions, answered straight."
+        sub="The things people ask before they trust an extension with their inbox."
+        className="mb-10"
+      />
 
-      <div className="max-w-[760px] mx-auto rounded-2xl border border-white/[0.08] bg-[rgba(13,21,40,0.5)] overflow-hidden">
+      <div className="card-glass-static max-w-[760px] mx-auto overflow-hidden">
         {FAQS.map((f) => (
           <details key={f.q} className="faq-item group">
             <summary className="faq-q flex items-center justify-between gap-4 px-6 py-5 cursor-pointer select-none">

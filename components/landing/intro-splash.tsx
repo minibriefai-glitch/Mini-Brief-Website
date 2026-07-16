@@ -8,10 +8,24 @@ export function IntroSplash() {
   const [removed, setRemoved] = useState(false);
 
   useEffect(() => {
+    // Play once per browser session — repeat visits skip straight to the page.
+    // try/catch: sessionStorage can throw (Safari private mode, blocked storage).
+    let seen = false;
+    try {
+      seen = sessionStorage.getItem("mb-splash") === "1";
+      if (!seen) sessionStorage.setItem("mb-splash", "1");
+    } catch {
+      // Storage unavailable — fall back to playing the splash.
+    }
+    if (seen) {
+      setRemoved(true);
+      return;
+    }
+
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     // Short-circuit for reduced-motion users — no held splash.
-    const holdMs = reduced ? 200 : 900;
-    const fadeMs = reduced ? 50 : 450;
+    const holdMs = reduced ? 200 : 650;
+    const fadeMs = reduced ? 50 : 400;
 
     const fadeTimer = window.setTimeout(() => setFading(true), holdMs);
     const removeTimer = window.setTimeout(() => setRemoved(true), holdMs + fadeMs);

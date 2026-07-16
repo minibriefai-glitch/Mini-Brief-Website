@@ -50,6 +50,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${outfit.variable} ${inter.variable} ${spaceMono.variable}`} suppressHydrationWarning>
       <body>
+        <a href="#main" className="skip-link">
+          Skip to content
+        </a>
         <SiteJsonLd />
         {children}
         <Analytics />

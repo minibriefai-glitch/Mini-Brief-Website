@@ -1,6 +1,7 @@
 "use client";
 
 import { Reveal } from "@/components/effects/reveal-on-scroll";
+import { SectionHeader } from "./section-header";
 
 const FEATURES = [
   {
@@ -127,16 +128,12 @@ function onCardMove(e: React.MouseEvent<HTMLDivElement>) {
 export function Features() {
   return (
     <Reveal as="section" className="relative z-[1] px-6 sm:px-12 py-14 sm:py-20 section-seam">
-      <div className="font-body text-[12px] font-semibold tracking-[0.08em] uppercase text-accent-b/70 text-center mb-3">
-        More in the toolkit
-      </div>
-      <h2 className="font-display font-bold tracking-[-0.02em] text-white text-center mb-2 leading-[1.15] text-[clamp(26px,3.8vw,40px)]">
-        And it keeps earning its keep.
-      </h2>
-      <p className="font-body text-[15px] text-fg-2 text-center mb-12 max-w-[520px] mx-auto leading-relaxed">
-        Beyond triage, drafting, and unsubscribe, Mini Brief quietly handles the
-        rest of the inbox grind.
-      </p>
+      <SectionHeader
+        kicker="More in the toolkit"
+        title="And it keeps earning its keep."
+        sub="Beyond triage, drafting, and unsubscribe, Mini Brief quietly handles the rest of the inbox grind."
+        className="mb-12"
+      />
       <Reveal stagger className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-[1040px] mx-auto">
         {FEATURES.map((f) => (
           <div key={f.title} onMouseMove={onCardMove} className="feat-inner h-full !p-5 sm:!p-6">

@@ -3,6 +3,22 @@
 import { useEffect, useRef, useState } from "react";
 import { Reveal } from "@/components/effects/reveal-on-scroll";
 import { useStreamingText } from "@/components/effects/use-streaming-text";
+import {
+  DEMOS,
+  SUMMARY_PROSE,
+  SUMMARY_TOTAL,
+  TONES,
+  TONES_ORDER,
+  type DemoCopy,
+  type ToneKey,
+} from "./content";
+
+/**
+ * The stacked text/demo rows — the Showcase as it existed before the
+ * cinematic scene. This remains the rendering path for small screens,
+ * reduced motion, save-data, and no-JS. Copy lives in ./content.ts and is
+ * shared with the cinematic stage.
+ */
 
 function useInView<T extends HTMLElement>() {
   const ref = useRef<T>(null);
@@ -27,112 +43,28 @@ function useInView<T extends HTMLElement>() {
   return [ref, inView] as const;
 }
 
-const TONES_ORDER: Array<keyof typeof TONES> = ["voice", "brief", "warm"];
-const TONES: Record<string, string> = {
-  voice:
-    "Hi Sarah — Friday at 9:00 AM works on my calendar. I've blocked the slot and added the call link. Speak then.",
-  brief: "Friday at 9am works — see you then.",
-  warm: "Hey Sarah, Friday at 9 sounds great — really looking forward to it! Let me know if anything shifts on your end.",
-};
-
-const SUMMARY_PROSE =
-  "Team is debating Q4 priorities ahead of Friday's board meeting. API shipping is the leading candidate (James, Priya). Pricing page is still open — needs resolution before the deck is finalized. ";
-const SUMMARY_ACTION = "Action needed from you.";
-const SUMMARY_TOTAL = SUMMARY_PROSE + SUMMARY_ACTION;
-
 type DemoProps = { isActive: boolean };
 
-type DemoConfig = {
-  id: string;
-  tag: string;
-  title: string;
-  desc: string;
-  bullets: string[];
-  Demo: React.ComponentType<DemoProps>;
-  demoTitle: string;
+const DEMO_COMPONENTS: Record<DemoCopy["id"], React.ComponentType<DemoProps>> = {
+  summary: SummaryDemo,
+  drafts: DraftsDemo,
+  clients: ClientsDemo,
+  unsubscribe: UnsubscribeDemo,
 };
 
-const DEMOS: DemoConfig[] = [
-  {
-    id: "summary",
-    tag: "Triage",
-    title: "We read every thread for you.",
-    desc: "Mini Brief scans the full thread the moment you open it. However long the back-and-forth, you get the key points, who needs what, and the next action.",
-    bullets: [
-      "TLDR, action items, and sentiment for any thread length",
-      "Reads up to 4,000 characters per email for accuracy",
-      "Cached per email — second open is instant, zero token cost",
-    ],
-    Demo: SummaryDemo,
-    demoTitle: "Thread: Q4 planning — next steps",
-  },
-  {
-    id: "drafts",
-    tag: "Voice",
-    title: "We draft replies in your voice.",
-    desc: "Mini Brief studies your sent folder to learn your voice, including greetings, sign-offs, and formality, then generates replies that read like you wrote them.",
-    bullets: [
-      "Learns from up to 100 of your real sent emails",
-      "Reply by intent — approve, decline, follow up, schedule, and more",
-      "Three tone modes (voice, brief, warm) plus a tone check that flags and fixes harsh lines",
-    ],
-    Demo: DraftsDemo,
-    demoTitle: "Smart Reply — Sarah Chen",
-  },
-  {
-    id: "clients",
-    tag: "Relationships",
-    title: "We keep your client relationships warm.",
-    desc: "Mini Brief builds a profile for every client — status, cadence, history — and quietly watches the threads. When someone important goes quiet, you hear about it before the relationship cools.",
-    bullets: [
-      "Client profiles: status, cadence, notes, and next check-in",
-      "Triage and meeting prep that know who's a client",
-      "Relationship-health alerts when a client goes quiet",
-    ],
-    Demo: ClientsDemo,
-    demoTitle: "Client · Sarah Chen — Acme Corp",
-  },
-  {
-    id: "unsubscribe",
-    tag: "Unsubscribe",
-    title: "We make unsubscribe permanent.",
-    desc: "One click does two things. It fires the RFC 8058 unsubscribe and writes a permanent filter, so if the sender rotates subdomains the next email is still trashed automatically.",
-    bullets: [
-      "RFC 8058 one-click + mailto fallback",
-      "Persistent Gmail server-side filter (not a label rule)",
-      "Survives newsletter subdomain rotation",
-    ],
-    Demo: UnsubscribeDemo,
-    demoTitle: "Marketing Daily — 5 new offers",
-  },
-];
-
-export function Showcase() {
+export function ShowcaseRows() {
   return (
-    <section className="relative z-[1] px-6 sm:px-12 py-14 sm:py-20 section-seam">
-      <div className="font-body text-[12px] font-semibold tracking-[0.08em] uppercase text-accent-b/70 text-center mb-3">
-        What it does
-      </div>
-      <h2 className="font-display font-bold tracking-[-0.02em] text-white text-center mb-2 leading-[1.15] text-[clamp(26px,3.8vw,40px)]">
-        The work it does, <span className="text-grad">every day</span>.
-      </h2>
-      <p className="font-body text-[15px] text-fg-2 text-center mb-14 sm:mb-20 max-w-[520px] mx-auto leading-relaxed">
-        Not a list of features — the work Mini Brief takes off your plate the
-        moment you open your inbox.
-      </p>
-
-      <div className="flex flex-col gap-20 sm:gap-28 max-w-[1080px] mx-auto">
-        {DEMOS.map((d, i) => (
-          <ShowcaseRow key={d.id} demo={d} flip={i % 2 === 1} />
-        ))}
-      </div>
-    </section>
+    <div className="flex flex-col gap-20 sm:gap-28 max-w-[1080px] mx-auto">
+      {DEMOS.map((d, i) => (
+        <ShowcaseRow key={d.id} demo={d} flip={i % 2 === 1} />
+      ))}
+    </div>
   );
 }
 
-function ShowcaseRow({ demo, flip }: { demo: DemoConfig; flip: boolean }) {
+function ShowcaseRow({ demo, flip }: { demo: DemoCopy; flip: boolean }) {
   const [ref, inView] = useInView<HTMLDivElement>();
-  const Demo = demo.Demo;
+  const Demo = DEMO_COMPONENTS[demo.id];
 
   return (
     <Reveal variant="up" className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-14 items-center">
@@ -236,7 +168,7 @@ function SummaryDemo({ isActive }: DemoProps) {
 }
 
 function DraftsDemo({ isActive }: DemoProps) {
-  const [tone, setTone] = useState<keyof typeof TONES>("quick");
+  const [tone, setTone] = useState<ToneKey>("voice");
   const [autoCycle, setAutoCycle] = useState(true);
 
   useEffect(() => {
@@ -251,7 +183,7 @@ function DraftsDemo({ isActive }: DemoProps) {
     return () => window.clearInterval(id);
   }, [isActive, autoCycle]);
 
-  const onPick = (k: keyof typeof TONES) => {
+  const onPick = (k: ToneKey) => {
     setAutoCycle(false);
     setTone(k);
   };
@@ -334,7 +266,7 @@ function UnsubscribeDemo({ isActive }: DemoProps) {
               <span className="font-mono text-[9px] tracking-[0.14em] uppercase text-accent-b">click →</span>
             </button>
             <p className="font-body text-[11px] text-fg-3 mt-2 leading-relaxed">
-              Fires the sender's RFC 8058 unsubscribe AND writes a Gmail filter so future emails skip the inbox.
+              Fires the sender&apos;s RFC 8058 unsubscribe AND writes a Gmail filter so future emails skip the inbox.
             </p>
           </div>
         )}
@@ -361,7 +293,7 @@ function UnsubscribeDemo({ isActive }: DemoProps) {
               <span className="font-display text-[13px] font-semibold text-white">Filter created — permanent.</span>
             </div>
             <p className="font-body text-[12px] text-[#aab0cc] leading-[1.55]">
-              Future emails from <span className="text-accent-b">marketingdaily.com</span> (and any subdomain) auto-trash via Gmail's server-side filter.
+              Future emails from <span className="text-accent-b">marketingdaily.com</span> (and any subdomain) auto-trash via Gmail&apos;s server-side filter.
             </p>
           </div>
         )}
@@ -421,11 +353,7 @@ function ClientsDemo({ isActive }: DemoProps) {
         {alert ? (
           <div className="rounded-[10px] border border-[rgba(245,158,74,0.3)] bg-[rgba(245,158,74,0.08)] p-3 animate-in fade-in slide-in-from-bottom-1 duration-300">
             <div className="flex items-center gap-2 mb-1">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f59e4a" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
-                <path d="M12 9v4" />
-                <path d="M12 17h.01" />
-              </svg>
+              <AlertIcon />
               <span className="font-display text-[12px] font-semibold text-white">Going quiet</span>
             </div>
             <p className="font-body text-[11px] text-[#aab0cc] leading-[1.5]">
@@ -443,7 +371,9 @@ function ClientsDemo({ isActive }: DemoProps) {
   );
 }
 
-function SparkIcon() {
+/* Shared bits — also used by the cinematic brief panel. */
+
+export function SparkIcon() {
   return (
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-accent-b" aria-hidden="true">
       <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z" />
@@ -453,7 +383,7 @@ function SparkIcon() {
   );
 }
 
-function UnsubIcon() {
+export function UnsubIcon() {
   return (
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-accent-b" aria-hidden="true">
       <path d="M3 6h18" />
@@ -465,7 +395,7 @@ function UnsubIcon() {
   );
 }
 
-function CheckIcon() {
+export function CheckIcon() {
   return (
     <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#22d3a0" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       <polyline points="20 6 9 17 4 12" />
@@ -473,7 +403,17 @@ function CheckIcon() {
   );
 }
 
-function DemoBar({ title }: { title: string }) {
+export function AlertIcon() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f59e4a" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+      <path d="M12 9v4" />
+      <path d="M12 17h.01" />
+    </svg>
+  );
+}
+
+export function DemoBar({ title }: { title: string }) {
   return (
     <div className="flex items-center gap-2 px-3.5 py-2.5 border-b border-white/[0.07]">
       <span className="w-[9px] h-[9px] rounded-full bg-[#ff5f57]" />
@@ -484,7 +424,7 @@ function DemoBar({ title }: { title: string }) {
   );
 }
 
-function ThreadItem({ from, when, body }: { from: string; when: string; body: string }) {
+export function ThreadItem({ from, when, body }: { from: string; when: string; body: string }) {
   return (
     <div className="px-3 py-2 rounded-lg bg-white/[0.03] border border-white/[0.06] mb-1.5">
       <div className="font-display text-[11px] font-semibold text-white mb-0.5">

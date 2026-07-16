@@ -38,10 +38,8 @@ export function Privacy() {
         />
 
         <div className="relative px-7 sm:px-12 py-10 sm:py-12">
-          <div className="font-body text-[12px] font-semibold tracking-[0.08em] uppercase text-accent-b/70 mb-4">
-            Privacy
-          </div>
-          <h2 className="font-display font-bold tracking-[-0.02em] text-white leading-[1.15] text-[clamp(26px,3.8vw,40px)] max-w-[600px]">
+          <div className="section-kicker">Privacy</div>
+          <h2 className="font-display font-extrabold tracking-[-0.03em] text-white leading-[1.1] text-[clamp(28px,4vw,44px)] max-w-[600px]">
             Your email stays in your browser.
           </h2>
           <p className="font-body text-[15px] text-fg-2 leading-relaxed mt-3 max-w-[560px]">

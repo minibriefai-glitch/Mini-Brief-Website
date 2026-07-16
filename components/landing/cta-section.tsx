@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/effects/reveal-on-scroll";
 import { Magnetic } from "@/components/effects/magnetic";
+import { ParallaxDrift } from "@/components/effects/parallax-drift";
 import { useNewsletter } from "./newsletter-dialog";
 
 export function CtaSection() {
@@ -10,15 +11,20 @@ export function CtaSection() {
 
   return (
     <Reveal as="section" variant="zoom" className="cta-divider relative z-[1] px-6 pt-16 pb-20 flex flex-col items-center text-center">
-      <div
+      <ParallaxDrift
+        rate={-0.1}
         className="absolute w-[500px] h-[220px] top-0 left-1/2 -translate-x-1/2 pointer-events-none"
-        style={{ background: "radial-gradient(ellipse, rgba(74,98,245,0.18), transparent 70%)" }}
-        aria-hidden="true"
-      />
-      <h2 className="relative font-display font-bold tracking-[-0.02em] text-white mb-3 leading-[1.15] text-[clamp(26px,4vw,40px)]">
-        Be first to know when it launches.
+      >
+        <div
+          className="h-full w-full"
+          style={{ background: "radial-gradient(ellipse, rgba(74,98,245,0.18), transparent 70%)" }}
+        />
+      </ParallaxDrift>
+      <div className="section-kicker relative justify-center">Get early access</div>
+      <h2 className="relative font-display font-extrabold tracking-[-0.03em] text-white mb-4 leading-[1.08] text-[clamp(30px,4.8vw,52px)]">
+        Be first to know <span className="text-grad">when it launches.</span>
       </h2>
-      <p className="relative font-body text-[16px] text-fg-2 mb-6 max-w-[520px] leading-relaxed">
+      <p className="relative font-body text-[16px] text-fg-2 mb-7 max-w-[520px] leading-relaxed">
         Mini Brief launches soon. Join the waitlist and we will email you once when it is live. Nothing else.
       </p>
       <Magnetic>
