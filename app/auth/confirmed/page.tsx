@@ -52,19 +52,19 @@ export default function ConfirmedPage() {
       icon: <CheckCircle2 className="h-8 w-8" style={{ color: "#22d3a0" }} />,
       tint: "#22d3a0",
       title: "Email confirmed",
-      body: "Your Mini Brief account is active. Head back to the extension and sign in to start your 14-day free trial.",
+      body: "Your MiniBrief account is active. Head back to the extension and sign in to start your 14-day free trial.",
     },
     expired: {
       icon: <Clock className="h-8 w-8" style={{ color: "#5b72ff" }} />,
       tint: "#5b72ff",
       title: "This link has expired",
-      body: "Confirmation links are only valid for a short time. Open Mini Brief and choose “Resend confirmation email” to get a fresh one.",
+      body: "Confirmation links are only valid for a short time. Open MiniBrief and choose “Resend confirmation email” to get a fresh one.",
     },
     error: {
       icon: <AlertTriangle className="h-8 w-8" style={{ color: "#f5a623" }} />,
       tint: "#f5a623",
       title: "Something went wrong",
-      body: "We couldn’t confirm this link. Open Mini Brief and resend the confirmation email — if it keeps happening, contact support.",
+      body: "We couldn’t confirm this link. Open MiniBrief and resend the confirmation email — if it keeps happening, contact support.",
     },
   };
 

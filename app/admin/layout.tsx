@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 // Internal tool — keep it out of search indexes entirely.
 export const metadata: Metadata = {
-  title: "Mini Brief — Team Admin",
+  title: "MiniBrief — Team Admin",
   robots: { index: false, follow: false },
 };
 

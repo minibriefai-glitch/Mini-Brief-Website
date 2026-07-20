@@ -48,7 +48,7 @@ function ScaledDemo({ fit, onLoad }: { fit: "width" | "contain"; onLoad?: () => 
       {scale > 0 && (
         <div className="relative" style={{ width: LOGICAL_W * scale, height: LOGICAL_H * scale }}>
           <iframe
-            title="Mini Brief — interactive product demo"
+            title="MiniBrief — interactive product demo"
             src={DEMO_SRC}
             onLoad={onLoad}
             className="absolute left-0 top-0 border-0 bg-[#faf9f5]"
@@ -74,7 +74,7 @@ export function BrowserBar({ children }: { children?: React.ReactNode }) {
       <div className="flex-1 flex justify-center min-w-0 px-3">
         <div className="inline-flex items-center gap-1.5 w-full max-w-[280px] justify-center rounded-md bg-black/30 border border-white/[0.07] px-3 py-1">
           <span className="live-dot" aria-hidden="true" />
-          <span className="font-body text-[11px] text-fg-3 truncate">mail.google.com · Mini Brief</span>
+          <span className="font-body text-[11px] text-fg-3 truncate">mail.google.com · MiniBrief</span>
         </div>
       </div>
       {children}
@@ -192,7 +192,7 @@ export function DemoFrame({
           <button
             type="button"
             onClick={() => setLaunched(true)}
-            aria-label="Launch the interactive Mini Brief demo"
+            aria-label="Launch the interactive MiniBrief demo"
             className="relative block w-full outline-none focus-visible:ring-2 focus-visible:ring-accent-b focus-visible:ring-inset"
           >
             <div className="relative aspect-[16/10] w-full">
@@ -253,9 +253,9 @@ export function DemoFrame({
 
       <Dialog open={fullscreen} onOpenChange={setFullscreen}>
         <DialogContent className="w-[96vw] max-w-[1540px] h-[92vh] p-0 overflow-hidden flex flex-col">
-          <DialogTitle className="sr-only">Mini Brief interactive demo</DialogTitle>
+          <DialogTitle className="sr-only">MiniBrief interactive demo</DialogTitle>
           <DialogDescription className="sr-only">
-            The real Mini Brief interface, running in your browser.
+            The real MiniBrief interface, running in your browser.
           </DialogDescription>
           <BrowserBar />
           <div className="flex-1 min-h-0">
@@ -293,7 +293,7 @@ export function LiveDemo() {
         Not a mockup — the <span className="text-grad">real product</span>.
       </h2>
       <p className="font-body text-[15px] text-fg-2 text-center mb-10 max-w-[540px] mx-auto leading-relaxed">
-        This is the actual Mini Brief interface, running right here in your browser.
+        This is the actual MiniBrief interface, running right here in your browser.
         Click around the triage, summaries, and drafts — no install, no sign-up.
       </p>
 

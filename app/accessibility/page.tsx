@@ -4,7 +4,7 @@ import { LegalShell } from "@/components/legal/legal-shell";
 export const metadata: Metadata = {
   title: "Accessibility — MiniBrief",
   description:
-    "Mini Brief's commitment to building an accessible website and product.",
+    "MiniBrief's commitment to building an accessible website and product.",
 };
 
 export default function AccessibilityPage() {
@@ -12,7 +12,7 @@ export default function AccessibilityPage() {
     <LegalShell title="Accessibility" updated="May 15, 2026">
       <section>
         <p>
-          We want Mini Brief to be usable by everyone, including people who
+          We want MiniBrief to be usable by everyone, including people who
           rely on assistive technology. We are working toward conformance with
           the{" "}
           <a href="https://www.w3.org/TR/WCAG21/" target="_blank" rel="noopener noreferrer">

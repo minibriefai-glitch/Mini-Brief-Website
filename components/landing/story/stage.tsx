@@ -64,7 +64,7 @@ export const Stage = memo(function Stage({
         </div>
         <div className="cine-intro-slide" data-intro="ignite" data-on="0">
           <h3 className="font-display text-[clamp(36px,4.6vw,72px)] font-extrabold leading-[1.02] tracking-[-0.035em] text-white">
-            Mini Brief <span className="text-grad">switches on.</span>
+            MiniBrief <span className="text-grad">switches on.</span>
           </h3>
           <p className="mt-3 font-body text-[15px] text-fg-2">
             Watch the next half second.

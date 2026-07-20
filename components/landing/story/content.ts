@@ -20,7 +20,7 @@ export const DEMOS: DemoCopy[] = [
     id: "summary",
     tag: "Triage",
     title: "We read every thread for you.",
-    desc: "Mini Brief scans the full thread the moment you open it. However long the back-and-forth, you get the key points, who needs what, and the next action.",
+    desc: "MiniBrief scans the full thread the moment you open it. However long the back-and-forth, you get the key points, who needs what, and the next action.",
     bullets: [
       "TLDR, action items, and sentiment for any thread length",
       "Reads up to 4,000 characters per email for accuracy",
@@ -32,7 +32,7 @@ export const DEMOS: DemoCopy[] = [
     id: "drafts",
     tag: "Voice",
     title: "We draft replies in your voice.",
-    desc: "Mini Brief studies your sent folder to learn your voice, including greetings, sign-offs, and formality, then generates replies that read like you wrote them.",
+    desc: "MiniBrief studies your sent folder to learn your voice, including greetings, sign-offs, and formality, then generates replies that read like you wrote them.",
     bullets: [
       "Learns from up to 100 of your real sent emails",
       "Reply by intent — approve, decline, follow up, schedule, and more",
@@ -44,7 +44,7 @@ export const DEMOS: DemoCopy[] = [
     id: "clients",
     tag: "Relationships",
     title: "We keep your client relationships warm.",
-    desc: "Mini Brief builds a profile for every client — status, cadence, history — and quietly watches the threads. When someone important goes quiet, you hear about it before the relationship cools.",
+    desc: "MiniBrief builds a profile for every client — status, cadence, history — and quietly watches the threads. When someone important goes quiet, you hear about it before the relationship cools.",
     bullets: [
       "Client profiles: status, cadence, notes, and next check-in",
       "Triage and meeting prep that know who's a client",

@@ -1,4 +1,6 @@
 import { Reveal } from "@/components/effects/reveal-on-scroll";
+import { TiltCard } from "@/components/effects/tilt-card";
+import { SectionOrbs } from "@/components/effects/section-orbs";
 import { SectionHeader } from "./section-header";
 
 const SHIFTS = [
@@ -10,6 +12,7 @@ const SHIFTS = [
 export function OutcomeBand() {
   return (
     <Reveal as="section" variant="fade" className="relative z-[1] px-6 sm:px-12 py-12 sm:py-16">
+      <SectionOrbs placement="right" />
       <SectionHeader
         kicker="What changes"
         title={
@@ -22,34 +25,33 @@ export function OutcomeBand() {
         className="mb-10"
       />
 
-      <Reveal stagger className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 max-w-[920px] mx-auto">
+      <Reveal stagger className="relative grid grid-cols-1 sm:grid-cols-3 gap-3.5 max-w-[920px] mx-auto">
         {SHIFTS.map((s) => (
-          <div
-            key={s.after}
-            className="card-glass flex flex-col items-center text-center gap-2.5 px-5 py-7"
-          >
-            <span className="font-mono text-[11px] tracking-[0.08em] uppercase text-fg-3 line-through decoration-fg-3/50">
-              {s.before}
-            </span>
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="#5b72ff"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              aria-hidden="true"
-              className="rotate-90"
-            >
-              <path d="M5 12h14" />
-              <path d="m13 6 6 6-6 6" />
-            </svg>
-            <span className="font-display text-[19px] font-bold text-white tracking-[-0.015em]">
-              {s.after}
-            </span>
-          </div>
+          <TiltCard key={s.after} className="h-full" max={6}>
+            <div className="card-glass h-full flex flex-col items-center text-center gap-2.5 px-5 py-7">
+              <span className="font-mono text-[11px] tracking-[0.08em] uppercase text-fg-3 line-through decoration-fg-3/50">
+                {s.before}
+              </span>
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#5b72ff"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+                className="rotate-90"
+              >
+                <path d="M5 12h14" />
+                <path d="m13 6 6 6-6 6" />
+              </svg>
+              <span className="font-display text-[19px] font-bold text-white tracking-[-0.015em]">
+                {s.after}
+              </span>
+            </div>
+          </TiltCard>
         ))}
       </Reveal>
     </Reveal>

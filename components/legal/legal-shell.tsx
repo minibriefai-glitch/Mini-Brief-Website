@@ -15,12 +15,12 @@ export function LegalShell({ title, updated, children }: Props) {
         <header className="border-b border-white/[0.06] px-6 sm:px-12 py-3.5">
           <Link
             href="/"
-            aria-label="Mini Brief — home"
+            aria-label="MiniBrief — home"
             className="inline-flex items-center gap-2 rounded-md outline-none transition-opacity hover:opacity-80 focus-visible:ring-2 focus-visible:ring-accent-b/60 focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
           >
             <Image
               src="/photos/MiniBrief-Icon-Mono-Ink.png"
-              alt="Mini Brief"
+              alt="MiniBrief"
               width={28}
               height={28}
               className="rounded-[22%]"

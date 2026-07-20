@@ -65,20 +65,20 @@ export function SiteJsonLd() {
  */
 const FAQ_ENTRIES: Array<{ q: string; a: string }> = [
   {
-    q: "Do I need a Mini Brief account?",
-    a: "Yes. Creating an account takes about a minute and lets Mini Brief sync your settings and VIPs across devices and manage your plan. The account never stores the contents of your emails.",
+    q: "Do I need a MiniBrief account?",
+    a: "Yes. Creating an account takes about a minute and lets MiniBrief sync your settings and VIPs across devices and manage your plan. The account never stores the contents of your emails.",
   },
   {
     q: "Do you store or read my email?",
-    a: "No. Your email is parsed in your browser and sent only to the AI provider that generates your results. It never reaches our servers, and Mini Brief contains no analytics, telemetry, or behavioral tracking.",
+    a: "No. Your email is parsed in your browser and sent only to the AI provider that generates your results. It never reaches our servers, and MiniBrief contains no analytics, telemetry, or behavioral tracking.",
   },
   {
     q: "Which inboxes does it support?",
-    a: "Gmail today, with Outlook coming soon. The panel runs inside your existing webmail — there is no separate app to open.",
+    a: "Gmail and Outlook, both available now. The panel runs inside your existing webmail — there is no separate app to open.",
   },
   {
     q: "Do I need to bring my own AI key?",
-    a: "No. Mini Brief works with a built-in model from the moment you sign in. Power users can optionally add their own Anthropic API key in Settings, but it is not required.",
+    a: "No. MiniBrief works with a built-in model from the moment you sign in. Power users can optionally add their own Anthropic API key in Settings, but it is not required.",
   },
   {
     q: "Does the AI train on my email?",
@@ -86,7 +86,7 @@ const FAQ_ENTRIES: Array<{ q: string; a: string }> = [
   },
   {
     q: "When does it launch, and what will it cost?",
-    a: "Mini Brief is launching soon for Chrome and Firefox. Pricing will be announced before launch — join the waitlist and you'll be the first to hear, with no other emails in between.",
+    a: "MiniBrief is launching soon for Chrome and Firefox. Pricing will be announced before launch — join the waitlist and you'll be the first to hear, with no other emails in between.",
   },
 ];
 

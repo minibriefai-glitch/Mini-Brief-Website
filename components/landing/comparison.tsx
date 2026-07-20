@@ -1,4 +1,5 @@
 import { Reveal } from "@/components/effects/reveal-on-scroll";
+import { SectionOrbs } from "@/components/effects/section-orbs";
 import { SectionHeader } from "./section-header";
 
 type Row = { label: string; them: string; us: string; highlight?: boolean };
@@ -36,9 +37,10 @@ function Dash() {
 export function Comparison() {
   return (
     <Reveal as="section" variant="up" className="relative z-[1] px-6 sm:px-12 py-14 sm:py-20 section-seam">
+      <SectionOrbs placement="right" />
       <SectionHeader
         kicker="Side by side"
-        title="Mini Brief vs. the usual approach."
+        title="MiniBrief vs. the usual approach."
         sub="Same inbox help. A fundamentally different deal with your data."
         className="mb-10"
       />
@@ -51,7 +53,7 @@ export function Comparison() {
             Typical AI inbox tools
           </div>
           <div className="px-4 sm:px-6 py-4 text-center font-display text-[13px] sm:text-[14px] font-bold text-white bg-[rgba(74,98,245,0.10)] border-l border-accent-border">
-            Mini Brief
+            MiniBrief
           </div>
         </div>
 

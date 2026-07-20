@@ -1,6 +1,8 @@
 "use client";
 
 import { Reveal } from "@/components/effects/reveal-on-scroll";
+import { TiltCard } from "@/components/effects/tilt-card";
+import { SectionOrbs } from "@/components/effects/section-orbs";
 import { SectionHeader } from "./section-header";
 
 const FEATURES = [
@@ -17,7 +19,7 @@ const FEATURES = [
   },
   {
     title: "VIP alerts and escalation",
-    desc: "Flag the people who matter. If a VIP thread goes quiet past the window you set, Mini Brief raises it to critical.",
+    desc: "Flag the people who matter. If a VIP thread goes quiet past the window you set, MiniBrief raises it to critical.",
     icon: (
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5b72ff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
@@ -40,7 +42,7 @@ const FEATURES = [
   },
   {
     title: "Meeting prep",
-    desc: "Before a call, Mini Brief pulls the thread history into a tight brief so you walk in already up to speed.",
+    desc: "Before a call, MiniBrief pulls the thread history into a tight brief so you walk in already up to speed.",
     icon: (
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5b72ff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <path d="M8 2v4" />
@@ -82,7 +84,7 @@ const FEATURES = [
   },
   {
     title: "Commitments tracking",
-    desc: "Mini Brief pulls promises and deadlines out of your threads — what you owe and what's owed to you — and flags them before they slip.",
+    desc: "MiniBrief pulls promises and deadlines out of your threads — what you owe and what's owed to you — and flags them before they slip.",
     icon: (
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5b72ff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <path d="m3 17 2 2 4-4" />
@@ -95,7 +97,7 @@ const FEATURES = [
   },
   {
     title: "ROI you can see",
-    desc: "Time saved, response times, top senders, and where your inbox hours actually go — the proof Mini Brief is earning its keep.",
+    desc: "Time saved, response times, top senders, and where your inbox hours actually go — the proof MiniBrief is earning its keep.",
     icon: (
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5b72ff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <path d="M3 3v18h18" />
@@ -128,21 +130,24 @@ function onCardMove(e: React.MouseEvent<HTMLDivElement>) {
 export function Features() {
   return (
     <Reveal as="section" className="relative z-[1] px-6 sm:px-12 py-14 sm:py-20 section-seam">
+      <SectionOrbs placement="right" />
       <SectionHeader
         kicker="More in the toolkit"
         title="And it keeps earning its keep."
-        sub="Beyond triage, drafting, and unsubscribe, Mini Brief quietly handles the rest of the inbox grind."
+        sub="Beyond triage, drafting, and unsubscribe, MiniBrief quietly handles the rest of the inbox grind."
         className="mb-12"
       />
-      <Reveal stagger className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-[1040px] mx-auto">
+      <Reveal stagger className="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-[1040px] mx-auto">
         {FEATURES.map((f) => (
-          <div key={f.title} onMouseMove={onCardMove} className="feat-inner h-full !p-5 sm:!p-6">
-            <div className="feat-icon w-10 h-10 rounded-xl flex items-center justify-center bg-[rgba(74,98,245,0.10)] border border-[rgba(74,98,245,0.20)] mb-3.5">
-              {f.icon}
+          <TiltCard key={f.title} className="h-full">
+            <div onMouseMove={onCardMove} className="feat-inner h-full !p-5 sm:!p-6">
+              <div className="feat-icon w-10 h-10 rounded-xl flex items-center justify-center bg-[rgba(74,98,245,0.10)] border border-[rgba(74,98,245,0.20)] mb-3.5">
+                {f.icon}
+              </div>
+              <h3 className="font-display text-[17px] font-semibold text-white mb-1.5 tracking-[-0.01em]">{f.title}</h3>
+              <p className="font-body text-[13px] text-fg-2 leading-[1.6]">{f.desc}</p>
             </div>
-            <h3 className="font-display text-[17px] font-semibold text-white mb-1.5 tracking-[-0.01em]">{f.title}</h3>
-            <p className="font-body text-[13px] text-fg-2 leading-[1.6]">{f.desc}</p>
-          </div>
+          </TiltCard>
         ))}
       </Reveal>
     </Reveal>

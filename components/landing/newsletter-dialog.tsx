@@ -90,7 +90,7 @@ export function NewsletterProvider({ children }: { children: React.ReactNode }) 
           ) : (
             <Image
               src="/photos/MiniBrief-Icon-Mono-Ink.png"
-              alt="Mini Brief"
+              alt="MiniBrief"
               width={48}
               height={48}
               className="w-12 h-12 mx-auto mb-4 rounded-2xl shadow-[0_0_24px_rgba(74,98,245,0.25)]"
@@ -111,7 +111,7 @@ export function NewsletterProvider({ children }: { children: React.ReactNode }) 
             <>
               <DialogTitle className="text-center">Get the launch email.</DialogTitle>
               <DialogDescription className="mt-2 mb-5 text-center">
-                Mini Brief isn't on the Chrome Web Store yet. Drop your email and you'll be first when it goes live.
+                MiniBrief isn't on the Chrome Web Store yet. Drop your email and you'll be first when it goes live.
               </DialogDescription>
 
               <form onSubmit={submit} className="flex flex-col gap-3 sm:flex-row">

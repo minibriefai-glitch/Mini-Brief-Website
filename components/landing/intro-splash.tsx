@@ -51,12 +51,12 @@ export function IntroSplash() {
     <div
       className={`splash-overlay${fading ? " splash-out" : ""}`}
       role="status"
-      aria-label="Loading Mini Brief"
+      aria-label="Loading MiniBrief"
     >
       <div className="splash-logo">
         <Image
           src="/photos/MiniBrief-Icon-Mono-Ink.png"
-          alt="Mini Brief"
+          alt="MiniBrief"
           width={80}
           height={80}
           className="rounded-[22%]"

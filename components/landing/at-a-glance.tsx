@@ -1,5 +1,7 @@
 import { CountUp } from "@/components/effects/count-up";
 import { Reveal } from "@/components/effects/reveal-on-scroll";
+import { TiltCard } from "@/components/effects/tilt-card";
+import { SectionOrbs } from "@/components/effects/section-orbs";
 
 const iconProps = {
   width: 18,
@@ -32,9 +34,9 @@ type Stat = {
 
 const STATS: Stat[] = [
   {
-    value: 1,
+    value: 2,
     suffix: "",
-    label: "Inbox supported today — Outlook coming soon",
+    label: "Inboxes supported — Gmail and Outlook",
     icon: (
       <svg {...iconProps}>
         <rect width="20" height="16" x="2" y="4" rx="2" />
@@ -78,8 +80,10 @@ const STATS: Stat[] = [
 
 export function AtAGlance() {
   return (
-    <Reveal as="section" className="relative z-[1] px-6 sm:px-12 py-12 sm:py-16">
-      <div className="relative max-w-[1040px] mx-auto rounded-2xl border border-white/[0.08] bg-[rgba(13,21,40,0.5)] backdrop-blur-md shadow-[0_20px_56px_rgba(0,0,0,0.38)] overflow-hidden">
+    <Reveal as="section" variant="3d" className="relative z-[1] px-6 sm:px-12 py-12 sm:py-16">
+      <SectionOrbs placement="center" />
+      <TiltCard as="div" className="max-w-[1040px] mx-auto" max={4} lift={4}>
+      <div className="relative w-full rounded-2xl border border-white/[0.08] bg-[rgba(13,21,40,0.5)] backdrop-blur-md shadow-[0_20px_56px_rgba(0,0,0,0.38)] overflow-hidden">
         <div
           className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-px bg-gradient-to-r from-transparent via-accent-b to-transparent"
           aria-hidden="true"
@@ -91,7 +95,7 @@ export function AtAGlance() {
           <div className="flex flex-wrap items-center justify-center gap-3">
             {[
               { name: "Gmail", status: "Available now", live: true },
-              { name: "Outlook", status: "Coming soon", live: false },
+              { name: "Outlook", status: "Available now", live: true },
             ].map(({ name, status, live }) => (
               <div
                 key={name}
@@ -124,7 +128,7 @@ export function AtAGlance() {
             ))}
           </div>
           <p className="font-body text-[13px] text-fg-3 mt-4 max-w-[460px] leading-relaxed">
-            Mini Brief works inside your existing webmail the moment you open it.
+            MiniBrief works inside your existing webmail the moment you open it.
             Your email content never leaves for our servers.
           </p>
         </div>
@@ -156,6 +160,7 @@ export function AtAGlance() {
           ))}
         </div>
       </div>
+      </TiltCard>
     </Reveal>
   );
 }

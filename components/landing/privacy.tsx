@@ -1,4 +1,5 @@
 import { Reveal } from "@/components/effects/reveal-on-scroll";
+import { SectionOrbs } from "@/components/effects/section-orbs";
 
 const PILLARS = [
   {
@@ -7,11 +8,11 @@ const PILLARS = [
   },
   {
     title: "Zero tracking, zero telemetry",
-    desc: "No analytics SDKs, no pixels, and no behavioral logging. Mini Brief does not phone home, so we cannot see what you read, who you email, or how you use it.",
+    desc: "No analytics SDKs, no pixels, and no behavioral logging. MiniBrief does not phone home, so we cannot see what you read, who you email, or how you use it.",
   },
   {
     title: "Your account holds settings, not mail",
-    desc: "A Mini Brief account is required, and it syncs your preferences and VIPs across devices. It never stores the contents of your emails — only you and the AI ever see those.",
+    desc: "A MiniBrief account is required, and it syncs your preferences and VIPs across devices. It never stores the contents of your emails — only you and the AI ever see those.",
   },
 ];
 
@@ -25,8 +26,9 @@ function CheckIcon() {
 
 export function Privacy() {
   return (
-    <Reveal as="section" variant="up" id="privacy" className="relative z-[1] px-6 sm:px-12 py-14 sm:py-20 section-seam">
-      <div className="relative max-w-[920px] mx-auto rounded-3xl border border-accent-border bg-[rgba(13,21,40,0.55)] backdrop-blur-md overflow-hidden">
+    <Reveal as="section" variant="3d" id="privacy" className="relative z-[1] px-6 sm:px-12 py-14 sm:py-20 section-seam">
+      <SectionOrbs placement="left" />
+      <div className="float-shadow relative max-w-[920px] mx-auto rounded-3xl border border-accent-border bg-[rgba(13,21,40,0.55)] backdrop-blur-md overflow-hidden">
         <div
           className="absolute -top-px left-1/2 -translate-x-1/2 w-[460px] h-[200px] pointer-events-none"
           style={{ background: "radial-gradient(ellipse, rgba(74,98,245,0.22), transparent 70%)" }}
@@ -43,7 +45,7 @@ export function Privacy() {
             Your email stays in your browser.
           </h2>
           <p className="font-body text-[15px] text-fg-2 leading-relaxed mt-3 max-w-[560px]">
-            Mini Brief needs an account, but your email content never does. Messages are processed in your browser and sent only to the AI that generates your results — never to our servers, and never stored.
+            MiniBrief needs an account, but your email content never does. Messages are processed in your browser and sent only to the AI that generates your results — never to our servers, and never stored.
           </p>
 
           <div className="mt-8 flex flex-col divide-y divide-white/[0.06] border-t border-white/[0.06]">

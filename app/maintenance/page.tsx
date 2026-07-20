@@ -3,7 +3,7 @@ import { Logo } from "@/components/landing/logo";
 
 export const metadata: Metadata = {
   title: "Down for repairs — MiniBrief",
-  description: "Mini Brief is getting a quick tune-up. We'll be back shortly.",
+  description: "MiniBrief is getting a quick tune-up. We'll be back shortly.",
   robots: { index: false, follow: false },
 };
 
@@ -27,7 +27,7 @@ export default function Maintenance() {
         </h1>
 
         <p className="font-display italic text-fg-2 mb-8 text-[clamp(16px,2vw,20px)] max-w-[520px]">
-          Mini Brief is getting a quick tune-up. We&rsquo;ll be back in your inbox
+          MiniBrief is getting a quick tune-up. We&rsquo;ll be back in your inbox
           shortly &mdash; thanks for your patience.
         </p>
 

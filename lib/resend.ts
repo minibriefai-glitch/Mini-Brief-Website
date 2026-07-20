@@ -16,12 +16,12 @@ export function getResend(): Resend | null {
 // we validate and fall back to the known-good default rather than trust the env.
 const FROM_RE =
   /^(?:[^\s@]+@[^\s@]+\.[^\s@]+|.+<[^\s@]+@[^\s@]+\.[^\s@]+>)$/;
-const DEFAULT_FROM = "Mini Brief <hello@minibrief.app>";
+const DEFAULT_FROM = "MiniBrief <hello@minibrief.app>";
 
 export function buildConfirmationEmail(toEmail: string) {
   const envFrom = process.env.RESEND_FROM_EMAIL?.trim();
   const from = envFrom && FROM_RE.test(envFrom) ? envFrom : DEFAULT_FROM;
-  const subject = "You're on the Mini Brief list";
+  const subject = "You're on the MiniBrief list";
   const html = `
     <!doctype html>
     <html>
@@ -36,7 +36,7 @@ export function buildConfirmationEmail(toEmail: string) {
               </td></tr>
               <tr><td style="padding:8px 32px 24px">
                 <h1 style="font-family:Outfit,Arial,sans-serif;font-size:26px;font-weight:700;letter-spacing:-0.02em;color:#ffffff;margin:0 0 12px">You're on the list.</h1>
-                <p style="font-family:Inter,Arial,sans-serif;font-size:15px;line-height:1.6;color:#8892b0;margin:0 0 20px">Thanks for your interest in Mini Brief, email intelligence for Gmail and Outlook. We will send you a single email when the extension is available for Chrome and Firefox.</p>
+                <p style="font-family:Inter,Arial,sans-serif;font-size:15px;line-height:1.6;color:#8892b0;margin:0 0 20px">Thanks for your interest in MiniBrief, email intelligence for Gmail and Outlook. We will send you a single email when the extension is available for Chrome and Firefox.</p>
                 <p style="font-family:Inter,Arial,sans-serif;font-size:14px;line-height:1.6;color:#8892b0;margin:0">Nothing else until then. No marketing, just the launch notice.</p>
               </td></tr>
               <tr><td style="padding:0 32px 32px;border-top:1px solid rgba(255,255,255,0.06)">

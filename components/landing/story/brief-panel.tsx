@@ -129,7 +129,7 @@ export const BriefPanel = memo(function BriefPanel() {
                 <span className="font-display text-[12px] font-semibold text-white">Going quiet</span>
               </div>
               <p className="font-body text-[11px] leading-[1.5] text-[#aab0cc]">
-                Sarah hasn&apos;t replied in 9 days — past your 2-week cadence. Mini Brief flagged it before the
+                Sarah hasn&apos;t replied in 9 days — past your 2-week cadence. MiniBrief flagged it before the
                 relationship cooled.
               </p>
             </div>

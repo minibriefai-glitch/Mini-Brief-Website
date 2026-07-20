@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
 
-type RevealVariant = "up" | "left" | "right" | "zoom" | "fade";
+type RevealVariant = "up" | "left" | "right" | "zoom" | "fade" | "3d";
 
 type Props = React.HTMLAttributes<HTMLDivElement> & {
   as?: React.ElementType;
@@ -38,7 +38,12 @@ export function Reveal({ as: Tag = "div", stagger = false, variant = "up", class
       ? "reveal"
       : `reveal-${variant}`;
 
-  const Component = Tag as React.ElementType;
+  // Give ElementType explicit props — otherwise, once @react-three/fiber's
+  // JSX augmentation is in the graph, a bare `as React.ElementType` infers
+  // `never` for children/ref and the build fails.
+  const Component = Tag as React.ElementType<
+    React.HTMLAttributes<HTMLElement> & React.RefAttributes<HTMLElement>
+  >;
   return (
     <Component
       ref={ref as React.Ref<HTMLElement>}

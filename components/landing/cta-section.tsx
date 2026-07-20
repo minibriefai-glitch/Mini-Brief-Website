@@ -25,7 +25,7 @@ export function CtaSection() {
         Be first to know <span className="text-grad">when it launches.</span>
       </h2>
       <p className="relative font-body text-[16px] text-fg-2 mb-7 max-w-[520px] leading-relaxed">
-        Mini Brief launches soon. Join the waitlist and we will email you once when it is live. Nothing else.
+        MiniBrief launches soon. Join the waitlist and we will email you once when it is live. Nothing else.
       </p>
       <Magnetic>
         <Button variant="hero" size="lg" onClick={() => open("cta-section")}>

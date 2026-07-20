@@ -277,7 +277,7 @@ export function CinematicShowcase() {
             The work it does, <span className="text-grad">every day</span>.
           </>
         }
-        sub="Not a list of features — the work Mini Brief takes off your plate the moment you open your inbox."
+        sub="Not a list of features — the work MiniBrief takes off your plate the moment you open your inbox."
         className="mb-14 sm:mb-20"
       />
 

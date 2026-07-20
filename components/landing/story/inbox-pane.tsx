@@ -29,7 +29,7 @@ export const InboxPane = memo(function InboxPane() {
         <div className="cine-mb-pill flex items-center gap-1.5 rounded-full p-[1px]" style={{ backgroundImage: "var(--grad)" }}>
           <span className="flex items-center gap-1.5 rounded-full bg-[#fdfcfa] px-2.5 py-[3px]">
             <span className="live-dot" />
-            <span className="font-mono text-[9px] tracking-[0.1em] uppercase text-ink-2">Mini Brief on</span>
+            <span className="font-mono text-[9px] tracking-[0.1em] uppercase text-ink-2">MiniBrief on</span>
           </span>
         </div>
       </div>

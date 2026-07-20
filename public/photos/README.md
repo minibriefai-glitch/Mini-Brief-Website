@@ -16,7 +16,7 @@ export function Logo() {
     <div className="flex items-center gap-2.5">
       <Image
         src="/photos/logo.svg"
-        alt="Mini Brief"
+        alt="MiniBrief"
         width={17}
         height={13}
         className="logo-icon"

@@ -17,12 +17,12 @@ export function Logo() {
     <button
       type="button"
       onClick={onClick}
-      aria-label="Mini Brief — back to top"
+      aria-label="MiniBrief — back to top"
       className="flex items-center gap-2 rounded-md outline-none focus-visible:ring-2 focus-visible:ring-accent-b/60 focus-visible:ring-offset-2 focus-visible:ring-offset-bg transition-opacity hover:opacity-80"
     >
       <Image
         src="/photos/MiniBrief-Icon-Mono-Ink.png"
-        alt="Mini Brief"
+        alt="MiniBrief"
         width={32}
         height={32}
         className="rounded-[22%]"

@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Magnetic } from "@/components/effects/magnetic";
 import { ParallaxDrift } from "@/components/effects/parallax-drift";
-import { DemoFrame } from "./live-demo";
+import { HeroProductScene } from "./hero-product-scene";
 import { useNewsletter } from "./newsletter-dialog";
 import { ScrollCue } from "./scroll-cue";
 
@@ -78,7 +78,7 @@ export function Hero() {
         className="hero-anim font-body text-fg-2 mb-9 text-[clamp(16px,1.7vw,19px)] max-w-[620px] leading-[1.65]"
         style={{ animationDelay: "0.1s" }}
       >
-        The AI inbox that runs in your browser — never on our servers. Mini Brief
+        The AI inbox that runs in your browser — never on our servers. MiniBrief
         triages what matters inside Gmail and Outlook, drafts replies in your own
         voice, and clears the noise. Your email stays yours.
       </p>
@@ -170,7 +170,7 @@ export function Hero() {
               </svg>
             }
           />
-          <DemoFrame boot="idle" className="max-w-none" />
+          <HeroProductScene />
         </div>
       </div>
     </section>

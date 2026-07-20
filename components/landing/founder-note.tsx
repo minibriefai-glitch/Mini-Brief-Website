@@ -1,9 +1,11 @@
 import { Reveal } from "@/components/effects/reveal-on-scroll";
+import { SectionOrbs } from "@/components/effects/section-orbs";
 import { SectionHeader } from "./section-header";
 
 export function FounderNote() {
   return (
     <Reveal as="section" variant="up" className="relative z-[1] px-6 sm:px-12 py-14 sm:py-20 section-seam">
+      <SectionOrbs placement="right" />
       <SectionHeader
         kicker="Why we built it"
         title="A note from the founder."
@@ -12,7 +14,7 @@ export function FounderNote() {
 
       <div className="card-glass-static max-w-[720px] mx-auto backdrop-blur-md shadow-[0_20px_56px_rgba(0,0,0,0.38)] p-7 sm:p-10">
         <blockquote className="font-body text-[15px] sm:text-[16px] text-fg-2 leading-[1.8] space-y-4">
-          <p>I built Mini Brief because my inbox was beating me.</p>
+          <p>I built MiniBrief because my inbox was beating me.</p>
           <p>
             Hundreds of unread emails, no structure, no idea what actually needed a
             reply. Newsletters, promos, and junk piling up until the one email that
@@ -23,7 +25,7 @@ export function FounderNote() {
           </p>
           <p>I didn&rsquo;t want a prettier inbox. I wanted my day back.</p>
           <p>
-            So I built the thing I needed. Mini Brief reads your inbox, clears the
+            So I built the thing I needed. MiniBrief reads your inbox, clears the
             newsletters and noise away from what actually matters, pulls the answer out
             of long chains, and drafts the reply in your own voice, right inside Gmail
             and Outlook.
@@ -43,7 +45,7 @@ export function FounderNote() {
           </div>
           <div>
             <div className="font-display text-[15px] font-semibold text-white">Michael Mancuso</div>
-            <div className="font-body text-[13px] text-fg-3">Founder, Mini Brief</div>
+            <div className="font-body text-[13px] text-fg-3">Founder, MiniBrief</div>
           </div>
         </div>
       </div>
