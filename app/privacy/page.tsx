@@ -113,7 +113,8 @@ export default function PrivacyPage() {
           and billing. How much is sent depends on the feature:
         </p>
         <ul>
-          <li><strong>Triage, classification, briefings, executive report, VIP and meeting prep:</strong> the subject line and a short preview snippet only (about 120 characters). No message bodies.</li>
+          <li><strong>Triage, classification, briefings, executive report, and VIP:</strong> the subject line and a short preview snippet only (about 120 characters). No message bodies.</li>
+          <li><strong>Meeting prep:</strong> details of the calendar event you are preparing for — the event title, description (up to 500 characters), location, and the attendee names and email addresses — from your connected Google Calendar. This is calendar data, not email content, and it is not stored.</li>
           <li><strong>Reply drafting:</strong> the body of the email you are replying to (so the draft can actually respond to it), plus any notes you have written on that thread or on that contact. This runs when you ask for a draft.</li>
           <li><strong>Summaries and AI Brief:</strong> the cleaned body of the message being summarized — the body is the input the feature works on.</li>
           <li><strong>Commitments and open questions:</strong> when you open an email, MiniBrief automatically scans the latest message body — with quoted replies and signatures stripped out — to surface promises you or the other party made and questions still awaiting an answer.</li>
