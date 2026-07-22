@@ -13,7 +13,6 @@ import { IntroSplash } from "@/components/landing/intro-splash";
 import { Nav } from "@/components/landing/nav";
 import { NewsletterProvider } from "@/components/landing/newsletter-dialog";
 import { OutcomeBand } from "@/components/landing/outcome-band";
-import { Privacy } from "@/components/landing/privacy";
 import { CinematicShowcase } from "@/components/landing/story/cinematic-showcase";
 import { PrivacyCinematic } from "@/components/landing/story2/privacy-cinematic";
 import { TrustBand } from "@/components/landing/trust-band";
@@ -39,7 +38,6 @@ export default function HomePage() {
         <Features />
         <HowItWorks />
         <PrivacyCinematic />
-        <Privacy />
         <FounderNote />
         <Faq />
         <CtaSection />
