@@ -9,9 +9,20 @@ type Props = React.HTMLAttributes<HTMLDivElement> & {
   as?: React.ElementType;
   stagger?: boolean;
   variant?: RevealVariant;
+  /** Entrance delay in ms (transition-delay). Neutralised under reduced motion. */
+  delay?: number;
 };
 
-export function Reveal({ as: Tag = "div", stagger = false, variant = "up", className, children, ...rest }: Props) {
+export function Reveal({
+  as: Tag = "div",
+  stagger = false,
+  variant = "up",
+  delay,
+  className,
+  style,
+  children,
+  ...rest
+}: Props) {
   const ref = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -33,7 +44,9 @@ export function Reveal({ as: Tag = "div", stagger = false, variant = "up", class
   }, []);
 
   const baseClass = stagger
-    ? "reveal-stagger"
+    ? variant === "3d"
+      ? "reveal-stagger-3d"
+      : "reveal-stagger"
     : variant === "up"
       ? "reveal"
       : `reveal-${variant}`;
@@ -48,6 +61,7 @@ export function Reveal({ as: Tag = "div", stagger = false, variant = "up", class
     <Component
       ref={ref as React.Ref<HTMLElement>}
       className={cn(baseClass, className)}
+      style={delay != null ? { ...style, transitionDelay: `${delay}ms` } : style}
       {...rest}
     >
       {children}

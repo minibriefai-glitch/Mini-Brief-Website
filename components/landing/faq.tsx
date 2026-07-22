@@ -74,7 +74,7 @@ export function Faq() {
         className="mb-10"
       />
 
-      <div className="card-glass-static max-w-[760px] mx-auto overflow-hidden">
+      <Reveal stagger as="div" className="card-glass-static max-w-[760px] mx-auto overflow-hidden">
         {FAQS.map((f) => (
           <details key={f.q} className="faq-item group">
             <summary className="faq-q flex items-center justify-between gap-4 px-6 py-5 cursor-pointer select-none">
@@ -88,7 +88,7 @@ export function Faq() {
             </div>
           </details>
         ))}
-      </div>
+      </Reveal>
     </Reveal>
   );
 }

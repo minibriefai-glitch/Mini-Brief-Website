@@ -1,5 +1,6 @@
 import { Reveal } from "@/components/effects/reveal-on-scroll";
 import { SectionOrbs } from "@/components/effects/section-orbs";
+import { TiltCard } from "@/components/effects/tilt-card";
 
 const PILLARS = [
   {
@@ -28,7 +29,8 @@ export function Privacy() {
   return (
     <Reveal as="section" variant="3d" id="privacy" className="relative z-[1] px-6 sm:px-12 py-14 sm:py-20 section-seam">
       <SectionOrbs placement="left" />
-      <div className="float-shadow relative max-w-[920px] mx-auto rounded-3xl border border-accent-border bg-[rgba(13,21,40,0.55)] backdrop-blur-md overflow-hidden">
+      <TiltCard max={4} lift={4} className="max-w-[920px] mx-auto">
+      <div className="float-shadow relative rounded-3xl border border-accent-border bg-[rgba(13,21,40,0.55)] backdrop-blur-md overflow-hidden">
         <div
           className="absolute -top-px left-1/2 -translate-x-1/2 w-[460px] h-[200px] pointer-events-none"
           style={{ background: "radial-gradient(ellipse, rgba(74,98,245,0.22), transparent 70%)" }}
@@ -48,7 +50,7 @@ export function Privacy() {
             MiniBrief needs an account, but your email content never does. Messages are processed in your browser and sent only to the AI that generates your results — never to our servers, and never stored.
           </p>
 
-          <div className="mt-8 flex flex-col divide-y divide-white/[0.06] border-t border-white/[0.06]">
+          <Reveal stagger as="div" className="mt-8 flex flex-col divide-y divide-white/[0.06] border-t border-white/[0.06]">
             {PILLARS.map((p) => (
               <div key={p.title} className="flex items-start gap-4 py-5">
                 <span className="mt-0.5 flex items-center justify-center w-7 h-7 rounded-full bg-[rgba(34,211,160,0.12)] border border-[rgba(34,211,160,0.4)] shrink-0">
@@ -64,13 +66,14 @@ export function Privacy() {
                 </div>
               </div>
             ))}
-          </div>
+          </Reveal>
 
           <p className="font-mono text-[11px] tracking-[0.12em] uppercase text-fg-3 mt-8">
             Email never stored · Processed in your browser · No tracking
           </p>
         </div>
       </div>
+      </TiltCard>
     </Reveal>
   );
 }

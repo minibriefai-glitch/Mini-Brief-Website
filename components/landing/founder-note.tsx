@@ -1,5 +1,6 @@
 import { Reveal } from "@/components/effects/reveal-on-scroll";
 import { SectionOrbs } from "@/components/effects/section-orbs";
+import { TiltCard } from "@/components/effects/tilt-card";
 import { SectionHeader } from "./section-header";
 
 export function FounderNote() {
@@ -12,9 +13,12 @@ export function FounderNote() {
         className="mb-10"
       />
 
-      <div className="card-glass-static max-w-[720px] mx-auto backdrop-blur-md shadow-[0_20px_56px_rgba(0,0,0,0.38)] p-7 sm:p-10">
-        <blockquote className="font-body text-[15px] sm:text-[16px] text-fg-2 leading-[1.8] space-y-4">
-          <p>I built MiniBrief because my inbox was beating me.</p>
+      {/* TiltCard wraps the glass card as a separate layer so its tilt transform
+          doesn't fight the card's own hover-lift. */}
+      <TiltCard max={4} lift={4} className="max-w-[720px] mx-auto">
+        <div className="card-glass backdrop-blur-md shadow-[0_20px_56px_rgba(0,0,0,0.38)] p-7 sm:p-10">
+          <Reveal stagger as="blockquote" className="font-body text-[15px] sm:text-[16px] text-fg-2 leading-[1.8] space-y-4">
+            <p>I built MiniBrief because my inbox was beating me.</p>
           <p>
             Hundreds of unread emails, no structure, no idea what actually needed a
             reply. Newsletters, promos, and junk piling up until the one email that
@@ -34,21 +38,22 @@ export function FounderNote() {
             What used to eat your morning now takes minutes. Nothing important slips
             through, and you get a whole lot more of your day back.
           </p>
-        </blockquote>
+          </Reveal>
 
-        <div className="flex items-center gap-4 mt-7 pt-6 border-t border-white/[0.06]">
-          <div
-            aria-hidden="true"
-            className="flex h-[52px] w-[52px] shrink-0 items-center justify-center rounded-full border border-accent-border bg-accent-dim font-display text-[16px] font-bold tracking-[-0.01em] text-accent-b"
-          >
-            MM
-          </div>
-          <div>
-            <div className="font-display text-[15px] font-semibold text-white">Michael Mancuso</div>
-            <div className="font-body text-[13px] text-fg-3">Founder, MiniBrief</div>
+          <div className="flex items-center gap-4 mt-7 pt-6 border-t border-white/[0.06]">
+            <div
+              aria-hidden="true"
+              className="flex h-[52px] w-[52px] shrink-0 items-center justify-center rounded-full border border-accent-border bg-accent-dim font-display text-[16px] font-bold tracking-[-0.01em] text-accent-b"
+            >
+              MM
+            </div>
+            <div>
+              <div className="font-display text-[15px] font-semibold text-white">Michael Mancuso</div>
+              <div className="font-body text-[13px] text-fg-3">Founder, MiniBrief</div>
+            </div>
           </div>
         </div>
-      </div>
+      </TiltCard>
     </Reveal>
   );
 }

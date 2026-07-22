@@ -16,6 +16,12 @@ export function CountUp({ to, decimals = 0, duration = 1400 }: Props) {
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+    // Motion-averse visitors get the final value immediately — no count-up.
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      started.current = true;
+      setVal(to);
+      return;
+    }
     const io = new IntersectionObserver((entries) => {
       for (const e of entries) {
         if (e.isIntersecting && !started.current) {

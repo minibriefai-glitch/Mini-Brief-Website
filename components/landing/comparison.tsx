@@ -1,5 +1,6 @@
 import { Reveal } from "@/components/effects/reveal-on-scroll";
 import { SectionOrbs } from "@/components/effects/section-orbs";
+import { TiltCard } from "@/components/effects/tilt-card";
 import { SectionHeader } from "./section-header";
 
 type Row = { label: string; them: string; us: string; highlight?: boolean };
@@ -45,7 +46,7 @@ export function Comparison() {
         className="mb-10"
       />
 
-      <div className="card-glass-static max-w-[860px] mx-auto overflow-hidden">
+      <TiltCard max={4} lift={4} className="card-glass-static max-w-[860px] mx-auto overflow-hidden">
         {/* Header */}
         <div className="grid grid-cols-[1.1fr_1fr_1fr] sm:grid-cols-[1.3fr_1fr_1fr]">
           <div className="px-4 sm:px-6 py-4" />
@@ -57,25 +58,28 @@ export function Comparison() {
           </div>
         </div>
 
-        {ROWS.map((r) => (
-          <div
-            key={r.label}
-            className="grid grid-cols-[1.1fr_1fr_1fr] sm:grid-cols-[1.3fr_1fr_1fr] border-t border-white/[0.06]"
-          >
-            <div className={`px-4 sm:px-6 py-4 font-body text-[13px] sm:text-[14px] font-medium ${r.highlight ? "text-white" : "text-fg-2"}`}>
-              {r.label}
+        {/* Rows cascade down the list, drawing the eye down the MiniBrief column. */}
+        <Reveal stagger>
+          {ROWS.map((r) => (
+            <div
+              key={r.label}
+              className="grid grid-cols-[1.1fr_1fr_1fr] sm:grid-cols-[1.3fr_1fr_1fr] border-t border-white/[0.06]"
+            >
+              <div className={`px-4 sm:px-6 py-4 font-body text-[13px] sm:text-[14px] font-medium ${r.highlight ? "text-white" : "text-fg-2"}`}>
+                {r.label}
+              </div>
+              <div className="px-4 sm:px-6 py-4 font-body text-[12px] sm:text-[13px] text-fg-3 border-l border-white/[0.06] flex items-start gap-2">
+                <Dash />
+                <span>{r.them}</span>
+              </div>
+              <div className={`px-4 sm:px-6 py-4 font-body text-[12px] sm:text-[13px] leading-snug border-l border-accent-border flex items-start gap-2 ${r.highlight ? "bg-[rgba(74,98,245,0.10)] text-white" : "bg-[rgba(74,98,245,0.05)] text-fg-2"}`}>
+                <Check />
+                <span>{r.us}</span>
+              </div>
             </div>
-            <div className="px-4 sm:px-6 py-4 font-body text-[12px] sm:text-[13px] text-fg-3 border-l border-white/[0.06] flex items-start gap-2">
-              <Dash />
-              <span>{r.them}</span>
-            </div>
-            <div className={`px-4 sm:px-6 py-4 font-body text-[12px] sm:text-[13px] leading-snug border-l border-accent-border flex items-start gap-2 ${r.highlight ? "bg-[rgba(74,98,245,0.10)] text-white" : "bg-[rgba(74,98,245,0.05)] text-fg-2"}`}>
-              <Check />
-              <span>{r.us}</span>
-            </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </Reveal>
+      </TiltCard>
     </Reveal>
   );
 }

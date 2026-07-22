@@ -58,9 +58,17 @@ function makeOrbTexture() {
   return tex;
 }
 
-function Orbs({ pointer }: { pointer: RefObject<Pointer> }) {
+function Orbs({
+  pointer,
+  exit,
+}: {
+  pointer: RefObject<Pointer>;
+  exit?: RefObject<number>;
+}) {
   const groupRef = useRef<THREE.Group>(null);
   const pointsRef = useRef<THREE.Points>(null);
+  // Smoothed hero-exit value; drives the field pushing back + dispersing.
+  const exitCur = useRef(0);
 
   const { geometry, material, seeds } = useMemo(() => {
     const rand = mulberry32(0x5eed);
@@ -132,10 +140,18 @@ function Orbs({ pointer }: { pointer: RefObject<Pointer> }) {
     }
 
     if (grp) {
+      // As the hero scrolls away, the field recedes into depth and disperses,
+      // so the atmosphere reads as "opening up" behind the exiting panel.
+      exitCur.current += ((exit?.current ?? 0) - exitCur.current) * 0.06;
+      const e = exitCur.current;
+
       // Parallax: ease toward the pointer rather than snapping to it.
       const p = pointer.current;
       grp.position.x += (p.x * 0.45 - grp.position.x) * 0.04;
       grp.position.y += (-p.y * 0.3 - grp.position.y) * 0.04;
+      grp.position.z = -e * 2.6;
+      const disperse = 1 + e * 0.32;
+      grp.scale.set(disperse, disperse, 1);
       grp.rotation.z = Math.sin(t * 0.04) * 0.03;
     }
   });
@@ -184,9 +200,11 @@ function AccentWash() {
 
 export default function HeroSceneAtmosphere({
   pointer,
+  exit,
   active,
 }: {
   pointer: RefObject<Pointer>;
+  exit?: RefObject<number>;
   active: boolean;
 }) {
   return (
@@ -200,7 +218,7 @@ export default function HeroSceneAtmosphere({
       style={{ background: "transparent" }}
     >
       <AccentWash />
-      <Orbs pointer={pointer} />
+      <Orbs pointer={pointer} exit={exit} />
       <EffectComposer multisampling={0}>
         <Bloom
           intensity={0.55}

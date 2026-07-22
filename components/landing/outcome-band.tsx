@@ -25,10 +25,13 @@ export function OutcomeBand() {
         className="mb-10"
       />
 
-      <Reveal stagger className="relative grid grid-cols-1 sm:grid-cols-3 gap-3.5 max-w-[920px] mx-auto">
+      <Reveal stagger variant="3d" className="relative grid grid-cols-1 sm:grid-cols-3 gap-3.5 max-w-[920px] mx-auto">
         {SHIFTS.map((s) => (
-          <TiltCard key={s.after} className="h-full" max={6}>
-            <div className="card-glass h-full flex flex-col items-center text-center gap-2.5 px-5 py-7">
+          // Wrapper carries the 3D tip-in reveal; TiltCard (inside) owns the
+          // hover tilt — kept on separate elements so their transforms compose.
+          <div key={s.after} className="h-full">
+            <TiltCard className="h-full" max={6}>
+              <div className="card-glass h-full flex flex-col items-center text-center gap-2.5 px-5 py-7">
               <span className="font-mono text-[11px] tracking-[0.08em] uppercase text-fg-3 line-through decoration-fg-3/50">
                 {s.before}
               </span>
@@ -50,8 +53,9 @@ export function OutcomeBand() {
               <span className="font-display text-[19px] font-bold text-white tracking-[-0.015em]">
                 {s.after}
               </span>
-            </div>
-          </TiltCard>
+              </div>
+            </TiltCard>
+          </div>
         ))}
       </Reveal>
     </Reveal>

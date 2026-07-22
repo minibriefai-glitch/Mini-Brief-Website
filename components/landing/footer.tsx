@@ -1,10 +1,11 @@
 import Link from "next/link";
+import { Reveal } from "@/components/effects/reveal-on-scroll";
 import { Logo } from "./logo";
 
 export function Footer() {
   return (
-    <footer className="relative z-[1] border-t border-white/[0.06] px-6 sm:px-12 pt-10 pb-7">
-      <div className="max-w-[1040px] mx-auto flex flex-col sm:flex-row sm:items-start sm:justify-between gap-7">
+    <Reveal as="footer" variant="up" className="relative z-[1] border-t border-white/[0.06] px-6 sm:px-12 pt-10 pb-7">
+      <Reveal stagger className="max-w-[1040px] mx-auto flex flex-col sm:flex-row sm:items-start sm:justify-between gap-7">
         <div className="max-w-[320px]">
           <Logo />
           <p className="font-body text-[13px] text-fg-3 leading-relaxed mt-3">
@@ -58,13 +59,13 @@ export function Footer() {
             </a>
           </nav>
         </div>
-      </div>
+      </Reveal>
 
       <div className="max-w-[1040px] mx-auto mt-9 pt-5 border-t border-white/[0.05]">
         <p className="font-body text-[12px] text-fg-3">
           © {new Date().getFullYear()} MiniBrief · Private by design. Your email is never stored.
         </p>
       </div>
-    </footer>
+    </Reveal>
   );
 }

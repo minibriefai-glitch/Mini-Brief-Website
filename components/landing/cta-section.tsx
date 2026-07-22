@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/effects/reveal-on-scroll";
 import { Magnetic } from "@/components/effects/magnetic";
 import { ParallaxDrift } from "@/components/effects/parallax-drift";
+import { SectionOrbs } from "@/components/effects/section-orbs";
 import { useNewsletter } from "./newsletter-dialog";
 
 export function CtaSection() {
@@ -11,6 +12,7 @@ export function CtaSection() {
 
   return (
     <Reveal as="section" variant="zoom" className="cta-divider relative z-[1] px-6 pt-16 pb-20 flex flex-col items-center text-center">
+      <SectionOrbs placement="right" />
       <ParallaxDrift
         rate={-0.1}
         className="absolute w-[500px] h-[220px] top-0 left-1/2 -translate-x-1/2 pointer-events-none"

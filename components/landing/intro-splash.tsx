@@ -3,6 +3,21 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
+/**
+ * Hands the "opening" baton to the hero: sets a persistent flag on <html> (so a
+ * hero mounting later can read it) and fires a one-shot event (for a hero that's
+ * already listening). Idempotent — safe to call from every exit path.
+ */
+function signalSplashDone() {
+  if (typeof document === "undefined") return;
+  const root = document.documentElement;
+  if (root.dataset.splashDone === "1") return;
+  // Release the held hero entrance so it assembles as the lens opens.
+  delete root.dataset.splashActive;
+  root.dataset.splashDone = "1";
+  window.dispatchEvent(new CustomEvent("mb:splash-done"));
+}
+
 export function IntroSplash() {
   const [fading, setFading] = useState(false);
   const [removed, setRemoved] = useState(false);
@@ -19,15 +34,28 @@ export function IntroSplash() {
     }
     if (seen) {
       setRemoved(true);
+      signalSplashDone();
       return;
     }
+
+    // The splash will actually play: hold the hero entrance until the lens
+    // opens (CSS pauses .hero-anim while this flag is present). Set only when
+    // JS is running and the splash shows, so no-JS visitors still animate in.
+    document.documentElement.dataset.splashActive = "1";
 
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     // Short-circuit for reduced-motion users — no held splash.
     const holdMs = reduced ? 200 : 650;
-    const fadeMs = reduced ? 50 : 400;
+    // Mirrors the splash-out keyframe duration in globals.css (0.6s) so the
+    // overlay unmounts exactly as the lens-open finishes.
+    const fadeMs = reduced ? 50 : 600;
 
-    const fadeTimer = window.setTimeout(() => setFading(true), holdMs);
+    // Hand the baton to the hero as the lens starts opening, so the panel opens
+    // *through* the clearing aperture rather than after it.
+    const fadeTimer = window.setTimeout(() => {
+      setFading(true);
+      signalSplashDone();
+    }, holdMs);
     const removeTimer = window.setTimeout(() => setRemoved(true), holdMs + fadeMs);
 
     // Lock scroll while the splash is up so the page doesn't jump behind it.

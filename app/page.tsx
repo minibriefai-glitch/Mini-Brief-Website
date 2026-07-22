@@ -1,4 +1,5 @@
 import { AmbientDepth } from "@/components/effects/ambient-depth";
+import { AmbientField } from "@/components/effects/ambient-field";
 import { AtAGlance } from "@/components/landing/at-a-glance";
 import { Comparison } from "@/components/landing/comparison";
 import { CtaSection } from "@/components/landing/cta-section";
@@ -14,6 +15,7 @@ import { NewsletterProvider } from "@/components/landing/newsletter-dialog";
 import { OutcomeBand } from "@/components/landing/outcome-band";
 import { Privacy } from "@/components/landing/privacy";
 import { CinematicShowcase } from "@/components/landing/story/cinematic-showcase";
+import { PrivacyCinematic } from "@/components/landing/story2/privacy-cinematic";
 import { TrustBand } from "@/components/landing/trust-band";
 import { FaqJsonLd } from "@/components/seo/json-ld";
 
@@ -24,6 +26,7 @@ export default function HomePage() {
       <IntroSplash />
       <AmbientDepth />
       <div className="site-backdrop" aria-hidden="true" />
+      <AmbientField />
 
       <main id="main" className="relative min-h-screen flex flex-col">
         <Nav />
@@ -35,6 +38,7 @@ export default function HomePage() {
         <CinematicShowcase />
         <Features />
         <HowItWorks />
+        <PrivacyCinematic />
         <Privacy />
         <FounderNote />
         <Faq />

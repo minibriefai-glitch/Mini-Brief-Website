@@ -78,10 +78,13 @@ export function TrustBand() {
         className="mb-10"
       />
 
-      <Reveal stagger className="relative grid grid-cols-2 lg:grid-cols-4 gap-3.5 max-w-[1040px] mx-auto">
+      <Reveal stagger variant="3d" className="relative grid grid-cols-2 lg:grid-cols-4 gap-3.5 max-w-[1040px] mx-auto">
         {PILLARS.map((p) => (
-          <TiltCard key={p.label} className="h-full" max={6}>
-            <div className="card-glass group h-full flex flex-col items-center text-center px-5 py-7">
+          // Wrapper carries the 3D tip-in; TiltCard owns hover tilt (separate
+          // elements so the transforms don't fight).
+          <div key={p.label} className="h-full">
+            <TiltCard className="h-full" max={6}>
+              <div className="card-glass group h-full flex flex-col items-center text-center px-5 py-7">
               <div className="mb-3.5 w-11 h-11 rounded-xl flex items-center justify-center bg-[rgba(74,98,245,0.10)] border border-[rgba(74,98,245,0.20)] text-accent-b transition-transform duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-0.5 group-hover:scale-105">
                 {p.icon}
               </div>
@@ -91,8 +94,9 @@ export function TrustBand() {
               <div className="font-body text-[12px] text-fg-3 mt-1 leading-snug max-w-[180px]">
                 {p.sub}
               </div>
-            </div>
-          </TiltCard>
+              </div>
+            </TiltCard>
+          </div>
         ))}
       </Reveal>
     </Reveal>
