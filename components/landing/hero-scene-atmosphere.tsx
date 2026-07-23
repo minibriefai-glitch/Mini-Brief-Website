@@ -212,7 +212,7 @@ export default function HeroSceneAtmosphere({
       // "demand" parks the rAF loop but leaves the last frame painted, so
       // pausing off-screen or under reduced-motion costs nothing visually.
       frameloop={active ? "always" : "demand"}
-      dpr={[1, 2]}
+      dpr={[1, 1.5]}
       gl={{ alpha: true, antialias: true, powerPreference: "high-performance" }}
       camera={{ position: [0, 0, 6], fov: 50 }}
       style={{ background: "transparent" }}

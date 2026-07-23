@@ -34,7 +34,7 @@ export function Nav() {
     <nav
       ref={ref}
       data-scrolled="false"
-      className="site-nav sticky top-0 z-50 flex items-center justify-between border-b border-white/[0.06] backdrop-blur-md px-6 sm:px-12"
+      className="site-nav sticky top-0 z-50 flex items-center justify-between border-b border-white/[0.06] px-6 sm:px-12"
     >
       <Logo />
       <Magnetic>

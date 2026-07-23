@@ -144,6 +144,9 @@ html[data-splash-active] .hero-anim-frame {
   opacity: 1;
   transform: translateY(0) scale(1);
   filter: blur(0);
+  /* Entrance is one-shot — release the promoted layer once revealed so we
+     don't hold a GPU layer per element for the life of the page. */
+  will-change: auto;
 }
 
 /* Directional / zoom / fade reveal variants */
@@ -178,6 +181,7 @@ html[data-splash-active] .hero-anim-frame {
   opacity: 1;
   transform: none;
   filter: blur(0);
+  will-change: auto;
 }
 .reveal-stagger > * {
   opacity: 0;
@@ -384,7 +388,7 @@ html[data-splash-active] .hero-anim-frame {
 .demo-orb {
   position: absolute;
   border-radius: 9999px;
-  filter: blur(64px);
+  filter: blur(44px);
   opacity: 0.45;
   pointer-events: none;
 }
@@ -710,6 +714,7 @@ html[data-splash-active] .hero-anim-frame {
   opacity: 1;
   transform: perspective(1200px) rotateX(0deg) translateY(0);
   filter: blur(0);
+  will-change: auto;
 }
 
 /* ───────── Cinematic showcase ─────────
@@ -1834,7 +1839,10 @@ html[data-splash-active] .hero-anim-frame {
 .site-nav[data-scrolled="true"] {
   padding-top: 9px;
   padding-bottom: 9px;
-  background-color: rgba(7, 12, 24, 0.72);
+  /* Bumped from 0.72 → 0.86 to stay crisp now that the per-frame
+     backdrop-blur is gone (blurring a scrolling WebGL/orb field under a
+     sticky bar was the dominant scroll-jank cost). */
+  background-color: rgba(7, 12, 24, 0.86);
   border-color: rgba(255, 255, 255, 0.10);
   box-shadow: 0 10px 34px rgba(0, 0, 0, 0.38);
 }

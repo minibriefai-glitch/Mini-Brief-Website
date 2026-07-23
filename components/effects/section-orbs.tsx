@@ -35,11 +35,11 @@ export function SectionOrbs({
     >
       {/* Far layer — big, faint blue, lags the scroll most. */}
       <ParallaxDrift rate={-0.05} className={`absolute ${p.a}`}>
-        <div className="h-[clamp(320px,42vw,560px)] w-[clamp(320px,42vw,560px)] rounded-full bg-[radial-gradient(circle,rgba(74,98,245,0.16),transparent_68%)] blur-[70px]" />
+        <div className="h-[clamp(320px,42vw,560px)] w-[clamp(320px,42vw,560px)] rounded-full bg-[radial-gradient(circle,rgba(74,98,245,0.16),transparent_68%)] blur-[48px]" />
       </ParallaxDrift>
       {/* Near layer — smaller violet, drifts the other way for depth. */}
       <ParallaxDrift rate={0.04} className={`absolute ${p.b}`}>
-        <div className="h-[clamp(220px,30vw,400px)] w-[clamp(220px,30vw,400px)] rounded-full bg-[radial-gradient(circle,rgba(123,92,255,0.13),transparent_66%)] blur-[64px]" />
+        <div className="h-[clamp(220px,30vw,400px)] w-[clamp(220px,30vw,400px)] rounded-full bg-[radial-gradient(circle,rgba(123,92,255,0.13),transparent_66%)] blur-[44px]" />
       </ParallaxDrift>
     </div>
   );
