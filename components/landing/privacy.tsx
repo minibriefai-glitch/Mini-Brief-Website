@@ -4,8 +4,12 @@ import { TiltCard } from "@/components/effects/tilt-card";
 
 const PILLARS = [
   {
-    title: "Your email never reaches our servers",
-    desc: "Messages are read in your browser and sent only to the AI provider that generates your results. Our servers never receive your email content, so there is nothing on our side to leak, sell, or hand over.",
+    title: "Your email is never stored",
+    desc: "Messages are read and sorted in your browser. AI features send a limited amount through our proxy to Anthropic, which forwards each request without logging or keeping it. Nothing is written to our database, so there is nothing on our side to leak, sell, or hand over.",
+  },
+  {
+    title: "A subject line and 120 characters, by default",
+    desc: "That is all most features ever send. Full message text goes out only for the things you switch on yourself, like drafting a reply, and only for the message you opened.",
   },
   {
     title: "Zero tracking, zero telemetry",
@@ -44,10 +48,10 @@ export function Privacy() {
         <div className="relative px-7 sm:px-12 py-10 sm:py-12">
           <div className="section-kicker">Privacy</div>
           <h2 className="font-display font-extrabold tracking-[-0.03em] text-white leading-[1.1] text-[clamp(28px,4vw,44px)] max-w-[600px]">
-            Your email stays in your browser.
+            Your email is never stored.
           </h2>
           <p className="font-body text-[15px] text-fg-2 leading-relaxed mt-3 max-w-[560px]">
-            MiniBrief needs an account, but your email content never does. Messages are processed in your browser and sent only to the AI that generates your results — never to our servers, and never stored.
+            MiniBrief needs an account, but your email content never does. Your mail is read and sorted in your browser. What the AI needs passes through our proxy in transit and goes to Anthropic, and it comes to rest in neither place.
           </p>
 
           <Reveal stagger as="div" className="mt-8 flex flex-col divide-y divide-white/[0.06] border-t border-white/[0.06]">

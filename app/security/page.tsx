@@ -4,7 +4,7 @@ import { LegalShell } from "@/components/legal/legal-shell";
 export const metadata: Metadata = {
   title: "Security — MiniBrief",
   description:
-    "How MiniBrief is built to protect your email: processed in your browser, never stored on our servers, least-privilege access, and encryption in transit.",
+    "How MiniBrief is built to protect your email: parsed in your browser, never stored, AI requests forwarded without logging, least-privilege access, and encryption in transit.",
 };
 
 export default function SecurityPage() {
@@ -13,18 +13,21 @@ export default function SecurityPage() {
       <section>
         <p>
           MiniBrief is designed around a simple idea: the safest data is the
-          data we never hold. Your email is read and processed{" "}
-          <strong>inside your browser</strong> and is never sent to or stored on
-          our servers. This page explains, in plain terms, how that works and
-          how we protect the limited account data we do keep. It complements our{" "}
-          <a href="/privacy">Privacy Policy</a>.
+          data nobody keeps. Your mail is read and sorted{" "}
+          <strong>inside your browser</strong>. The features that use AI send a
+          limited amount of it through our AI proxy to Anthropic, which forwards
+          each request without logging it or keeping its contents. Nothing is
+          written to our database. This page explains, in plain terms, how that
+          works and how we protect the limited account data we do keep. It
+          complements our <a href="/privacy">Privacy Policy</a>.
         </p>
       </section>
 
       <section>
         <h2>The short version</h2>
         <ul>
-          <li>Your email content never reaches our servers — it is processed in your browser and sent only to the AI provider that generates your results.</li>
+          <li>Your email content is never stored. Your mail is parsed and pre-sorted in your browser; AI features send a limited amount of it through our proxy to Anthropic, which keeps no copy of it.</li>
+          <li>By default we send only a subject line and a preview of about 120 characters. Full message text is sent only for features you turn on yourself, and only for the message you opened.</li>
           <li>We request the minimum access needed (least privilege), and you can revoke it at any time.</li>
           <li>All connections use encryption in transit (HTTPS/TLS); account data is encrypted at rest by our infrastructure providers.</li>
           <li>No analytics, telemetry, or behavioral tracking in the extension.</li>
@@ -39,20 +42,23 @@ export default function SecurityPage() {
           takes:
         </p>
         <ul>
-          <li><strong>1. In your browser</strong> — the extension reads the relevant messages directly from Gmail or Outlook in the page you are already signed in to.</li>
-          <li><strong>2. To the AI provider</strong> — only the content needed for the feature you triggered (for example, a subject and preview for triage, or a message body for a draft) is sent directly from your browser to our AI provider, Anthropic, over an encrypted connection.</li>
-          <li><strong>3. Back to you</strong> — the generated result is returned to your browser and shown in the side panel.</li>
+          <li><strong>1. In your browser</strong> — the extension reads the relevant messages directly from Gmail or Outlook in the page you are already signed in to. Parsing and the first sorting pass happen on your device and go no further.</li>
+          <li><strong>2. Through our AI proxy</strong> — only the content needed for the feature you triggered leaves your browser: a subject and a short preview for triage, or the body of the message you opened for a draft or a summary. It travels over an encrypted connection to a small service we run, which exists so that our AI key never has to sit inside the extension where anyone could extract it.</li>
+          <li><strong>3. On to Anthropic</strong> — the proxy forwards the request and returns the answer. It does not log the request, does not store it, and writes nothing to our database. Anthropic processes it under commercial terms that forbid training on your data.</li>
+          <li><strong>4. Back to you</strong> — the generated result is returned to your browser and shown in MiniBrief.</li>
         </ul>
         <p>
-          Our backend is never in this path. It does not receive, see, or store
-          your email content at any step.
+          We are precise about this because the distinction matters: your email
+          content does pass <em>through</em> our proxy in transit. What it never
+          does is come to rest there. Nothing is logged, nothing is retained, and
+          no email content is ever written to our database.
         </p>
       </section>
 
       <section>
         <h2>What we can and can&rsquo;t see</h2>
         <p><strong>We can see:</strong> the account details needed to run the product — your account identifier and authentication details, your settings and preferences (such as your VIP list), and your plan or licensing status.</p>
-        <p><strong>We cannot see:</strong> the contents of your emails, your attachments, who you email, what you read, or how you use the extension. Because the extension contains no tracking and your mail never reaches us, there is nothing on our side to leak, sell, or hand over.</p>
+        <p><strong>We cannot see:</strong> the contents of your emails, your attachments, who you email, what you read, or how you use the extension. The proxy forwards AI requests without logging them, so their contents are not readable by us and are not kept anywhere afterwards. Because the extension contains no tracking and nothing you send is retained, there is nothing on our side to leak, sell, or hand over.</p>
       </section>
 
       <section>
@@ -61,8 +67,9 @@ export default function SecurityPage() {
           When you connect a Google or Microsoft account, MiniBrief uses
           standard OAuth and requests only the scopes needed for the features
           you use — reading messages, the specific changes needed to apply
-          triage actions, basic mailbox settings, and read-only calendar access
-          for meeting prep. We never ask for more than the product needs, and
+          triage actions, sending the replies you approve, and read-only
+          calendar access for meeting prep. We never ask for more than the
+          product needs, and
           you can review and revoke access at any time — for Google at{" "}
           <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener noreferrer">myaccount.google.com/permissions</a>,
           and for Microsoft in your account settings.

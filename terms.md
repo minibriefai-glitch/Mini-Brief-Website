@@ -12,7 +12,7 @@ These terms govern your use of MiniBrief — the website, the waitlist, and the 
 
 ## 1. What MiniBrief is
 
-MiniBrief is an AI-powered browser extension that brings your Gmail and Outlook email, together with your Google Calendar, into a single side panel and uses AI to generate summaries, meeting briefs, action items, and triage. We may add, change, or remove features over time.
+MiniBrief is an AI-powered browser extension that brings your Gmail and Outlook email, together with your Google Calendar, and uses AI to generate summaries, meeting briefs, action items, and triage. We may add, change, or remove features over time.
 
 ## 2. Eligibility, accounts, and license
 
@@ -28,7 +28,7 @@ To work, MiniBrief connects to your Google and/or Microsoft accounts with your p
 
 Some features require a paid subscription.
 
-- New users may begin with a **7-day free trial**. You will not be charged during the trial, and you may cancel before it ends to avoid being charged.
+- New users may begin with a **14-day free trial**. You will not be charged during the trial, and you may cancel before it ends to avoid being charged.
 - After the trial, your subscription begins and is billed in advance on a recurring basis through our payment processor, **Stripe**, and renews automatically until you cancel.
 - You can cancel at any time, effective at the end of the current billing period.
 - Except where required by law, fees are non-refundable once charged.

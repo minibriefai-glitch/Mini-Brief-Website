@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "MiniBrief — Email intelligence for Gmail and Outlook",
     description:
-      "Triage your inbox, surface what needs a reply, and draft responses in your own voice. Your email content is processed in your browser and never stored on our servers.",
+      "Triage your inbox, surface what needs a reply, and draft responses in your own voice. Your mail is parsed in your browser and never stored on our servers.",
     type: "website",
     url: siteUrl,
     siteName: "MiniBrief",

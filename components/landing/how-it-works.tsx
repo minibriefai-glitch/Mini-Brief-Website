@@ -56,7 +56,7 @@ export function HowItWorks() {
       <SectionHeader
         kicker="How it works"
         title="Four steps to a managed inbox."
-        sub="MiniBrief runs in your browser. Your account keeps settings and VIPs in sync — your email content never reaches our servers."
+        sub="MiniBrief reads and sorts your mail in your browser. Your account keeps settings and VIPs in sync, and your email content is never stored."
         className="mb-10"
       />
 

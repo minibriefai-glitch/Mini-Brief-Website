@@ -9,14 +9,15 @@ const ROWS: Row[] = [
   {
     label: "Where your email lives",
     them: "Uploaded to their servers",
-    us: "Stays in your browser — never stored",
+    us: "Parsed on your device, never stored",
     highlight: true,
   },
   { label: "Where it runs", them: "A separate app to live in", us: "Inside Gmail and Outlook" },
   { label: "Drafts in your voice", them: "Generic AI tone", us: "Learned from your sent mail" },
   { label: "Knows your clients", them: "No relationship layer", us: "Profiles, cadence, and health alerts" },
   { label: "Tracking and telemetry", them: "Usually on", us: "None" },
-  { label: "Your own AI key", them: "Rarely an option", us: "Optional, never required" },
+  { label: "How much we send", them: "Whole threads, by default", us: "Subject and ~120 characters, unless you opt in" },
+  { label: "Where the AI key lives", them: "Often pasted into the extension", us: "Server-side, never in your browser" },
 ];
 
 function Check() {

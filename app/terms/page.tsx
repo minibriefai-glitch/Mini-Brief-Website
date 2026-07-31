@@ -22,10 +22,10 @@ export default function TermsPage() {
       <section>
         <h2>1. What MiniBrief is</h2>
         <p>
-          MiniBrief is an AI-powered browser extension that brings your Gmail
-          and Outlook email, together with your Google Calendar, into a single
-          side panel and uses AI to generate summaries, meeting briefs, action
-          items, and triage. We may add, change, or remove features over time.
+          MiniBrief is an AI-powered browser extension that reads your Gmail and
+          Outlook email, together with your Google Calendar, and uses AI to
+          generate summaries, meeting briefs, action items, and triage. We may
+          add, change, or remove features over time.
         </p>
       </section>
 
@@ -62,7 +62,7 @@ export default function TermsPage() {
         <p>Some features require a paid subscription.</p>
         <ul>
           <li>
-            New users may begin with a <strong>7-day free trial</strong>. You
+            New users may begin with a <strong>14-day free trial</strong>. You
             will not be charged during the trial, and you may cancel before it
             ends to avoid being charged.
           </li>

@@ -18,7 +18,7 @@ const iconProps = {
 const PILLARS = [
   {
     label: "Email never stored",
-    sub: "Your messages never reach our servers",
+    sub: "Nothing is written to our database, and requests are never logged",
     icon: (
       <svg {...iconProps}>
         <rect width="18" height="11" x="3" y="11" rx="2" />
@@ -27,8 +27,8 @@ const PILLARS = [
     ),
   },
   {
-    label: "Runs in your browser",
-    sub: "Parsing and AI prompts built locally",
+    label: "Parsed in your browser",
+    sub: "Your mail is read and sorted on your device",
     icon: (
       <svg {...iconProps}>
         <rect width="18" height="14" x="3" y="5" rx="2" />
@@ -59,6 +59,19 @@ const PILLARS = [
       </svg>
     ),
   },
+  {
+    // Naming Anthropic outright is stronger than omitting it. The terms are
+    // genuinely good, and a reader who later discovers an unnamed subprocessor
+    // assumes the worst.
+    label: "One AI provider, named",
+    sub: "Anthropic, under terms that forbid training on your data",
+    icon: (
+      <svg {...iconProps}>
+        <path d="M12 2 4 6v6c0 5 3.4 9.4 8 10 4.6-.6 8-5 8-10V6l-8-4Z" />
+        <path d="m9 12 2 2 4-4" />
+      </svg>
+    ),
+  },
 ];
 
 export function TrustBand() {
@@ -69,16 +82,19 @@ export function TrustBand() {
         kicker="Why you can trust it"
         title={
           <>
-            Most AI email tools upload your inbox to their servers.{" "}
-            <span className="text-grad">MiniBrief never does.</span>
+            Most AI email tools store your inbox on their servers.{" "}
+            <span className="text-grad">MiniBrief stores none of it.</span>
           </>
         }
         titleClassName="max-w-[760px]"
-        sub="Trust here is structural, not a badge we bought. It comes from how the product is built."
+        sub="Trust here is structural, not a badge we bought. It comes from how the product is built. By default we send only a subject line and a preview of about 120 characters. Full message text is sent only for features you turn on yourself, and only for the message you opened."
         className="mb-10"
       />
 
-      <Reveal stagger variant="3d" className="relative grid grid-cols-2 lg:grid-cols-4 gap-3.5 max-w-[1040px] mx-auto">
+      {/* Five pillars since the named-provider card was added, so the desktop
+          track is 5-up rather than leaving a lone orphan on a second row. The
+          sm:3 step keeps the tablet break from doing the same thing. */}
+      <Reveal stagger variant="3d" className="relative grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3.5 max-w-[1040px] mx-auto">
         {PILLARS.map((p) => (
           // Wrapper carries the 3D tip-in; TiltCard owns hover tilt (separate
           // elements so the transforms don't fight).

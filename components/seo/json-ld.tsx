@@ -40,13 +40,13 @@ export function SiteJsonLd() {
     applicationCategory: "BrowserApplication",
     operatingSystem: "Chrome, Firefox",
     description:
-      "An AI-powered browser extension that brings Gmail and Outlook into a single side panel with summaries, meeting briefs, action items, and triage — processed in your browser and never stored on our servers.",
+      "An AI-powered browser extension for Gmail and Outlook with summaries, meeting briefs, action items, and triage. Your mail is parsed in your browser and never stored on our servers.",
     url: siteUrl,
     offers: {
       "@type": "Offer",
       price: "0",
       priceCurrency: "USD",
-      description: "7-day free trial, then a paid subscription.",
+      description: "14-day free trial, then a paid subscription.",
     },
   };
 
@@ -70,15 +70,15 @@ const FAQ_ENTRIES: Array<{ q: string; a: string }> = [
   },
   {
     q: "Do you store or read my email?",
-    a: "No. Your email is parsed in your browser and sent only to the AI provider that generates your results. It never reaches our servers, and MiniBrief contains no analytics, telemetry, or behavioral tracking.",
+    a: "No. Your mail is parsed and pre-sorted in your browser, and we store none of it. AI features send a limited amount through our proxy to Anthropic: by default a subject line and a preview of about 120 characters, and full message text only for features you turn on yourself. The proxy forwards each request without logging or keeping its contents, nothing is written to our database, and MiniBrief contains no analytics, telemetry, or behavioral tracking.",
   },
   {
     q: "Which inboxes does it support?",
-    a: "Gmail and Outlook, both available now. The panel runs inside your existing webmail — there is no separate app to open.",
+    a: "Gmail and Outlook, both available now. MiniBrief runs alongside your existing webmail, so there is no separate app to open. Work or school Outlook accounts usually need a one-time approval from a Microsoft 365 admin before anyone in the organisation can connect.",
   },
   {
     q: "Do I need to bring my own AI key?",
-    a: "No. MiniBrief works with a built-in model from the moment you sign in. Power users can optionally add their own Anthropic API key in Settings, but it is not required.",
+    a: "No, and there is no option to. MiniBrief works with a built-in model from the moment you sign in. There is no key to manage, no separate AI bill, and no API key stored in your browser for anyone to extract.",
   },
   {
     q: "Does the AI train on my email?",

@@ -66,7 +66,7 @@ export default function PrivacyPage() {
           needed to run the features you use. The exact Google OAuth scopes are:
         </p>
         <ul>
-          <li><strong>Read and manage your Gmail messages</strong> (<code>gmail.modify</code>) — to display your messages and generate summaries, triage, and drafts, and to carry out the inbox actions you take from the side panel: applying or removing labels, archiving, changing read/unread state, and sending the replies and forwards you approve. This one scope already covers sending, so we do <em>not</em> request the separate &ldquo;send&rdquo; or &ldquo;labels&rdquo; scopes.</li>
+          <li><strong>Read and manage your Gmail messages</strong> (<code>gmail.modify</code>) — to display your messages and generate summaries, triage, and drafts, and to carry out the inbox actions you take in MiniBrief: applying or removing labels, archiving, changing read/unread state, and sending the replies and forwards you approve. This one scope already covers sending, so we do <em>not</em> request the separate &ldquo;send&rdquo; or &ldquo;labels&rdquo; scopes.</li>
           <li><strong>Manage Gmail filters and read basic settings</strong> (<code>gmail.settings.basic</code>) — to create and manage filters that block unwanted senders when you unsubscribe (auto-archiving their future mail), and to read your signature for reply formatting.</li>
           <li><strong>Read your Google Calendar</strong> (<code>calendar.readonly</code>) — to build meeting prep. Read-only; we never modify your calendar.</li>
           <li><strong>Basic profile</strong> (email and profile) — to identify the mailbox you connected.</li>
