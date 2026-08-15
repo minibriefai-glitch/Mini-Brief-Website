@@ -13,6 +13,15 @@ import { CheckCircle2, Clock, AlertTriangle } from "lucide-react";
  * (#error=…&error_code=otp_expired&error_description=…). We don't need the
  * session — the extension owns auth — so this page is purely a friendly result
  * screen: confirmed / expired / something-went-wrong.
+ *
+ * ONE exception: PASSWORD-RESET links also land here (`type=recovery`). The
+ * extension's "Forgot password?" points GoTrue's redirect_to at this page on
+ * purpose — it is the allowlisted URL, and a redirect_to that is not on the
+ * Auth → URL Configuration allowlist is silently dropped to Site URL (the
+ * homepage) with the tokens in the hash and nothing to read them. So this page
+ * recognises a recovery fragment and forwards it, fragment intact, to
+ * /auth/reset-password, which owns the new-password form. Nothing is read
+ * from or stored about the token here.
  */
 type State = "loading" | "confirmed" | "expired" | "error";
 
@@ -25,6 +34,14 @@ export default function ConfirmedPage() {
     const hash = parse(window.location.hash);
     const query = parse(window.location.search);
     const get = (k: string) => hash.get(k) ?? query.get(k);
+
+    // Password-reset hand-off — see the header comment. window.location (not
+    // the router) so the fragment travels verbatim; replace() so Back doesn't
+    // return to a page that would forward again.
+    if (get("type") === "recovery" && get("access_token")) {
+      window.location.replace(`/auth/reset-password${window.location.hash}`);
+      return;
+    }
 
     const hasError = Boolean(get("error") || get("error_code") || get("error_description"));
     const errText = `${get("error_code") ?? ""} ${get("error_description") ?? ""}`;
@@ -58,13 +75,13 @@ export default function ConfirmedPage() {
       icon: <Clock className="h-8 w-8" style={{ color: "#5b72ff" }} />,
       tint: "#5b72ff",
       title: "This link has expired",
-      body: "Confirmation links are only valid for a short time. Open MiniBrief and choose “Resend confirmation email” to get a fresh one.",
+      body: "Confirmation and password-reset links are only valid for a short time and work once. Open MiniBrief and request a fresh one — “Resend confirmation email” or “Forgot password?” on the sign-in screen.",
     },
     error: {
       icon: <AlertTriangle className="h-8 w-8" style={{ color: "#f5a623" }} />,
       tint: "#f5a623",
       title: "Something went wrong",
-      body: "We couldn’t confirm this link. Open MiniBrief and resend the confirmation email — if it keeps happening, contact support.",
+      body: "We couldn’t verify this link. Open MiniBrief and request a new one from the sign-in screen — if it keeps happening, contact support.",
     },
   };
 
