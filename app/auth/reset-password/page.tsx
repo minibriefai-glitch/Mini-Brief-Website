@@ -135,6 +135,39 @@ export default function ResetPasswordPage() {
         setMsg(text || `Could not update the password (${res.status}).`);
         return;
       }
+      // The password is changed. Now end every OTHER session the account has.
+      //
+      // ASVS 2.2.2 requires that a successful password change (including via
+      // reset/recovery) terminates all other active sessions and their stateful
+      // refresh tokens. Recovery is the ONLY path by which a Mini Brief password
+      // changes — the extension has no change-password screen — so this is the
+      // single place that requirement can be satisfied.
+      //
+      // `scope=others` deliberately: it revokes every refresh token for the
+      // account EXCEPT the one presented, so a stolen session on another device
+      // dies here while this recovery session stays valid long enough to finish
+      // rendering the success state. Without it, an attacker holding a refresh
+      // token keeps mailbox access even after the legitimate owner resets the
+      // password, which is precisely the scenario the control exists for.
+      //
+      // Best effort, and deliberately NOT awaited into the failure path: the
+      // password HAS changed by this point, and failing the whole flow over a
+      // revocation blip would leave the user staring at an error for something
+      // that already succeeded. GoTrue's own behaviour may also already revoke
+      // on password change; this call is idempotent either way.
+      try {
+        await fetch(`${SUPABASE_URL}/auth/v1/logout?scope=others`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            apikey: ANON_KEY,
+            Authorization: `Bearer ${token}`,
+          },
+        });
+      } catch {
+        // Network failure revoking other sessions. The password change stands.
+      }
+
       // Done. The recovery session dies with this tab; the token is never
       // stored anywhere. Nothing further to clean up.
       setToken(null);
