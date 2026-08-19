@@ -1971,6 +1971,48 @@ details[open] .faq-chevron {
   margin-top: 8px;
 }
 
+/* Tables on legal/trust pages. Wrapper scrolls on narrow screens so the page
+   body never scrolls horizontally. */
+.legal-table-wrap {
+  margin: 0 0 18px;
+  overflow-x: auto;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.02);
+  -webkit-overflow-scrolling: touch;
+}
+.legal-table-wrap table {
+  width: 100%;
+  min-width: 560px;
+  border-collapse: collapse;
+  font-size: 13.5px;
+  line-height: 1.55;
+}
+.legal-table-wrap th {
+  font-family: var(--font-display), Outfit, sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #fff;
+  text-align: left;
+  padding: 11px 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  white-space: nowrap;
+}
+.legal-table-wrap td {
+  padding: 11px 14px;
+  vertical-align: top;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+.legal-table-wrap tbody tr:last-child td {
+  border-bottom: 0;
+}
+.legal-table-wrap td strong {
+  color: #fff;
+  font-weight: 600;
+}
+
 /* ───────── Reduce motion ───────── */
 @media (prefers-reduced-motion: reduce) {
   html {
