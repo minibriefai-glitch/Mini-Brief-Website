@@ -52,8 +52,8 @@ export default function PrivacyPage() {
         <h2>2. The MiniBrief extension</h2>
         <p>
           The extension reads your inbox <strong>inside your browser</strong> to
-          produce summaries, drafts, and triage. It connects to Gmail today;
-          support for other providers such as Outlook is in development. Using
+          produce summaries, drafts, and triage. It connects to Gmail or
+          Outlook, whichever you use. Using
           the extension requires a MiniBrief account, and we operate a backend
           for that account. Your email content is never stored on that backend —
           it is handled in your browser and sent for AI processing only as
@@ -74,8 +74,16 @@ export default function PrivacyPage() {
         <p>
           You can review and revoke this access at any time at{" "}
           <a href="https://myaccount.google.com/connections" target="_blank" rel="noopener noreferrer">myaccount.google.com/connections</a>.
-          When Outlook support ships, it will use the equivalent Microsoft Graph
-          permissions, disclosed here before it goes live.
+          If you connect Outlook instead, we request the equivalent Microsoft
+          Graph permissions: <strong>Mail.ReadWrite</strong> and
+          <strong>Mail.Send</strong> (to display your messages and carry out the
+          inbox actions you take in MiniBrief, including sending the replies you
+          approve), <strong>Calendars.Read</strong> (read-only, for meeting prep),
+          and <strong>User.Read</strong> with <strong>openid</strong>,
+          <strong>profile</strong> and <strong>offline_access</strong> to identify
+          the mailbox and keep the connection alive. You can review and revoke this
+          access at{" "}
+          <a href="https://myaccount.microsoft.com/permissions" target="_blank" rel="noopener noreferrer">myaccount.microsoft.com/permissions</a>.
         </p>
 
         <h3>Your MiniBrief account</h3>
@@ -92,6 +100,47 @@ export default function PrivacyPage() {
           managed vault, never in our own tables. <strong>Your account never
           contains the contents of your emails, their subject lines, preview
           snippets, or any AI request.</strong>
+        </p>
+
+        <h3>Keeping your devices in step</h3>
+        <p>
+          If you use MiniBrief on more than one computer, the two need to agree
+          about what you have already dealt with &mdash; otherwise a follow-up you
+          finished on one machine comes back on the other and reminds you again.
+          To do that we store, against your account:
+        </p>
+        <ul>
+          <li>
+            <strong>What you decided about a message, and nothing about the
+            message.</strong> A status (done, snoozed until Friday, dismissed),
+            the times that go with it, and a <strong>one-way hash</strong> of the
+            conversation&rsquo;s identifier. We do not store the identifier itself,
+            and we could not work out which message a hash refers to &mdash; only a
+            device that already has your mailbox can. There is no subject line, no
+            sender, no preview text and no message body in this record.
+          </li>
+          <li>
+            <strong>A record that we have already notified you about
+            something</strong>, so a second device stays quiet instead of telling
+            you twice.
+          </li>
+          <li>
+            <strong>Things you typed yourself:</strong> your client list &mdash;
+            their names, email addresses, domains, tags and your own notes &mdash;
+            your team roster, your signature, your saved filters and your
+            settings. Some of these contain other people&rsquo;s contact details,
+            which is why we name them here rather than filing them under
+            &ldquo;settings&rdquo;.
+          </li>
+        </ul>
+        <p>
+          What is deliberately <em>not</em> in that list is your mail. Subjects,
+          senders, previews, message bodies, anything our AI wrote for you, and
+          the counts we derive from your mailbox all stay on your device. Your
+          second computer gets those the same way your first one did &mdash;
+          from Google or Microsoft directly. Every row is protected by
+          row-level security tied to your account, and deleting your account
+          deletes all of it.
         </p>
 
         <h3>Account security</h3>
@@ -204,7 +253,8 @@ export default function PrivacyPage() {
           <li>
             <strong>Encryption at rest.</strong> The limited account data we do
             store — your account identifier, authentication details, settings,
-            subscription status, and trial-verification data — is held in a
+            subscription status, trial-verification data, and the cross-device
+            records described above — is held in a
             managed database that encrypts data at rest using industry-standard
             AES-256 encryption. Your email content, subjects, and snippets are
             never stored on our servers at all.
