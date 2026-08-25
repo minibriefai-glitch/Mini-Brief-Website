@@ -4,16 +4,17 @@ import { useEffect, useRef, useState } from "react";
 import { Reveal } from "@/components/effects/reveal-on-scroll";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 
-// Self-contained bundle of the real extension UI. Lives in /public so Next
+// Self-contained bundle of the real product UI. Lives in /public so Next
 // serves it same-origin (an iframe can then run its scripts + blob URLs), and
 // the maintenance-mode middleware skips it because it ends in `.html`.
-const DEMO_SRC = "/demo/minibrief-extension-demo.html";
+// The previous Gmail-overlay bundle was removed here; recover it from git at 2fc63c1 if needed.
+const DEMO_SRC = "/demo/minibrief-standalone.html";
 
 // The bundle was captured at a desktop viewport. We render the iframe at this
 // logical size and scale it to fit whatever space it's in, so the whole UI is
 // always visible instead of clipped or scrollbarred.
-const LOGICAL_W = 1440;
-const LOGICAL_H = 900;
+const LOGICAL_W = 1520;
+const LOGICAL_H = 912;
 
 /**
  * Renders the demo iframe at its native desktop size, scaled to fit its parent.
@@ -195,7 +196,7 @@ export function DemoFrame({
             aria-label="Launch the interactive MiniBrief demo"
             className="relative block w-full outline-none focus-visible:ring-2 focus-visible:ring-accent-b focus-visible:ring-inset"
           >
-            <div className="relative aspect-[16/10] w-full">
+            <div className="relative aspect-[5/3] w-full">
               <div
                 aria-hidden="true"
                 className="absolute inset-0"
