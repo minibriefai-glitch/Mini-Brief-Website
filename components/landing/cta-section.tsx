@@ -5,11 +5,9 @@ import { Reveal } from "@/components/effects/reveal-on-scroll";
 import { Magnetic } from "@/components/effects/magnetic";
 import { ParallaxDrift } from "@/components/effects/parallax-drift";
 import { SectionOrbs } from "@/components/effects/section-orbs";
-import { useNewsletter } from "./newsletter-dialog";
+import { PORTAL_GET_STARTED_URL } from "@/lib/portal";
 
 export function CtaSection() {
-  const { open } = useNewsletter();
-
   return (
     <Reveal as="section" variant="zoom" className="cta-divider relative z-[1] px-6 pt-16 pb-20 flex flex-col items-center text-center">
       <SectionOrbs placement="right" />
@@ -22,20 +20,20 @@ export function CtaSection() {
           style={{ background: "radial-gradient(ellipse, rgba(74,98,245,0.18), transparent 70%)" }}
         />
       </ParallaxDrift>
-      <div className="section-kicker relative justify-center">Get early access</div>
+      <div className="section-kicker relative justify-center">Now in beta</div>
       <h2 className="relative font-display font-extrabold tracking-[-0.03em] text-white mb-4 leading-[1.08] text-[clamp(30px,4.8vw,52px)]">
-        Be first to know <span className="text-grad">when it launches.</span>
+        Your inbox, triaged <span className="text-grad">from today.</span>
       </h2>
       <p className="relative font-body text-[16px] text-fg-2 mb-7 max-w-[520px] leading-relaxed">
-        MiniBrief launches soon. Join the waitlist and we will email you once when it is live. Nothing else.
+        MiniBrief is live in beta for Gmail and Outlook. Create an account, connect a mailbox, and your first brief is minutes away.
       </p>
       <Magnetic>
-        <Button variant="hero" size="lg" onClick={() => open("cta-section")}>
-          Join the waitlist
+        <Button asChild variant="hero" size="lg">
+          <a href={PORTAL_GET_STARTED_URL}>Get started</a>
         </Button>
       </Magnetic>
       <p className="relative font-body text-[12px] text-fg-3 mt-4">
-        Launching soon for Chrome &amp; Firefox · One launch email, nothing else · Your email is never stored
+        In beta · Gmail &amp; Outlook · Every account starts with a free trial
       </p>
     </Reveal>
   );

@@ -39,8 +39,8 @@ const FAQS: Array<{ q: string; a: React.ReactNode }> = [
     ),
   },
   {
-    q: "When does it launch, and what will it cost?",
-    a: "MiniBrief is launching soon for Chrome and Firefox. Pricing will be announced before launch — join the waitlist and you'll be the first to hear, with no other emails in between.",
+    q: "Is it available now, and what does it cost?",
+    a: "MiniBrief is live in beta for Gmail and Outlook — create an account, connect a mailbox, and you are in. Every account starts with a free trial; the plans are on the Billing page inside the app.",
   },
 ];
 

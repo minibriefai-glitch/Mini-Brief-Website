@@ -78,7 +78,7 @@ export default function OpengraphImage() {
           }}
         >
           <div style={{ display: "flex" }}>minibrief.app</div>
-          <div style={{ display: "flex" }}>Launching soon · Chrome &amp; Firefox</div>
+          <div style={{ display: "flex" }}>Now in beta · Gmail &amp; Outlook</div>
         </div>
       </div>
     ),

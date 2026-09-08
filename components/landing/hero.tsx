@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Magnetic } from "@/components/effects/magnetic";
 import { ParallaxDrift } from "@/components/effects/parallax-drift";
 import { HeroProductScene } from "./hero-product-scene";
-import { useNewsletter } from "./newsletter-dialog";
+import { PORTAL_GET_STARTED_URL } from "@/lib/portal";
 import { ScrollCue } from "./scroll-cue";
 
 function CalloutChip({
@@ -47,8 +47,6 @@ function CalloutChip({
 }
 
 export function Hero() {
-  const { open } = useNewsletter();
-
   return (
     <section className="relative z-[1] flex flex-col items-center text-center px-5 sm:px-6 pt-16 sm:pt-24 pb-10 sm:pb-14">
       <div
@@ -85,8 +83,8 @@ export function Hero() {
 
       <div className="hero-anim mb-4" style={{ animationDelay: "0.14s" }}>
         <Magnetic>
-          <Button variant="hero" size="lg" onClick={() => open("hero-primary")}>
-            Join the waitlist
+          <Button asChild variant="hero" size="lg">
+            <a href={PORTAL_GET_STARTED_URL}>Get started</a>
           </Button>
         </Magnetic>
       </div>

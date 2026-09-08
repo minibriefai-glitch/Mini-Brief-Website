@@ -11,7 +11,6 @@ import { Hero } from "@/components/landing/hero";
 import { HowItWorks } from "@/components/landing/how-it-works";
 import { IntroSplash } from "@/components/landing/intro-splash";
 import { Nav } from "@/components/landing/nav";
-import { NewsletterProvider } from "@/components/landing/newsletter-dialog";
 import { OutcomeBand } from "@/components/landing/outcome-band";
 import { CinematicShowcase } from "@/components/landing/story/cinematic-showcase";
 import { PrivacyCinematic } from "@/components/landing/story2/privacy-cinematic";
@@ -20,7 +19,7 @@ import { FaqJsonLd } from "@/components/seo/json-ld";
 
 export default function HomePage() {
   return (
-    <NewsletterProvider>
+    <>
       <FaqJsonLd />
       <IntroSplash />
       <AmbientDepth />
@@ -43,6 +42,6 @@ export default function HomePage() {
         <CtaSection />
         <Footer />
       </main>
-    </NewsletterProvider>
+    </>
   );
 }

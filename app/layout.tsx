@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: "MiniBrief",
   description:
-    "Email intelligence for Gmail and Outlook. Catch-up reports, VIP alerts, voice-matched drafts, and one-click unsubscribe. Your email is never stored on our servers. Launching soon for Chrome and Firefox.",
+    "Email intelligence for Gmail and Outlook. Catch-up reports, VIP alerts, voice-matched drafts, and one-click unsubscribe. Your email is never stored on our servers. Now in beta for Gmail and Outlook.",
   openGraph: {
     title: "MiniBrief — Email intelligence for Gmail and Outlook",
     description:

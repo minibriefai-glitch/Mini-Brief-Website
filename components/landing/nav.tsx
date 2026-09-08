@@ -5,11 +5,9 @@ import { Button } from "@/components/ui/button";
 import { ScrollProgress } from "@/components/effects/scroll-progress";
 import { Magnetic } from "@/components/effects/magnetic";
 import { Logo } from "./logo";
-import { useNewsletter } from "./newsletter-dialog";
 import { PORTAL_GET_STARTED_URL, PORTAL_SIGN_IN_URL } from "@/lib/portal";
 
 export function Nav() {
-  const { open } = useNewsletter();
   const ref = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -39,8 +37,8 @@ export function Nav() {
     >
       <Logo />
       {/* The portal's two doors (2026-09-08): Sign in as a text link, Get
-          started as the one primary button. The waitlist keeps its place as
-          a ghost button from `sm` up; on a phone the two doors are the row. */}
+          started as the one primary button. The waitlist went the same day —
+          the beta is open, and the door is the sign-up. */}
       <div className="flex items-center gap-3 sm:gap-4">
         <a
           href={PORTAL_SIGN_IN_URL}
@@ -48,9 +46,6 @@ export function Nav() {
         >
           Sign in
         </a>
-        <Button variant="ghost" size="md" className="hidden sm:inline-flex" onClick={() => open("nav-primary")}>
-          Join waitlist
-        </Button>
         <Magnetic>
           <Button asChild variant="primary" size="md">
             <a href={PORTAL_GET_STARTED_URL}>Get started</a>
