@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Reveal } from "@/components/effects/reveal-on-scroll";
 import { Logo } from "./logo";
+import { PORTAL_GET_STARTED_URL, PORTAL_SIGN_IN_URL } from "@/lib/portal";
 
 export function Footer() {
   return (
@@ -15,6 +16,18 @@ export function Footer() {
         </div>
 
         <div className="flex flex-col gap-7 sm:flex-row sm:gap-16">
+          <nav aria-label="Product" className="flex flex-col gap-2.5">
+            <span className="font-body text-[11px] font-semibold tracking-[0.08em] uppercase text-fg-3 mb-1">
+              Product
+            </span>
+            <a href={PORTAL_SIGN_IN_URL} className="font-body text-[13px] text-fg-2 hover:text-white transition-colors">
+              Sign in
+            </a>
+            <a href={PORTAL_GET_STARTED_URL} className="font-body text-[13px] text-fg-2 hover:text-white transition-colors">
+              Get started
+            </a>
+          </nav>
+
           <nav aria-label="Footer" className="flex flex-col gap-2.5">
             <span className="font-body text-[11px] font-semibold tracking-[0.08em] uppercase text-fg-3 mb-1">
               Legal
