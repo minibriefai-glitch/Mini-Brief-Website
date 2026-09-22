@@ -1,4 +1,8 @@
 import type { Config } from "tailwindcss";
+import { brandColors } from "./lib/brand";
+
+// Inter, vendored; app/layout.tsx sets --font-inter on <html>.
+const inter = ["var(--font-inter)", "Inter", "system-ui", "sans-serif"];
 
 const config: Config = {
   darkMode: "class",
@@ -32,11 +36,20 @@ const config: Config = {
           DEFAULT: "#202433",
           2: "#6a7080",
         },
+        // The light set the home page is built on (lib/brand.ts). Prefixed
+        // because `ink` above is already taken by the dark set.
+        brand: {
+          ink: brandColors.ink,
+          blue: brandColors.blue,
+          page: brandColors.page,
+          muted: brandColors.muted,
+        },
       },
       fontFamily: {
-        display: ["var(--font-display)", "Outfit", "sans-serif"],
-        body: ["var(--font-body)", "Inter", "sans-serif"],
-        mono: ["var(--font-mono)", "Space Mono", "monospace"],
+        sans: inter,
+        display: inter,
+        body: inter,
+        mono: inter,
       },
       keyframes: {
         "fade-up": {

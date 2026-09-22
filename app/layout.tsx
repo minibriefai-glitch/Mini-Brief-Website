@@ -1,25 +1,17 @@
 import type { Metadata } from "next";
-import { Outfit, Inter, Space_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import { Toaster } from "sonner";
 import { SiteJsonLd } from "@/components/seo/json-ld";
 import "./globals.css";
 
-const outfit = Outfit({
-  subsets: ["latin"],
-  variable: "--font-display",
-  weight: ["300", "400", "500", "600", "700", "800"],
-});
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-body",
-  weight: ["400", "500", "600"],
-});
-
-const spaceMono = Space_Mono({
-  subsets: ["latin"],
-  variable: "--font-mono",
-  weight: ["400", "700"],
+// Inter, vendored at app/fonts (SIL OFL 1.1): the one typeface on the site.
+// globals.css points --font-body, --font-display and --font-mono at it, so
+// the kept dark pages need no restyle.
+const inter = localFont({
+  src: "./fonts/InterVariable.woff2",
+  weight: "100 900",
+  display: "swap",
+  variable: "--font-inter",
 });
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://minibrief.app";
@@ -47,7 +39,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${outfit.variable} ${inter.variable} ${spaceMono.variable}`} suppressHydrationWarning>
+    <html lang="en" className={inter.variable} suppressHydrationWarning>
       <body>
         <a href="#main" className="skip-link">
           Skip to content
@@ -62,7 +54,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               background: "rgba(13,21,40,0.97)",
               border: "1px solid rgba(74,98,245,0.3)",
               color: "#fff",
-              fontFamily: "var(--font-body)",
+              fontFamily: "var(--font-inter)",
             },
           }}
         />

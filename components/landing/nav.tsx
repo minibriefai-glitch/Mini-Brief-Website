@@ -1,53 +1,38 @@
-"use client";
-
-import { useEffect, useRef } from "react";
-import { Button } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
+import { nav } from "@/content/home";
 import { Logo } from "./logo";
-import { PORTAL_GET_STARTED_URL, PORTAL_SIGN_IN_URL } from "@/lib/portal";
+import { Container } from "./section";
 
+const navLink =
+  "inline-flex min-h-11 items-center rounded-md px-3 text-sm font-medium text-brand-ink hover:underline hover:underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blue";
+
+/**
+ * The header: logo home, the three section anchors, Sign in, and the one
+ * primary button. Below `md` only the logo and Get started show.
+ */
 export function Nav() {
-  const ref = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    let raf = 0;
-    const update = () => {
-      el.dataset.scrolled = window.scrollY > 12 ? "true" : "false";
-    };
-    const onScroll = () => {
-      cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(update);
-    };
-    update();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => {
-      cancelAnimationFrame(raf);
-      window.removeEventListener("scroll", onScroll);
-    };
-  }, []);
-
   return (
-    <nav
-      ref={ref}
-      data-scrolled="false"
-      className="site-nav sticky top-0 z-50 flex items-center justify-between border-b border-white/[0.06] px-6 sm:px-12"
-    >
-      <Logo />
-      {/* The portal's two doors (2026-09-08): Sign in as a text link, Get
-          started as the one primary button. The waitlist went the same day —
-          the beta is open, and the door is the sign-up. */}
-      <div className="flex items-center gap-3 sm:gap-4">
-        <a
-          href={PORTAL_SIGN_IN_URL}
-          className="font-body text-[13px] font-medium text-fg-2 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-b focus-visible:ring-offset-2 focus-visible:ring-offset-bg rounded-md px-1 py-1"
-        >
-          Sign in
-        </a>
-        <Button asChild variant="primary" size="md">
-          <a href={PORTAL_GET_STARTED_URL}>Get started</a>
-        </Button>
-      </div>
-    </nav>
+    <header className="sticky top-0 z-40 border-b border-brand-ink/10 bg-brand-page text-brand-ink">
+      <Container className="flex h-16 items-center justify-between gap-6">
+        <Logo />
+        <nav aria-label="Primary" className="flex items-center gap-2 md:gap-4">
+          <ul className="hidden items-center gap-1 md:flex">
+            {nav.anchors.map((item) => (
+              <li key={item.href}>
+                <a href={item.href} className={navLink}>
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+          <a href={nav.signIn.href} className={`${navLink} hidden md:inline-flex`}>
+            {nav.signIn.label}
+          </a>
+          <a href={nav.getStarted.href} className={buttonVariants({ variant: "primary", size: "md" })}>
+            {nav.getStarted.label}
+          </a>
+        </nav>
+      </Container>
+    </header>
   );
 }

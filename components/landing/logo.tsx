@@ -1,36 +1,29 @@
-"use client";
-
 import Image from "next/image";
+import Link from "next/link";
+import { WORDMARK } from "@/lib/brand";
+import { cn } from "@/lib/utils";
 
-export function Logo() {
-  const onClick = () => {
-    // Already at the top → reload; otherwise scroll back up.
-    if (window.scrollY < 4) {
-      window.location.reload();
-      return;
-    }
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    window.scrollTo({ top: 0, behavior: reduced ? "auto" : "smooth" });
-  };
-
+/**
+ * Icon + wordmark, linking home. Inherits the surrounding text colour, so it
+ * reads as ink on the light home page and white on the dark kept pages.
+ */
+export function Logo({ className }: { className?: string }) {
   return (
-    <button
-      type="button"
-      onClick={onClick}
-      aria-label="MiniBrief — back to top"
-      className="flex items-center gap-2 rounded-md outline-none focus-visible:ring-2 focus-visible:ring-accent-b/60 focus-visible:ring-offset-2 focus-visible:ring-offset-bg transition-opacity hover:opacity-80"
+    <Link
+      href="/"
+      className={cn(
+        "inline-flex min-h-11 items-center gap-2 rounded-md text-current focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blue",
+        className,
+      )}
     >
       <Image
         src="/photos/MiniBrief-Icon-Mono-Ink.png"
-        alt="MiniBrief"
+        alt=""
         width={32}
         height={32}
         className="rounded-[22%]"
-        priority
       />
-      <span className="font-display text-[19px] font-extrabold tracking-[-0.02em] leading-none">
-        <span className="text-mini">Mini</span>Brief
-      </span>
-    </button>
+      <span className="text-lg font-semibold tracking-tight">{WORDMARK}</span>
+    </Link>
   );
 }

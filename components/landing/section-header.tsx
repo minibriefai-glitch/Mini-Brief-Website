@@ -1,45 +1,41 @@
 import type { ReactNode } from "react";
+import { cn } from "@/lib/utils";
 
 /**
- * Shared section header: mono kicker with hairline flanks, display headline,
- * optional subline. One place controls the type scale and rhythm for every
- * section, so the page reads as a single system.
+ * The small pill badge above a heading. Muted text on an ink pill: the
+ * palette's eyebrow colour at a contrast that passes AA (muted on the page
+ * background alone does not).
  */
-export function SectionHeader({
-  kicker,
-  title,
-  sub,
-  align = "center",
-  className = "",
-  titleClassName = "",
-}: {
-  kicker: string;
-  title: ReactNode;
-  sub?: ReactNode;
-  align?: "center" | "left";
-  className?: string;
-  titleClassName?: string;
-}) {
-  const center = align === "center";
+export function Eyebrow({ children, className }: { children: ReactNode; className?: string }) {
   return (
-    <div className={`${center ? "text-center" : ""} ${className}`}>
-      <div className={`section-kicker ${center ? "justify-center" : ""}`}>{kicker}</div>
-      <h2
-        className={`font-display font-extrabold tracking-[-0.03em] text-white leading-[1.1] text-[clamp(28px,4vw,44px)] ${
-          sub ? "mb-4" : ""
-        } ${center ? "mx-auto" : ""} ${titleClassName}`}
-      >
+    <span
+      className={cn(
+        "inline-flex items-center rounded-full bg-brand-ink px-3 py-1 text-xs font-medium uppercase tracking-wider text-brand-muted",
+        className,
+      )}
+    >
+      {children}
+    </span>
+  );
+}
+
+export function SectionHeader({
+  eyebrow,
+  title,
+  align = "left",
+  className,
+}: {
+  eyebrow?: string;
+  title: string;
+  align?: "left" | "center";
+  className?: string;
+}) {
+  return (
+    <div className={cn("max-w-prose", align === "center" && "mx-auto text-center", className)}>
+      {eyebrow ? <Eyebrow>{eyebrow}</Eyebrow> : null}
+      <h2 className={cn("text-3xl font-semibold tracking-tight text-brand-ink md:text-4xl", eyebrow && "mt-4")}>
         {title}
       </h2>
-      {sub ? (
-        <p
-          className={`font-body text-[15px] text-fg-2 leading-relaxed max-w-[560px] ${
-            center ? "mx-auto" : ""
-          }`}
-        >
-          {sub}
-        </p>
-      ) : null}
     </div>
   );
 }

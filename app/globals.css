@@ -23,6 +23,10 @@
   --paper-2: #f1efe9;
   --ink: #202433;
   --ink-2: #6a7080;
+  /* Every family is the vendored Inter; app/layout.tsx sets --font-inter. */
+  --font-body: var(--font-inter);
+  --font-display: var(--font-inter);
+  --font-mono: var(--font-inter);
 }
 
 *,

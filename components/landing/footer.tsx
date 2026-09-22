@@ -1,83 +1,79 @@
 import Link from "next/link";
+import { footer } from "@/content/home";
+import { CONTACT_EMAIL, CONTACT_MAILTO, LINKEDIN_URL } from "@/lib/brand";
 import { Logo } from "./logo";
-import { PORTAL_GET_STARTED_URL, PORTAL_SIGN_IN_URL } from "@/lib/portal";
+import { Container } from "./section";
+
+const heading = "text-xs font-medium uppercase tracking-wider text-brand-muted";
+const link =
+  "-ml-2 inline-flex min-h-11 min-w-11 items-center rounded-md px-2 text-sm text-white hover:underline hover:underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white";
+
+function LinkColumn({
+  id,
+  title,
+  links,
+}: {
+  id: string;
+  title: string;
+  links: ReadonlyArray<{ label: string; href: string }>;
+}) {
+  return (
+    <nav aria-labelledby={id}>
+      <p id={id} className={heading}>
+        {title}
+      </p>
+      <ul className="mt-2">
+        {links.map((item) =>
+          item.href.startsWith("/") ? (
+            <li key={item.href}>
+              <Link href={item.href} className={link}>
+                {item.label}
+              </Link>
+            </li>
+          ) : (
+            <li key={item.href}>
+              <a href={item.href} className={link}>
+                {item.label}
+              </a>
+            </li>
+          ),
+        )}
+      </ul>
+    </nav>
+  );
+}
 
 export function Footer() {
   return (
-    <footer className="relative z-[1] border-t border-white/[0.06] px-6 sm:px-12 pt-10 pb-7">
-      <div className="max-w-[1040px] mx-auto flex flex-col sm:flex-row sm:items-start sm:justify-between gap-7">
-        <div className="max-w-[320px]">
-          <Logo />
-          <p className="font-body text-[13px] text-fg-3 leading-relaxed mt-3">
-            Email intelligence for Gmail and Outlook. Private by design — your
-            email is never stored on our side.
-          </p>
-        </div>
-
-        <div className="flex flex-col gap-7 sm:flex-row sm:gap-16">
-          <nav aria-label="Product" className="flex flex-col gap-2.5">
-            <span className="font-body text-[11px] font-semibold tracking-[0.08em] uppercase text-fg-3 mb-1">
-              Product
-            </span>
-            <a href={PORTAL_SIGN_IN_URL} className="font-body text-[13px] text-fg-2 hover:text-white transition-colors">
-              Sign in
-            </a>
-            <a href={PORTAL_GET_STARTED_URL} className="font-body text-[13px] text-fg-2 hover:text-white transition-colors">
-              Get started
-            </a>
-          </nav>
-
-          <nav aria-label="Footer" className="flex flex-col gap-2.5">
-            <span className="font-body text-[11px] font-semibold tracking-[0.08em] uppercase text-fg-3 mb-1">
-              Legal
-            </span>
-            <Link href="/privacy" className="font-body text-[13px] text-fg-2 hover:text-white transition-colors">
-              Terms &amp; Privacy
-            </Link>
-            <Link href="/security" className="font-body text-[13px] text-fg-2 hover:text-white transition-colors">
-              Security
-            </Link>
-            <Link href="/accessibility" className="font-body text-[13px] text-fg-2 hover:text-white transition-colors">
-              Accessibility
-            </Link>
-            <a href="mailto:privacy@minibrief.app" className="font-body text-[13px] text-fg-2 hover:text-white transition-colors">
-              Contact
-            </a>
-          </nav>
-
-          <nav aria-label="Social" className="flex flex-col gap-2.5">
-            <span className="font-body text-[11px] font-semibold tracking-[0.08em] uppercase text-fg-3 mb-1">
-              Connect
-            </span>
-            <a
-              href="https://www.linkedin.com/company/minibrief"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="MiniBrief on LinkedIn"
-              className="group relative inline-flex h-11 w-11 items-center justify-center rounded-xl border border-white/[0.08] bg-[rgba(13,21,40,0.5)] text-fg-2 shadow-[0_8px_24px_rgba(0,0,0,0.3)] transition-all duration-300 hover:-translate-y-0.5 hover:border-accent-border hover:text-accent-b hover:shadow-[0_12px_32px_rgba(0,0,0,0.45)]"
-            >
-              <span
-                aria-hidden="true"
-                className="pointer-events-none absolute inset-0 rounded-xl bg-accent-dim opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-              />
-              <svg
-                aria-hidden="true"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                className="relative h-5 w-5"
-              >
-                <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.22.79 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z" />
-              </svg>
-            </a>
+    <footer className="bg-brand-ink text-white">
+      <Container className="py-16 md:py-20">
+        <div className="grid gap-10 md:grid-cols-[1.6fr_1fr_1fr_1fr]">
+          <div className="max-w-xs">
+            <Logo />
+            <p className="mt-4 text-sm text-brand-muted">{footer.tagline}</p>
+          </div>
+          <LinkColumn id="footer-product" title={footer.product.heading} links={footer.product.links} />
+          <LinkColumn id="footer-legal" title={footer.legal.heading} links={footer.legal.links} />
+          <nav aria-labelledby="footer-contact">
+            <p id="footer-contact" className={heading}>
+              {footer.contact.heading}
+            </p>
+            <ul className="mt-2">
+              <li>
+                <a href={CONTACT_MAILTO} className={link}>
+                  {CONTACT_EMAIL}
+                </a>
+              </li>
+              <li>
+                <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" className={link}>
+                  {footer.contact.linkedInLabel}
+                </a>
+              </li>
+            </ul>
           </nav>
         </div>
-      </div>
-
-      <div className="max-w-[1040px] mx-auto mt-9 pt-5 border-t border-white/[0.05]">
-        <p className="font-body text-[12px] text-fg-3">
-          © {new Date().getFullYear()} MiniBrief · Private by design. Your email is never stored.
-        </p>
-      </div>
+        <p className="mt-12 border-t border-white/10 pt-6 text-sm text-brand-muted">{footer.copyright}</p>
+      </Container>
     </footer>
   );
 }

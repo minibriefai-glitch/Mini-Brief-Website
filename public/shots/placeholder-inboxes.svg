@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1000" viewBox="0 0 1400 1000" role="img" aria-label="inboxes placeholder">
+  <rect x="0.5" y="0.5" width="1399" height="999" fill="#F5F5F7" stroke="#94A3B8" stroke-width="1"/>
+  <text x="700" y="500" text-anchor="middle" dominant-baseline="middle" font-family="Inter, system-ui, sans-serif" font-size="56" fill="#94A3B8">inboxes</text>
+</svg>
