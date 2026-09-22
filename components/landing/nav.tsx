@@ -2,8 +2,6 @@
 
 import { useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
-import { ScrollProgress } from "@/components/effects/scroll-progress";
-import { Magnetic } from "@/components/effects/magnetic";
 import { Logo } from "./logo";
 import { PORTAL_GET_STARTED_URL, PORTAL_SIGN_IN_URL } from "@/lib/portal";
 
@@ -46,13 +44,10 @@ export function Nav() {
         >
           Sign in
         </a>
-        <Magnetic>
-          <Button asChild variant="primary" size="md">
-            <a href={PORTAL_GET_STARTED_URL}>Get started</a>
-          </Button>
-        </Magnetic>
+        <Button asChild variant="primary" size="md">
+          <a href={PORTAL_GET_STARTED_URL}>Get started</a>
+        </Button>
       </div>
-      <ScrollProgress />
     </nav>
   );
 }

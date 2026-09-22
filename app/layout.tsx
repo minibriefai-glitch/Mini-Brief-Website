@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Outfit, Inter, Space_Mono } from "next/font/google";
 import { Toaster } from "sonner";
-import { Analytics } from "@vercel/analytics/next";
 import { SiteJsonLd } from "@/components/seo/json-ld";
 import "./globals.css";
 
@@ -55,7 +54,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </a>
         <SiteJsonLd />
         {children}
-        <Analytics />
         <Toaster
           theme="dark"
           position="bottom-center"
