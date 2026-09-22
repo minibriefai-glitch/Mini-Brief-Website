@@ -4,7 +4,7 @@ import { CONTACT_EMAIL, CONTACT_MAILTO, LINKEDIN_URL } from "@/lib/brand";
 import { Logo } from "./logo";
 import { Container } from "./section";
 
-const heading = "text-xs font-medium uppercase tracking-wider text-brand-muted";
+const heading = "text-xs font-medium uppercase tracking-wider text-white/70";
 const link =
   "-ml-2 inline-flex min-h-11 min-w-11 items-center rounded-md px-2 text-sm text-white hover:underline hover:underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white";
 
@@ -50,7 +50,7 @@ export function Footer() {
         <div className="grid gap-10 md:grid-cols-[1.6fr_1fr_1fr_1fr]">
           <div className="max-w-xs">
             <Logo />
-            <p className="mt-4 text-sm text-brand-muted">{footer.tagline}</p>
+            <p className="mt-4 text-sm text-white/70">{footer.tagline}</p>
           </div>
           <LinkColumn id="footer-product" title={footer.product.heading} links={footer.product.links} />
           <LinkColumn id="footer-legal" title={footer.legal.heading} links={footer.legal.links} />
@@ -72,7 +72,7 @@ export function Footer() {
             </ul>
           </nav>
         </div>
-        <p className="mt-12 border-t border-white/10 pt-6 text-sm text-brand-muted">{footer.copyright}</p>
+        <p className="mt-12 border-t border-white/10 pt-6 text-sm text-white/70">{footer.copyright}</p>
       </Container>
     </footer>
   );

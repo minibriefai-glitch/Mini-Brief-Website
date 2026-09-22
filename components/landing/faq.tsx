@@ -1,6 +1,6 @@
-import Link from "next/link";
 import { ChevronDown } from "lucide-react";
 import { faq, type FaqItem } from "@/content/home";
+import { TextLink } from "./link";
 import { Section } from "./section";
 import { SectionHeader } from "./section-header";
 
@@ -11,9 +11,7 @@ function Answer({ a, link }: FaqItem) {
   return (
     <>
       {a.slice(0, at)}
-      <Link href={link.href} className="text-brand-blue underline underline-offset-4 hover:no-underline">
-        {link.text}
-      </Link>
+      <TextLink href={link.href}>{link.text}</TextLink>
       {a.slice(at + link.text.length)}
     </>
   );
@@ -23,7 +21,7 @@ export function Faq() {
   return (
     <Section id={faq.id}>
       <SectionHeader title={faq.h2} />
-      <div className="mt-8 max-w-prose divide-y divide-brand-ink/10 border-y border-brand-ink/10">
+      <div className="mt-8 max-w-prose divide-y divide-brand-muted/50 border-y border-brand-muted/50">
         {faq.items.map((item) => (
           <details key={item.q} className="group py-2">
             <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-4 rounded-md py-2 text-lg font-medium text-brand-ink [&::-webkit-details-marker]:hidden focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blue">

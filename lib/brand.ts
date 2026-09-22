@@ -6,12 +6,16 @@
 export const brandColors = {
   /** Text, and the footer background. */
   ink: "#07091A",
-  /** The one accent: the primary button and links. */
-  blue: "#4A72F5",
+  /** The one accent: the primary button and links. 5.5:1 under white, 5.0:1 on page. */
+  blue: "#3A5FDC",
+  /** The primary button's hover fill: the same hue, darker. 6.6:1 under white. */
+  blueHover: "#3352C8",
   /** Page background. */
   page: "#F5F5F7",
-  /** Eyebrows and captions. */
+  /** Borders, dividers, and the placeholder SVGs only; never text. */
   muted: "#94A3B8",
+  /** Captions and secondary text: 7.0:1 on page. Every piece of text passes 4.5:1. */
+  mutedText: "#475569",
 } as const;
 
 export const WORDMARK = "MiniBrief";

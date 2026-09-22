@@ -41,8 +41,10 @@ const config: Config = {
         brand: {
           ink: brandColors.ink,
           blue: brandColors.blue,
+          "blue-hover": brandColors.blueHover,
           page: brandColors.page,
           muted: brandColors.muted,
+          "muted-text": brandColors.mutedText,
         },
       },
       fontFamily: {

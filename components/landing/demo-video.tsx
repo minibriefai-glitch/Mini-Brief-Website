@@ -17,7 +17,7 @@ export function DemoVideo({ className }: { className?: string }) {
         preload="metadata"
         poster={demoVideo.poster}
         aria-label="MiniBrief demo"
-        className="h-auto w-full rounded-xl border border-brand-ink/10 bg-brand-page"
+        className="h-auto w-full rounded-xl border border-brand-muted/50 bg-brand-page"
       >
         <source src={demoVideo.webm} type="video/webm" />
         <source src={demoVideo.mp4} type="video/mp4" />
@@ -27,7 +27,7 @@ export function DemoVideo({ className }: { className?: string }) {
         <img
           src={demoVideo.poster}
           alt="MiniBrief demo"
-          className="h-auto w-full rounded-xl border border-brand-ink/10 bg-brand-page"
+          className="h-auto w-full rounded-xl border border-brand-muted/50 bg-brand-page"
         />
       </noscript>
     </div>

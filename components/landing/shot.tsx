@@ -27,7 +27,7 @@ export function Shot({
       height={shot.h}
       sizes={sizes}
       priority={priority}
-      className={cn("h-auto w-full rounded-xl border border-brand-ink/10 bg-brand-page", className)}
+      className={cn("h-auto w-full rounded-xl border border-brand-muted/50 bg-brand-page", className)}
     />
   );
 }

@@ -2,15 +2,14 @@ import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
 /**
- * The small pill badge above a heading. Muted text on an ink pill: the
- * palette's eyebrow colour at a contrast that passes AA (muted on the page
- * background alone does not).
+ * The small pill badge above a heading: secondary text on a white pill with
+ * a muted border (7.0:1 on page).
  */
 export function Eyebrow({ children, className }: { children: ReactNode; className?: string }) {
   return (
     <span
       className={cn(
-        "inline-flex items-center rounded-full bg-brand-ink px-3 py-1 text-xs font-medium uppercase tracking-wider text-brand-muted",
+        "inline-flex items-center rounded-full border border-brand-muted bg-white px-3 py-1 text-xs font-medium uppercase tracking-wider text-brand-muted-text",
         className,
       )}
     >

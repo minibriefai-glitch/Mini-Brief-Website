@@ -52,6 +52,19 @@ body {
   overflow-x: clip;
 }
 
+/* The home page is light (app/page.tsx sets data-page="light" on its root).
+   The canvas takes the root element's background, so html must be painted
+   too or overscroll flashes the dark colour above. Values are brand.page and
+   brand.ink in lib/brand.ts. */
+html:has([data-page="light"]),
+html:has([data-page="light"]) body {
+  background: #F5F5F7;
+}
+[data-page="light"] ::selection {
+  background: #C7D1F2;
+  color: #07091A;
+}
+
 ::selection {
   background: rgba(91, 114, 255, 0.35);
   color: #fff;

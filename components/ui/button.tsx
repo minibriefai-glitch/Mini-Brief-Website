@@ -10,9 +10,9 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        primary: "bg-brand-blue text-white hover:bg-brand-blue/90",
+        primary: "bg-brand-blue text-white hover:bg-brand-blue-hover",
         ghost: "border border-brand-muted/50 bg-transparent text-current hover:border-current",
-        hero: "bg-brand-blue text-white hover:bg-brand-blue/90",
+        hero: "bg-brand-blue text-white hover:bg-brand-blue-hover",
       },
       size: {
         sm: "min-h-9 px-4 text-sm",
