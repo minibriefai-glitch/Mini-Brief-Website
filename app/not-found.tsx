@@ -23,7 +23,7 @@ export default function NotFound() {
           <span className="text-mini">Not</span>Found
         </h1>
         <p className="font-display italic text-fg-2 mb-8 text-[clamp(16px,2vw,20px)] max-w-[520px]">
-          This thread doesn't exist — or it's been auto-trashed by a very enthusiastic filter.
+          This thread doesn&rsquo;t exist — or it&rsquo;s been auto-trashed by a very enthusiastic filter.
         </p>
         <Link href="/">
           <Button variant="hero" size="lg">
