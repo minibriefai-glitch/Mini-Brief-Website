@@ -12,7 +12,7 @@ export const brandColors = {
   blueHover: "#3352C8",
   /** Page background. */
   page: "#F5F5F7",
-  /** Borders, dividers, and the placeholder SVGs only; never text. */
+  /** Borders and dividers only; never text. */
   muted: "#94A3B8",
   /** Captions and secondary text: 7.0:1 on page. Every piece of text passes 4.5:1. */
   mutedText: "#475569",

@@ -12,7 +12,7 @@ const navLink =
  */
 export function Nav() {
   return (
-    <header className="sticky top-0 z-40 border-b border-brand-muted/50 bg-brand-page text-brand-ink">
+    <header className="sticky top-0 z-40 border-b border-brand-ink/[0.06] bg-brand-page/85 text-brand-ink backdrop-blur-md">
       <Container className="flex h-16 items-center justify-between gap-6">
         <Logo />
         <nav aria-label="Primary" className="flex items-center gap-2 md:gap-4">

@@ -6,22 +6,25 @@ import { Eyebrow } from "./section-header";
 export function FounderNote() {
   return (
     <Section>
-      <div className="max-w-3xl">
+      <div className="mx-auto max-w-4xl">
         <Eyebrow>{founder.eyebrow}</Eyebrow>
-        <figure className="mt-6 rounded-xl border border-brand-muted/50 bg-white p-8">
-          <blockquote className="text-lg">
+        <figure className="relative mt-6 rounded-3xl border border-brand-ink/10 bg-white p-8 shadow-card md:p-12">
+          <span aria-hidden="true" className="absolute left-8 top-4 font-serif text-8xl leading-none text-brand-blue/15 md:left-12">
+            &ldquo;
+          </span>
+          <blockquote className="relative text-xl font-medium leading-snug text-brand-ink md:text-2xl md:leading-snug">
             <p>{founder.quote}</p>
           </blockquote>
-          <figcaption className="mt-6 flex items-center gap-4">
+          <figcaption className="mt-8 flex items-center gap-4">
             <Image
               src={founder.photo}
               alt={`${founder.name}, ${founder.role}`}
-              width={64}
-              height={64}
-              className="h-16 w-16 rounded-full object-cover"
+              width={72}
+              height={72}
+              className="h-[72px] w-[72px] rounded-full object-cover ring-4 ring-brand-page"
             />
             <div>
-              <p className="font-medium">{founder.name}</p>
+              <p className="font-semibold text-brand-ink">{founder.name}</p>
               <p className="text-sm text-brand-muted-text">{founder.role}</p>
             </div>
           </figcaption>

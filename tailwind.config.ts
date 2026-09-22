@@ -47,6 +47,12 @@ const config: Config = {
           "muted-text": brandColors.mutedText,
         },
       },
+      boxShadow: {
+        // Two soft layers: a hairline and a long, faint drop. Ink-tinted so it
+        // reads as depth, not dirt.
+        card: "0 1px 2px rgba(7,9,26,0.04), 0 12px 32px -16px rgba(7,9,26,0.16)",
+        frame: "0 1px 1px rgba(7,9,26,0.05), 0 2px 6px rgba(7,9,26,0.05), 0 40px 80px -32px rgba(7,9,26,0.28)",
+      },
       fontFamily: {
         sans: inter,
         display: inter,
