@@ -23,6 +23,7 @@ import {
   type DemoTone,
 } from "@/content/demo";
 import { cn } from "@/lib/utils";
+import { ProviderLogo } from "@/components/provider-logo";
 
 type DemoTab = "brief" | "draft" | "promises";
 type AccountFilter = "All inboxes" | DemoAccount;
@@ -223,7 +224,7 @@ export function InteractiveDemo() {
             <div
               role="group"
               aria-label="Filter sample inboxes"
-              className="inline-flex max-w-full gap-0.5 rounded-lg bg-[#F2F3F6] p-1"
+              className="inline-flex max-w-full flex-wrap gap-0.5 rounded-lg bg-[#F2F3F6] p-1"
             >
               {(["All inboxes", "Gmail", "Outlook"] as const).map((option) => (
                 <button
@@ -232,13 +233,16 @@ export function InteractiveDemo() {
                   aria-pressed={account === option}
                   onClick={() => changeAccount(option)}
                   className={cn(
-                    "min-h-8 rounded-md px-2.5 text-[12px] font-medium transition-colors motion-reduce:transition-none",
+                    "inline-flex min-h-8 items-center gap-1.5 rounded-md px-2 text-[12px] font-medium transition-colors motion-reduce:transition-none sm:px-2.5",
                     account === option
                       ? "bg-white text-brand-ink shadow-sm"
                       : "text-[#636A7B] hover:text-brand-ink",
                     focusRing,
                   )}
                 >
+                  {option !== "All inboxes" && (
+                    <ProviderLogo provider={option} className="size-3.5" />
+                  )}
                   {option}
                 </button>
               ))}
@@ -331,7 +335,11 @@ export function InteractiveDemo() {
                         <span className="mt-0.5 block truncate text-[12px] text-[#495166]">
                           {thread.subject}
                         </span>
-                        <span className="mt-1.5 block text-[10px] font-medium text-[#697184]">
+                        <span className="mt-1.5 flex flex-wrap items-center gap-x-1 text-[10px] font-medium text-[#697184]">
+                          <ProviderLogo
+                            provider={thread.account}
+                            className="size-3"
+                          />
                           {thread.account}{" "}
                           <span
                             aria-hidden="true"
@@ -602,8 +610,13 @@ export function InteractiveDemo() {
                           {isComplete ? "Complete" : promise.due}
                         </span>
                       </div>
-                      <p className="mt-1 text-[11px] text-[#697184]">
-                        {promise.person} · {promise.account}
+                      <p className="mt-1 flex flex-wrap items-center gap-x-1 text-[11px] text-[#697184]">
+                        {promise.person} ·
+                        <ProviderLogo
+                          provider={promise.account}
+                          className="size-3"
+                        />
+                        {promise.account}
                       </p>
                       <p className="mt-2 text-[11px] italic leading-relaxed text-[#737B8C]">
                         {promise.context}

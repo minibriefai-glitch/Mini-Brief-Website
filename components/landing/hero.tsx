@@ -2,10 +2,10 @@ import {
   ArrowDown,
   ArrowUpRight,
   Check,
-  Mail,
   ShieldCheck,
 } from "lucide-react";
 import { hero } from "@/content/home";
+import { ProviderLogo } from "@/components/provider-logo";
 import { Container } from "./section";
 import { InteractiveDemo } from "./interactive-demo";
 
@@ -72,19 +72,11 @@ export function Hero() {
               Made for your inboxes
             </span>
             <span className="inline-flex items-center gap-2 font-medium text-[#07091A]">
-              <Mail className="h-4 w-4 text-[#3A5FDC]" aria-hidden="true" />
+              <ProviderLogo provider="Gmail" />
               Gmail
             </span>
             <span className="inline-flex items-center gap-2 font-medium text-[#07091A]">
-              <span
-                aria-hidden="true"
-                className="grid h-3.5 w-3.5 grid-cols-2 gap-0.5"
-              >
-                <i className="bg-[#3A5FDC]" />
-                <i className="bg-[#3A5FDC]/70" />
-                <i className="bg-[#3A5FDC]/70" />
-                <i className="bg-[#3A5FDC]" />
-              </span>
+              <ProviderLogo provider="Outlook" />
               Outlook
             </span>
           </div>
