@@ -1,12 +1,14 @@
 import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 import { footer } from "@/content/home";
 import { CONTACT_EMAIL, CONTACT_MAILTO, LINKEDIN_URL } from "@/lib/brand";
 import { Logo } from "./logo";
 import { Container } from "./section";
 
-const heading = "text-xs font-medium uppercase tracking-wider text-white/70";
+const heading =
+  "text-[10px] font-medium uppercase tracking-[0.16em] text-[#7e8da9]";
 const link =
-  "-ml-2 inline-flex min-h-11 min-w-11 items-center rounded-md px-2 text-sm text-white hover:underline hover:underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white";
+  "-ml-2 inline-flex min-h-10 items-center rounded-md px-2 text-sm text-[#a7b0c4] transition-colors hover:text-[#d4deff]";
 
 function LinkColumn({
   id,
@@ -22,22 +24,20 @@ function LinkColumn({
       <p id={id} className={heading}>
         {title}
       </p>
-      <ul className="mt-2">
-        {links.map((item) =>
-          item.href.startsWith("/") ? (
-            <li key={item.href}>
+      <ul className="mt-4">
+        {links.map((item) => (
+          <li key={item.href}>
+            {item.href.startsWith("/") ? (
               <Link href={item.href} className={link}>
                 {item.label}
               </Link>
-            </li>
-          ) : (
-            <li key={item.href}>
+            ) : (
               <a href={item.href} className={link}>
                 {item.label}
               </a>
-            </li>
-          ),
-        )}
+            )}
+          </li>
+        ))}
       </ul>
     </nav>
   );
@@ -45,34 +45,63 @@ function LinkColumn({
 
 export function Footer() {
   return (
-    <footer className="bg-brand-ink text-white">
-      <Container className="py-16 md:py-20">
-        <div className="grid gap-10 md:grid-cols-[1.6fr_1fr_1fr_1fr]">
-          <div className="max-w-xs">
+    <footer className="overflow-hidden border-t border-white/10 bg-[#080d1b] text-[#f4f6ff]">
+      <Container className="pt-14 md:pt-16">
+        <div className="grid grid-cols-2 gap-x-8 gap-y-10 lg:grid-cols-[1.6fr_0.8fr_0.8fr_1fr]">
+          <div className="col-span-2 max-w-xs lg:col-span-1">
             <Logo />
-            <p className="mt-4 text-sm text-white/70">{footer.tagline}</p>
+            <p className="mt-4 text-sm leading-relaxed text-[#a7b0c4]">
+              {footer.tagline}
+            </p>
           </div>
-          <LinkColumn id="footer-product" title={footer.product.heading} links={footer.product.links} />
-          <LinkColumn id="footer-legal" title={footer.legal.heading} links={footer.legal.links} />
-          <nav aria-labelledby="footer-contact">
+          <LinkColumn
+            id="footer-product"
+            title={footer.product.heading}
+            links={footer.product.links}
+          />
+          <LinkColumn
+            id="footer-legal"
+            title={footer.legal.heading}
+            links={footer.legal.links}
+          />
+          <nav
+            aria-labelledby="footer-contact"
+            className="col-span-2 lg:col-span-1"
+          >
             <p id="footer-contact" className={heading}>
               {footer.contact.heading}
             </p>
-            <ul className="mt-2">
+            <ul className="mt-4">
               <li>
-                <a href={CONTACT_MAILTO} className={link}>
+                <a href={CONTACT_MAILTO} className={`${link} gap-1.5`}>
                   {CONTACT_EMAIL}
+                  <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
                 </a>
               </li>
               <li>
-                <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" className={link}>
+                <a
+                  href={LINKEDIN_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`${link} gap-1.5`}
+                >
                   {footer.contact.linkedInLabel}
+                  <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
                 </a>
               </li>
             </ul>
           </nav>
         </div>
-        <p className="mt-12 border-t border-white/10 pt-6 text-sm text-white/70">{footer.copyright}</p>
+        <div className="mt-14 flex flex-wrap items-center justify-between gap-4 border-t border-white/10 pt-6 text-xs text-[#7e8da9]">
+          <p>{footer.copyright}</p>
+          <p>Less noise. More room for your day.</p>
+        </div>
+        <p
+          aria-hidden="true"
+          className="-mb-[0.1em] mt-8 select-none text-center text-[clamp(4rem,16.3vw,13rem)] font-semibold leading-[1.06] tracking-[-0.075em] text-[#16213a]"
+        >
+          MiniBrief<span className="text-[#263b67]">.</span>
+        </p>
       </Container>
     </footer>
   );

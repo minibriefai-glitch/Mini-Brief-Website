@@ -1,6 +1,5 @@
 /**
- * Every word on the home page, transcribed from the brief. Components read
- * from here and add markup, never copy. Portal URLs come from lib/portal.ts,
+ * Shared marketing copy for the home page. Portal URLs come from lib/portal.ts,
  * contact details from lib/brand.ts.
  */
 import { PORTAL_GET_STARTED_URL, PORTAL_SIGN_IN_URL } from "@/lib/portal";
@@ -8,37 +7,30 @@ import type { ShotKey } from "./shots";
 
 export const nav = {
   anchors: [
-    { label: "Privacy", href: "#privacy" },
-    { label: "Security", href: "#security" },
+    { label: "Product", href: "#product" },
     { label: "How it works", href: "#how-it-works" },
+    { label: "Security", href: "#security" },
     { label: "FAQ", href: "#faq" },
   ],
   signIn: { label: "Sign in", href: PORTAL_SIGN_IN_URL },
-  getStarted: { label: "Get started", href: PORTAL_GET_STARTED_URL },
+  getStarted: { label: "Start free trial", href: PORTAL_GET_STARTED_URL },
 } as const;
 
 export const hero = {
-  eyebrow: "In beta · Gmail & Outlook · Free trial",
-  h1: "Your Gmail and Outlook, in one brief.",
-  sub: "MiniBrief reads your inbox, flags what actually needs you, drafts the replies, and keeps track of what you promised. Message bodies are not stored on our servers.",
-  primary: { label: "Get started", href: PORTAL_GET_STARTED_URL },
-  secondary: { label: "See how it works", href: "#how-it-works" },
-  shot: "hero" satisfies ShotKey,
-} as const;
-
-export const problem = {
-  eyebrow: "The problem",
-  h2: "Email eats the morning.",
-  lines: [
-    "The one message that matters is buried under newsletters, receipts, and noise.",
-    "The thread is twenty messages deep, and the actual question is somewhere in the middle.",
-    "You said you'd follow up Friday. Friday came and went.",
-  ],
+  eyebrow: "Gmail & Outlook · Now in beta",
+  h1: "Less inbox.",
+  accent: "More headspace.",
+  sub: "Turn Gmail and Outlook into one clear brief. Know what needs you, reply in your own voice, and keep every promise in view.",
+  primary: { label: "Start your free trial", href: PORTAL_GET_STARTED_URL },
+  secondary: { label: "Try the interactive demo", href: "#interactive-demo" },
 } as const;
 
 export const whatItDoes = {
   eyebrow: "What it does",
-  h2: "The work MiniBrief takes off your plate.",
+  h2: "One place to move your day forward.",
+  intro: "A clearer view of your email, with the next step already in reach.",
+  tabs: ["Your brief", "Draft replies", "Promise Ledger", "Connected inboxes"],
+  explore: "Try it in the demo",
   blocks: [
     {
       title: "One brief, not a pile.",
@@ -47,7 +39,7 @@ export const whatItDoes = {
     },
     {
       title: "Replies, drafted.",
-      body: "Pick what you want to say, approve, decline, follow up, schedule, and MiniBrief writes the reply. Turn on voice matching and it learns from your own sent mail, so drafts read like you wrote them.",
+      body: "Approve, decline, follow up, or schedule. Choose your intent and MiniBrief drafts the reply for you to review. Turn on voice matching and it learns from your own sent mail.",
       shot: "reply" satisfies ShotKey,
     },
     {
@@ -62,7 +54,7 @@ export const whatItDoes = {
     },
   ],
   closing:
-    "Also in the box: catch-up reports after time away, VIP alerts when someone important goes quiet, meeting prep from your calendar, a tone check before you send, and one-click unsubscribe that sticks.",
+    "Also included: catch-up reports after time away, VIP alerts when someone important goes quiet, meeting prep from your calendar, a tone check before you send, and one-click unsubscribe.",
 } as const;
 
 export const privacy = {
@@ -184,17 +176,6 @@ export const security = {
 
 export const different = {
   eyebrow: "Why MiniBrief",
-  h2: "A different deal with your data.",
-  columns: { usual: "The usual approach", us: "MiniBrief" },
-  rows: [
-    { label: "Where your email lives", usual: "Whole mailboxes copied and kept", us: "Metadata for 90 days, message bodies not stored" },
-    { label: "How much goes to the AI", usual: "Whole threads, by default", us: "A subject line and about 120 characters, unless you opt in" },
-    { label: "Who the AI provider is", usual: "Unnamed, or several", us: "One named provider, Anthropic, under terms that forbid training on your data" },
-    { label: "Where the AI key lives", usual: "Often in your browser", us: "Server-side, with nothing to extract" },
-    { label: "Drafts in your voice", usual: "A generic AI tone", us: "Learned from your own sent mail, when you turn it on" },
-    { label: "What you promised", usual: "Not tracked", us: "The Promise Ledger keeps commitments in both directions" },
-    { label: "Gmail and Outlook", usual: "One or the other", us: "Both, side by side, in one brief" },
-  ],
 } as const;
 
 export const howItWorks = {
@@ -215,15 +196,6 @@ export const howItWorks = {
       body: "MiniBrief reads your inbox and hands you the first brief. Come back each morning, or whenever you need to know where things stand.",
     },
   ],
-} as const;
-
-export const founder = {
-  eyebrow: "Why we built it",
-  quote:
-    "I built MiniBrief because my inbox was beating me. The one email that mattered was buried three pages down, threads ran twenty messages deep, and some days I missed things completely. I didn't want a prettier inbox. I wanted my day back, so I built the thing I needed.",
-  name: "Michael Mancuso",
-  role: "Founder, MiniBrief",
-  photo: "/photos/founder.jpg",
 } as const;
 
 export interface FaqItem {
@@ -263,9 +235,9 @@ export const faq = {
 } as const;
 
 export const cta = {
-  h2: "Your inbox, briefed from today.",
+  h2: "Make room for the work that matters.",
   body: "MiniBrief is in beta for Gmail and Outlook. Create an account, connect a mailbox, and your first brief is minutes away.",
-  primary: { label: "Get started", href: PORTAL_GET_STARTED_URL },
+  primary: { label: "Start your free trial", href: PORTAL_GET_STARTED_URL },
 } as const;
 
 export const footer = {

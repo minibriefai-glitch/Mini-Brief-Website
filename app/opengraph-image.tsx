@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { hero, metadata } from "@/content/home";
-import { brandColors, WORDMARK } from "@/lib/brand";
+import { WORDMARK } from "@/lib/brand";
 
 export const alt = metadata.title;
 export const size = { width: 1200, height: 630 };
@@ -27,81 +27,196 @@ export default async function OpengraphImage() {
           height: "100%",
           display: "flex",
           flexDirection: "column",
-          background: brandColors.page,
-          color: brandColors.ink,
-          padding: "56px 64px",
+          background: "#080d1b",
+          color: "#ffffff",
+          padding: "48px 64px",
           position: "relative",
           overflow: "hidden",
           fontFamily: "Inter",
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
-          {/* eslint-disable-next-line @next/next/no-img-element -- Satori renders plain img elements */}
-          <img src={iconSrc} width={52} height={52} style={{ borderRadius: 12 }} alt="" />
-          <div style={{ fontSize: 34, fontWeight: 600, letterSpacing: "-0.02em", display: "flex" }}>{WORDMARK}</div>
-        </div>
-
-        <div
-          style={{
-            marginTop: 44,
-            display: "flex",
-            alignItems: "center",
-            gap: 10,
-            padding: "8px 16px",
-            borderRadius: 999,
-            border: "1px solid rgba(7,9,26,0.10)",
-            background: "#FFFFFF",
-            color: brandColors.mutedText,
-            fontSize: 16,
-            letterSpacing: "0.08em",
-            textTransform: "uppercase",
-            alignSelf: "flex-start",
-          }}
-        >
-          <div style={{ width: 8, height: 8, borderRadius: 999, background: brandColors.blue, display: "flex" }} />
-          {hero.eyebrow}
-        </div>
-
-        <div
-          style={{
-            marginTop: 26,
-            fontSize: 58,
-            fontWeight: 600,
-            lineHeight: 1.06,
-            letterSpacing: "-0.03em",
-            maxWidth: 540,
-            display: "flex",
-          }}
-        >
-          {hero.h1}
-        </div>
-        <div style={{ marginTop: 20, fontSize: 22, lineHeight: 1.4, color: brandColors.mutedText, maxWidth: 520, display: "flex" }}>
-          {hero.sub}
-        </div>
-
-        {/* The product, framed, rising from the bottom-right corner. */}
         <div
           style={{
             position: "absolute",
-            left: 660,
-            top: 236,
-            width: 680,
+            top: 0,
+            right: 0,
+            bottom: 0,
+            width: 650,
+            display: "flex",
+            background:
+              "radial-gradient(ellipse at 100% 45%, rgba(58,95,220,0.24), rgba(8,13,27,0) 75%)",
+          }}
+        />
+
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
+        >
+          <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
+            <img
+              src={iconSrc}
+              width={46}
+              height={46}
+              style={{ borderRadius: 12 }}
+              alt=""
+            />
+            <div
+              style={{
+                fontSize: 30,
+                fontWeight: 600,
+                letterSpacing: "-0.035em",
+                display: "flex",
+              }}
+            >
+              {WORDMARK}
+            </div>
+          </div>
+          <div style={{ display: "flex", fontSize: 16, color: "#a7b0c4" }}>
+            minibrief.app
+          </div>
+        </div>
+
+        <div
+          style={{
+            marginTop: 64,
+            display: "flex",
+            alignItems: "center",
+            gap: 12,
+            color: "#a4b8ff",
+            fontSize: 13,
+            fontWeight: 600,
+            letterSpacing: "0.14em",
+            textTransform: "uppercase",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              width: 28,
+              height: 1,
+              background: "#a4b8ff",
+            }}
+          />
+          Gmail + Outlook. One clear brief.
+        </div>
+
+        <div
+          style={{
+            marginTop: 24,
+            fontSize: 72,
+            fontWeight: 600,
+            lineHeight: 1.06,
+            letterSpacing: "-0.055em",
             display: "flex",
             flexDirection: "column",
-            borderRadius: 18,
-            border: "1px solid rgba(7,9,26,0.12)",
-            background: "#FFFFFF",
-            boxShadow: "0 40px 80px rgba(7,9,26,0.22)",
+            width: 620,
+          }}
+        >
+          <div style={{ display: "flex" }}>{hero.h1}</div>
+          <div style={{ display: "flex", color: "#a4b8ff" }}>
+            {hero.accent}
+          </div>
+        </div>
+
+        <div
+          style={{
+            marginTop: 25,
+            fontSize: 21,
+            lineHeight: 1.5,
+            color: "#a7b0c4",
+            width: 510,
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          <div style={{ display: "flex" }}>Replies in your voice.</div>
+          <div style={{ display: "flex" }}>Every promise in view.</div>
+        </div>
+
+        <div
+          style={{
+            position: "absolute",
+            left: 64,
+            bottom: 57,
+            display: "flex",
+            alignItems: "center",
+            gap: 22,
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 20,
+              padding: "16px 22px",
+              borderRadius: 10,
+              background: "#a4b8ff",
+              color: "#080d1b",
+              fontSize: 17,
+              fontWeight: 600,
+            }}
+          >
+            {hero.primary.label}
+            <span style={{ fontSize: 21 }}>↗</span>
+          </div>
+          <div style={{ display: "flex", fontSize: 15, color: "#a7b0c4" }}>
+            Now in beta
+          </div>
+        </div>
+
+        {/* Crop the existing product shot to its brief pane, preserving its proportions. */}
+        <div
+          style={{
+            position: "absolute",
+            left: 720,
+            top: 167,
+            width: 596,
+            height: 540,
+            display: "flex",
+            flexDirection: "column",
+            borderRadius: 17,
+            border: "1px solid rgba(164,184,255,0.28)",
+            background: "#10182b",
+            boxShadow: "0 28px 90px rgba(0,0,0,0.4)",
             overflow: "hidden",
           }}
         >
-          <div style={{ display: "flex", alignItems: "center", gap: 6, height: 34, padding: "0 16px", background: brandColors.page, borderBottom: "1px solid rgba(7,9,26,0.06)" }}>
-            <div style={{ width: 10, height: 10, borderRadius: 999, background: "rgba(7,9,26,0.12)", display: "flex" }} />
-            <div style={{ width: 10, height: 10, borderRadius: 999, background: "rgba(7,9,26,0.12)", display: "flex" }} />
-            <div style={{ width: 10, height: 10, borderRadius: 999, background: "rgba(7,9,26,0.12)", display: "flex" }} />
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              height: 42,
+              padding: "0 20px",
+              background: "#111a2f",
+              borderBottom: "1px solid rgba(164,184,255,0.15)",
+              color: "#c5cde0",
+              fontSize: 12,
+            }}
+          >
+            <span>Your morning brief</span>
+            <span style={{ color: "#8996b2" }}>MiniBrief</span>
           </div>
-          {/* eslint-disable-next-line @next/next/no-img-element -- Satori renders plain img elements */}
-          <img src={shotSrc} width={680} height={425} alt="" />
+          <div
+            style={{
+              display: "flex",
+              position: "relative",
+              height: 498,
+              overflow: "hidden",
+              background: "#f3f4f6",
+            }}
+          >
+            <img
+              src={shotSrc}
+              width={1040}
+              height={650}
+              alt=""
+              style={{ position: "absolute", left: -424, top: -30 }}
+            />
+          </div>
         </div>
       </div>
     ),

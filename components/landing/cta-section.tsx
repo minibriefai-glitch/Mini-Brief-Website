@@ -1,22 +1,43 @@
-import { buttonVariants } from "@/components/ui/button";
+import { ArrowUpRight, Check } from "lucide-react";
 import { cta } from "@/content/home";
-import { cn } from "@/lib/utils";
 import { Section } from "./section";
 
 export function CtaSection() {
   return (
-    <Section>
-      <div className="relative overflow-hidden rounded-3xl bg-brand-ink px-6 py-16 text-center text-white md:py-24">
+    <Section className="pb-16 pt-0 md:pb-20 md:pt-0">
+      <div
+        data-tone="pale"
+        className="relative isolate overflow-hidden rounded-[28px] bg-[#b5c5ff] px-7 py-12 text-[#0a1230] sm:px-12 sm:py-16 lg:px-16"
+      >
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(55%_70%_at_50%_100%,rgba(58,95,220,0.35),transparent_70%)]"
+          className="pointer-events-none absolute -right-24 -top-36 -z-10 h-[500px] w-[500px] rounded-full border-[70px] border-white/10"
         />
-        <div className="relative mx-auto max-w-2xl">
-          <h2 className="text-3xl font-semibold tracking-[-0.02em] md:text-5xl md:leading-[1.08]">{cta.h2}</h2>
-          <p className="mx-auto mt-5 max-w-prose text-lg leading-relaxed text-white/75 md:text-xl">{cta.body}</p>
-          <a href={cta.primary.href} className={cn(buttonVariants({ variant: "primary", size: "lg" }), "mt-9 focus-visible:outline-white")}>
-            {cta.primary.label}
-          </a>
+        <div className="grid items-end gap-10 lg:grid-cols-[1.35fr_1fr] lg:gap-20">
+          <div>
+            <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#344677]">
+              Good mornings start here
+            </p>
+            <h2 className="mt-5 max-w-xl text-[clamp(2.4rem,5vw,4rem)] font-medium leading-[1.04] tracking-[-0.055em]">
+              {cta.h2}
+            </h2>
+          </div>
+          <div>
+            <p className="max-w-sm text-base leading-relaxed text-[#344677]">
+              {cta.body}
+            </p>
+            <a
+              href={cta.primary.href}
+              className="landing-action mt-6 inline-flex min-h-12 items-center justify-center gap-5 rounded-xl bg-[#0a1230] px-6 text-sm font-semibold text-white hover:bg-[#1a2850]"
+            >
+              {cta.primary.label}
+              <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+            </a>
+            <p className="mt-4 flex items-center gap-2 text-xs text-[#344677]">
+              <Check className="h-3.5 w-3.5" aria-hidden="true" />
+              Gmail & Outlook. One clear brief.
+            </p>
+          </div>
         </div>
       </div>
     </Section>

@@ -1,58 +1,92 @@
-import { Check, Minus } from "lucide-react";
 import { different } from "@/content/home";
-import { Section } from "./section";
-import { SectionHeader } from "./section-header";
+import { Container } from "./section";
 
-/**
- * Side by side. A real table for assistive tech, with explicit table roles
- * so the semantics survive the phone layout, where each row is a stacked
- * card with the column names repeated per cell.
- */
+const principles = [
+  {
+    number: "01",
+    title: "One brief. Both inboxes.",
+    body: "Gmail and Outlook, side by side. MiniBrief brings your connected mailboxes into one brief, so you have one place to start.",
+    detail: "Your work, brought together",
+  },
+  {
+    number: "02",
+    title: "Your voice, when you choose.",
+    body: "Drafts can learn from your own sent mail when you turn it on. A head start on the reply, with the words still yours to review.",
+    detail: "Personalization is your call",
+  },
+  {
+    number: "03",
+    title: "Keep both sides of a promise.",
+    body: "The Promise Ledger tracks what you owe and what you’re waiting on. Commitments in both directions, kept in view.",
+    detail: "Follow through with less effort",
+  },
+  {
+    number: "04",
+    title: "Less context, by default.",
+    body: "Sorting sends a subject line and about 120 preview characters to the AI. Full text is sent only for features you use on an opened message, capped in length.",
+    detail: "A deliberate limit on data",
+  },
+] as const;
+
 export function Different() {
   return (
-    <Section>
-      <SectionHeader eyebrow={different.eyebrow} title={different.h2} />
-      <div className="mt-14 overflow-hidden rounded-2xl border border-brand-ink/10 bg-white shadow-card">
-        <table role="table" className="w-full border-collapse text-left">
-          <caption className="sr-only">{`${different.columns.us} compared with ${different.columns.usual.toLowerCase()}`}</caption>
-          <thead role="rowgroup" className="hidden md:table-header-group">
-            <tr role="row" className="border-b border-brand-ink/10 text-xs font-medium uppercase tracking-wider text-brand-muted-text">
-              <th role="columnheader" scope="col" className="px-6 py-4 font-medium">
-                <span className="sr-only">What</span>
-              </th>
-              <th role="columnheader" scope="col" className="px-6 py-4 font-medium">
-                {different.columns.usual}
-              </th>
-              <th role="columnheader" scope="col" className="px-6 py-4 font-medium text-brand-blue">
-                {different.columns.us}
-              </th>
-            </tr>
-          </thead>
-          <tbody role="rowgroup" className="divide-y divide-brand-ink/10">
-            {different.rows.map((row) => (
-              <tr key={row.label} role="row" className="grid gap-3 p-6 md:table-row md:p-0">
-                <th role="rowheader" scope="row" className="text-lg font-semibold text-brand-ink md:w-1/4 md:px-6 md:py-5 md:align-top md:text-base">
-                  {row.label}
-                </th>
-                <td role="cell" className="text-base text-brand-muted-text md:px-6 md:py-5 md:align-top">
-                  <span className="mb-1 block text-xs font-medium uppercase tracking-wider md:hidden">{different.columns.usual}</span>
-                  <span className="flex gap-2">
-                    <Minus className="mt-1 h-4 w-4 shrink-0" aria-hidden="true" />
-                    {row.usual}
-                  </span>
-                </td>
-                <td role="cell" className="text-base text-brand-ink md:px-6 md:py-5 md:align-top">
-                  <span className="mb-1 block text-xs font-medium uppercase tracking-wider text-brand-blue md:hidden">{different.columns.us}</span>
-                  <span className="flex gap-2">
-                    <Check className="mt-1 h-4 w-4 shrink-0 text-brand-blue" aria-hidden="true" strokeWidth={2.5} />
-                    {row.us}
-                  </span>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </Section>
+    <section
+      aria-labelledby="different-heading"
+      className="bg-[#080d1b] py-20 text-white md:py-28 lg:py-32"
+    >
+      <Container>
+        <div className="grid gap-6 lg:grid-cols-[1.3fr_0.7fr] lg:items-end lg:gap-20">
+          <div>
+            <p className="text-xs font-medium uppercase tracking-[0.18em] text-[#a4b8ff]">
+              {different.eyebrow}
+            </p>
+            <h2
+              id="different-heading"
+              className="mt-6 max-w-3xl text-[clamp(2.25rem,4.3vw,4rem)] font-semibold leading-[1.08] tracking-[-0.045em]"
+            >
+              Built around your day.
+              <br />
+              <span className="text-[#a7b0c4]">And your boundaries.</span>
+            </h2>
+          </div>
+          <p className="max-w-md text-base leading-relaxed text-[#a7b0c4] lg:pb-1">
+            A useful assistant should fit the way you work. That means a clearer
+            view of your inbox, a little less to remember, and control over what
+            you share.
+          </p>
+        </div>
+
+        <ol className="mt-12 grid border-b border-white/10 sm:mt-16 md:grid-cols-2">
+          {principles.map((principle) => (
+            <li
+              key={principle.number}
+              className="group border-t border-white/10 py-8 md:py-10 md:odd:pr-10 md:even:border-l md:even:pl-10 lg:odd:pr-14 lg:even:pl-14"
+            >
+              <div className="mb-7 flex items-center justify-between">
+                <span
+                  aria-hidden="true"
+                  className="text-sm tabular-nums tracking-[-0.02em] text-[#a4b8ff]"
+                >
+                  {principle.number}
+                </span>
+                <span
+                  aria-hidden="true"
+                  className="h-px w-10 bg-white/15 transition-[width,background-color] duration-300 group-hover:w-16 group-hover:bg-[#a4b8ff]/60 motion-reduce:transition-none"
+                />
+              </div>
+              <h3 className="max-w-lg text-[25px] font-medium leading-tight tracking-[-0.035em] sm:text-[29px]">
+                {principle.title}
+              </h3>
+              <p className="mt-4 max-w-lg text-sm leading-[1.8] text-[#a7b0c4] sm:text-base">
+                {principle.body}
+              </p>
+              <p className="mt-7 text-[10px] font-medium uppercase tracking-[0.13em] text-[#8f9bb3]">
+                {principle.detail}
+              </p>
+            </li>
+          ))}
+        </ol>
+      </Container>
+    </section>
   );
 }
