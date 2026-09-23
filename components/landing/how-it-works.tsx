@@ -1,7 +1,9 @@
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Link2, ListChecks, UserRound } from "lucide-react";
 import { howItWorks } from "@/content/home";
 import { PORTAL_GET_STARTED_URL } from "@/lib/portal";
 import { Section } from "./section";
+
+const stepIcons = [UserRound, Link2, ListChecks];
 
 export function HowItWorks() {
   return (
@@ -31,33 +33,30 @@ export function HowItWorks() {
         role="list"
         className="mt-12 grid list-none gap-8 md:mt-16 md:grid-cols-3 md:gap-10 lg:gap-16"
       >
-        {howItWorks.steps.map((step, index) => (
-          <li
-            key={step.title}
-            className="relative grid grid-cols-[3.5rem_minmax(0,1fr)] gap-4 md:block"
-          >
-            {index < howItWorks.steps.length - 1 && (
+        {howItWorks.steps.map((step, index) => {
+          const Icon = stepIcons[index];
+          return (
+            <li
+              key={step.title}
+              className="grid grid-cols-[2.75rem_minmax(0,1fr)] gap-4 md:block"
+            >
               <span
                 aria-hidden="true"
-                className="absolute bottom-[-2rem] left-6 top-14 w-px bg-[#07091A]/10 md:bottom-auto md:left-20 md:right-[-2.5rem] md:top-8 md:h-px md:w-auto lg:right-[-4rem]"
-              />
-            )}
-            <span
-              aria-hidden="true"
-              className="relative z-10 block w-fit self-start bg-[#F5F5F7] text-4xl font-light leading-none tracking-[-0.065em] text-[#3A5FDC] md:pr-6 md:text-[64px]"
-            >
-              {String(index + 1).padStart(2, "0")}
-            </span>
-            <div className="pb-1 md:mt-8 md:pb-0">
-              <h3 className="text-xl font-semibold leading-snug tracking-[-0.025em] text-[#07091A] lg:text-2xl">
-                {step.title}
-              </h3>
-              <p className="mt-3 max-w-sm text-sm leading-relaxed text-[#475569] lg:text-base">
-                {step.body}
-              </p>
-            </div>
-          </li>
-        ))}
+                className="flex h-11 w-11 items-center justify-center rounded-xl border border-[#07091A]/10 bg-white text-[#3A5FDC]"
+              >
+                <Icon className="h-5 w-5" />
+              </span>
+              <div className="pb-1 md:mt-6 md:pb-0">
+                <h3 className="text-xl font-semibold leading-snug tracking-[-0.025em] text-[#07091A] lg:text-2xl">
+                  {step.title}
+                </h3>
+                <p className="mt-3 max-w-sm text-sm leading-relaxed text-[#475569] lg:text-base">
+                  {step.body}
+                </p>
+              </div>
+            </li>
+          );
+        })}
       </ol>
     </Section>
   );

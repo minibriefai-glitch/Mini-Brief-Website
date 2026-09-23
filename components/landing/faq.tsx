@@ -40,23 +40,20 @@ export function Faq() {
           </a>
         </div>
         <div className="border-t border-brand-ink/10">
-          {faq.items.map((item, index) => (
+          {faq.items.map((item) => (
             <details
               name="minibrief-faq"
               key={item.q}
               className="group border-b border-brand-ink/10"
             >
               <summary className="flex min-h-20 cursor-pointer list-none items-center gap-4 rounded-sm py-6 text-base font-medium text-[#07091A] [&::-webkit-details-marker]:hidden hover:text-[#3A5FDC] sm:text-lg">
-                <span className="text-[10px] font-normal tracking-wider text-[#64748b]">
-                  0{index + 1}
-                </span>
                 <span className="flex-1">{item.q}</span>
                 <Plus
                   className="h-5 w-5 shrink-0 text-[#3A5FDC] transition-transform duration-200 group-open:rotate-45 motion-reduce:transition-none"
                   aria-hidden="true"
                 />
               </summary>
-              <p className="pb-7 pl-8 pr-4 text-sm leading-[1.85] text-[#475569] sm:text-base">
+              <p className="pb-7 pr-9 text-sm leading-[1.85] text-[#475569] sm:text-base">
                 <Answer {...item} />
               </p>
             </details>

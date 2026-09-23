@@ -3,25 +3,21 @@ import { Container } from "./section";
 
 const principles = [
   {
-    number: "01",
     title: "One brief. Both inboxes.",
     body: "Gmail and Outlook, side by side. MiniBrief brings your connected mailboxes into one brief, so you have one place to start.",
     detail: "Your work, brought together",
   },
   {
-    number: "02",
     title: "Your voice, when you choose.",
     body: "Drafts can learn from your own sent mail when you turn it on. A head start on the reply, with the words still yours to review.",
     detail: "Personalization is your call",
   },
   {
-    number: "03",
     title: "Keep both sides of a promise.",
     body: "The Promise Ledger tracks what you owe and what you’re waiting on. Commitments in both directions, kept in view.",
     detail: "Follow through with less effort",
   },
   {
-    number: "04",
     title: "Less context, by default.",
     body: "Sorting sends a subject line and about 120 preview characters to the AI. Full text is sent only for features you use on an opened message, capped in length.",
     detail: "A deliberate limit on data",
@@ -56,24 +52,15 @@ export function Different() {
           </p>
         </div>
 
-        <ol className="mt-12 grid border-b border-[#07091A]/10 sm:mt-16 md:grid-cols-2">
+        <ul
+          role="list"
+          className="mt-12 grid list-none border-b border-[#07091A]/10 sm:mt-16 md:grid-cols-2"
+        >
           {principles.map((principle) => (
             <li
-              key={principle.number}
-              className="group border-t border-[#07091A]/10 py-8 md:py-10 md:odd:pr-10 md:even:border-l md:even:pl-10 lg:odd:pr-14 lg:even:pl-14"
+              key={principle.title}
+              className="border-t border-[#07091A]/10 py-8 md:py-10 md:odd:pr-10 md:even:border-l md:even:pl-10 lg:odd:pr-14 lg:even:pl-14"
             >
-              <div className="mb-7 flex items-center justify-between">
-                <span
-                  aria-hidden="true"
-                  className="text-sm tabular-nums tracking-[-0.02em] text-[#3A5FDC]"
-                >
-                  {principle.number}
-                </span>
-                <span
-                  aria-hidden="true"
-                  className="h-px w-10 bg-[#07091A]/15 transition-[width,background-color] duration-300 group-hover:w-16 group-hover:bg-[#3A5FDC]/60 motion-reduce:transition-none"
-                />
-              </div>
               <h3 className="max-w-lg text-[25px] font-medium leading-tight tracking-[-0.035em] sm:text-[29px]">
                 {principle.title}
               </h3>
@@ -85,7 +72,7 @@ export function Different() {
               </p>
             </li>
           ))}
-        </ol>
+        </ul>
       </Container>
     </section>
   );

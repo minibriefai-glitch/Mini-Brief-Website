@@ -70,24 +70,17 @@ export function Privacy() {
               </span>
             </figcaption>
 
-            <ol className="px-5 pb-6 pt-6 sm:px-7 sm:pb-7">
+            <ol
+              role="list"
+              className="list-none px-5 pb-6 pt-6 sm:px-7 sm:pb-7"
+            >
               <li>
-                <div className="flex items-start justify-between gap-4">
-                  <div>
-                    <h3 className="text-sm font-medium text-[#07091A]">
-                      Your connected mailboxes
-                    </h3>
-                    <p className="mt-1.5 text-xs leading-relaxed text-[#475569]">
-                      Only the Gmail and Outlook accounts you connect.
-                    </p>
-                  </div>
-                  <span
-                    aria-hidden="true"
-                    className="pt-0.5 text-[10px] tabular-nums text-[#475569]"
-                  >
-                    01
-                  </span>
-                </div>
+                <h3 className="text-sm font-medium text-[#07091A]">
+                  Your connected mailboxes
+                </h3>
+                <p className="mt-1.5 text-xs leading-relaxed text-[#475569]">
+                  Only the Gmail and Outlook accounts you connect.
+                </p>
                 <div
                   aria-hidden="true"
                   className="my-4 flex items-center gap-3 text-[#475569]"
@@ -98,17 +91,9 @@ export function Privacy() {
               </li>
 
               <li>
-                <div className="mb-4 flex items-center justify-between gap-4">
-                  <h3 className="text-sm font-medium text-[#07091A]">
-                    Read by the MiniBrief server
-                  </h3>
-                  <span
-                    aria-hidden="true"
-                    className="text-[10px] tabular-nums text-[#475569]"
-                  >
-                    02
-                  </span>
-                </div>
+                <h3 className="mb-4 text-sm font-medium text-[#07091A]">
+                  Read by the MiniBrief server
+                </h3>
                 <dl className="grid overflow-hidden rounded-xl border border-[#07091A]/10 bg-white sm:grid-cols-2">
                   <div className="border-b border-[#07091A]/10 p-5 sm:border-b-0 sm:border-r">
                     <dt className="text-[10px] font-medium uppercase tracking-[0.12em] text-[#475569]">
@@ -155,17 +140,9 @@ export function Privacy() {
               </li>
 
               <li>
-                <div className="flex items-center justify-between gap-4">
-                  <h3 className="text-sm font-medium text-[#07091A]">
-                    AI requests go to Anthropic
-                  </h3>
-                  <span
-                    aria-hidden="true"
-                    className="text-[10px] tabular-nums text-[#475569]"
-                  >
-                    03
-                  </span>
-                </div>
+                <h3 className="text-sm font-medium text-[#07091A]">
+                  AI requests go to Anthropic
+                </h3>
                 <p className="mt-3 text-xs leading-relaxed text-[#475569]">
                   Sorting sends a subject and about 120 preview characters. Full
                   message text is sent only for features you use on a message

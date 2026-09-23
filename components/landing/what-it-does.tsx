@@ -83,15 +83,6 @@ export function WhatItDoes() {
                   : "text-[#475569] hover:bg-[#F5F5F7] hover:text-[#07091A]",
               )}
             >
-              <span
-                aria-hidden="true"
-                className={cn(
-                  "shrink-0 self-start pt-1 text-[11px] font-medium tabular-nums sm:pt-1.5",
-                  active === index ? "text-[#3A5FDC]" : "text-[#64748b]",
-                )}
-              >
-                {String(index + 1).padStart(2, "0")}
-              </span>
               <span className="min-w-0 flex-1">
                 <span className="block text-base font-semibold tracking-[-0.02em] sm:text-lg">
                   {label}
@@ -138,17 +129,9 @@ export function WhatItDoes() {
             />
           </div>
           <div className="pt-7 sm:pt-8">
-            <div className="flex items-start justify-between gap-4">
-              <h3 className="text-2xl font-semibold leading-tight tracking-[-0.03em] text-[#07091A] sm:text-3xl">
-                {block.title}
-              </h3>
-              <span
-                aria-hidden="true"
-                className="shrink-0 pt-1 text-[11px] font-medium tabular-nums tracking-wider text-[#64748b]"
-              >
-                {String(active + 1).padStart(2, "0")} / 04
-              </span>
-            </div>
+            <h3 className="text-2xl font-semibold leading-tight tracking-[-0.03em] text-[#07091A] sm:text-3xl">
+              {block.title}
+            </h3>
             <p className="mt-4 max-w-2xl text-base leading-relaxed text-[#475569]">
               {block.body}
             </p>
