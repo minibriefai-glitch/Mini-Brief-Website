@@ -9,10 +9,12 @@ import { Nav } from "@/components/landing/nav";
 import { Privacy } from "@/components/landing/privacy";
 import { Problem } from "@/components/landing/problem";
 import { WhatItDoes } from "@/components/landing/what-it-does";
+import { FaqJsonLd } from "@/components/seo/json-ld";
 
 export default function HomePage() {
   return (
     <div data-page="light" className="flex min-h-screen flex-col bg-brand-page text-brand-ink">
+      <FaqJsonLd />
       <Nav />
       <main id="main" className="flex-1">
         <Hero />

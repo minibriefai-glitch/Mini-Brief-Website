@@ -1,10 +1,24 @@
 import { ImageResponse } from "next/og";
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
+import { hero, metadata } from "@/content/home";
+import { brandColors, WORDMARK } from "@/lib/brand";
 
-export const alt = "MiniBrief — Email intelligence for Gmail and Outlook";
+export const alt = metadata.title;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-export default function OpengraphImage() {
+// Rendered at build time from local files; nothing is fetched.
+export default async function OpengraphImage() {
+  const [icon, shot, interRegular, interSemiBold] = await Promise.all([
+    readFile(join(process.cwd(), "public/photos/MiniBrief-Icon-Mono-Ink.png")),
+    readFile(join(process.cwd(), "public/shots/hero.png")),
+    readFile(join(process.cwd(), "app/fonts/og/Inter-Regular.ttf")),
+    readFile(join(process.cwd(), "app/fonts/og/Inter-SemiBold.ttf")),
+  ]);
+  const iconSrc = `data:image/png;base64,${icon.toString("base64")}`;
+  const shotSrc = `data:image/png;base64,${shot.toString("base64")}`;
+
   return new ImageResponse(
     (
       <div
@@ -13,75 +27,90 @@ export default function OpengraphImage() {
           height: "100%",
           display: "flex",
           flexDirection: "column",
-          background: "#070c18",
-          backgroundImage:
-            "radial-gradient(ellipse 90% 50% at 50% -10%, rgba(74,98,245,0.16), transparent 70%)",
-          padding: 80,
+          background: brandColors.page,
+          color: brandColors.ink,
+          padding: "56px 64px",
           position: "relative",
+          overflow: "hidden",
+          fontFamily: "Inter",
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
-          <div
-            style={{
-              width: 56,
-              height: 56,
-              background: "#0d1528",
-              borderRadius: 13,
-              border: "1px solid rgba(255,255,255,0.10)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <svg width="30" height="23" viewBox="0 0 38 30" fill="none">
-              <rect x="1" y="1" width="36" height="28" rx="4" stroke="#5b72ff" strokeWidth="2.5" />
-              <path d="M1 7l18 12L37 7" stroke="#5b72ff" strokeWidth="2.5" strokeLinecap="round" />
-            </svg>
-          </div>
-          <div style={{ fontSize: 40, fontWeight: 700, letterSpacing: "-0.02em", color: "#fff", display: "flex" }}>
-            <span style={{ color: "#6b7299" }}>Mini</span>
-            <span>Brief</span>
-            <span style={{ color: "#5b72ff" }}>.ai</span>
-          </div>
-        </div>
-
-        <div style={{ display: "flex", flexDirection: "column", marginTop: "auto", gap: 22 }}>
-          <div
-            style={{
-              fontSize: 64,
-              fontWeight: 700,
-              letterSpacing: "-0.03em",
-              color: "#fff",
-              lineHeight: 1.1,
-              maxWidth: 980,
-              display: "flex",
-            }}
-          >
-            Email intelligence that triages your inbox and drafts every reply.
-          </div>
-          <div style={{ fontSize: 26, color: "#8892b0", maxWidth: 900, display: "flex" }}>
-            Works in Gmail and Outlook. Your mail is parsed in your browser and never stored on our servers.
-          </div>
+          {/* eslint-disable-next-line @next/next/no-img-element -- Satori renders plain img elements */}
+          <img src={iconSrc} width={52} height={52} style={{ borderRadius: 12 }} alt="" />
+          <div style={{ fontSize: 34, fontWeight: 600, letterSpacing: "-0.02em", display: "flex" }}>{WORDMARK}</div>
         </div>
 
         <div
           style={{
-            position: "absolute",
-            bottom: 56,
-            left: 80,
-            right: 80,
+            marginTop: 44,
             display: "flex",
-            justifyContent: "space-between",
             alignItems: "center",
-            fontSize: 18,
-            color: "#4a5278",
+            gap: 10,
+            padding: "8px 16px",
+            borderRadius: 999,
+            border: "1px solid rgba(7,9,26,0.10)",
+            background: "#FFFFFF",
+            color: brandColors.mutedText,
+            fontSize: 16,
+            letterSpacing: "0.08em",
+            textTransform: "uppercase",
+            alignSelf: "flex-start",
           }}
         >
-          <div style={{ display: "flex" }}>minibrief.app</div>
-          <div style={{ display: "flex" }}>Now in beta · Gmail &amp; Outlook</div>
+          <div style={{ width: 8, height: 8, borderRadius: 999, background: brandColors.blue, display: "flex" }} />
+          {hero.eyebrow}
+        </div>
+
+        <div
+          style={{
+            marginTop: 26,
+            fontSize: 58,
+            fontWeight: 600,
+            lineHeight: 1.06,
+            letterSpacing: "-0.03em",
+            maxWidth: 540,
+            display: "flex",
+          }}
+        >
+          {hero.h1}
+        </div>
+        <div style={{ marginTop: 20, fontSize: 22, lineHeight: 1.4, color: brandColors.mutedText, maxWidth: 520, display: "flex" }}>
+          {hero.sub}
+        </div>
+
+        {/* The product, framed, rising from the bottom-right corner. */}
+        <div
+          style={{
+            position: "absolute",
+            left: 660,
+            top: 236,
+            width: 680,
+            display: "flex",
+            flexDirection: "column",
+            borderRadius: 18,
+            border: "1px solid rgba(7,9,26,0.12)",
+            background: "#FFFFFF",
+            boxShadow: "0 40px 80px rgba(7,9,26,0.22)",
+            overflow: "hidden",
+          }}
+        >
+          <div style={{ display: "flex", alignItems: "center", gap: 6, height: 34, padding: "0 16px", background: brandColors.page, borderBottom: "1px solid rgba(7,9,26,0.06)" }}>
+            <div style={{ width: 10, height: 10, borderRadius: 999, background: "rgba(7,9,26,0.12)", display: "flex" }} />
+            <div style={{ width: 10, height: 10, borderRadius: 999, background: "rgba(7,9,26,0.12)", display: "flex" }} />
+            <div style={{ width: 10, height: 10, borderRadius: 999, background: "rgba(7,9,26,0.12)", display: "flex" }} />
+          </div>
+          {/* eslint-disable-next-line @next/next/no-img-element -- Satori renders plain img elements */}
+          <img src={shotSrc} width={680} height={425} alt="" />
         </div>
       </div>
     ),
-    { ...size },
+    {
+      ...size,
+      fonts: [
+        { name: "Inter", data: interRegular, weight: 400, style: "normal" },
+        { name: "Inter", data: interSemiBold, weight: 600, style: "normal" },
+      ],
+    },
   );
 }

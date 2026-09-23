@@ -1,108 +1,54 @@
+import { faq, metadata } from "@/content/home";
+import { CONTACT_EMAIL, LINKEDIN_URL, WORDMARK } from "@/lib/brand";
+
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://minibrief.app";
 
 function JsonLd({ data }: { data: Record<string, unknown> }) {
   return (
     <script
       type="application/ld+json"
-      // Structured data is static and contains no user input, so this is safe.
+      // Static structured data with no user input, so this is safe.
       dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
     />
   );
 }
 
-/**
- * Site-wide schema: who we are, the site itself, and the product.
- * Rendered once in the root layout so every page carries it.
- */
+/** Site-wide schema: who we are and the site itself. Rendered once in the root layout. */
 export function SiteJsonLd() {
   const organization = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: "MiniBrief",
+    name: WORDMARK,
     url: siteUrl,
     logo: `${siteUrl}/photos/MiniBrief-Icon-Mono-Ink.png`,
-    description:
-      "Email intelligence for Gmail and Outlook. Catch-up reports, VIP alerts, voice-matched drafts, and one-click unsubscribe — your email is never stored on our servers.",
-    email: "hello@minibrief.app",
+    description: metadata.description,
+    email: CONTACT_EMAIL,
+    sameAs: [LINKEDIN_URL],
   };
-
   const website = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: "MiniBrief",
+    name: WORDMARK,
     url: siteUrl,
   };
-
-  const software = {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    name: "MiniBrief",
-    applicationCategory: "BrowserApplication",
-    operatingSystem: "Chrome, Firefox",
-    description:
-      "An AI-powered browser extension for Gmail and Outlook with summaries, meeting briefs, action items, and triage. Your mail is parsed in your browser and never stored on our servers.",
-    url: siteUrl,
-    offers: {
-      "@type": "Offer",
-      price: "0",
-      priceCurrency: "USD",
-      description: "14-day free trial, then a paid subscription.",
-    },
-  };
-
   return (
     <>
       <JsonLd data={organization} />
       <JsonLd data={website} />
-      <JsonLd data={software} />
     </>
   );
 }
 
-/**
- * FAQ schema — keep these answers in sync with components/landing/faq.tsx.
- * Plain text only (Google ignores markup inside answers).
- */
-const FAQ_ENTRIES: Array<{ q: string; a: string }> = [
-  {
-    q: "Do I need a MiniBrief account?",
-    a: "Yes. Creating an account takes about a minute and lets MiniBrief sync your settings and VIPs across devices and manage your plan. The account never stores the contents of your emails.",
-  },
-  {
-    q: "Do you store or read my email?",
-    a: "No. Your mail is parsed and pre-sorted in your browser, and we store none of it. AI features send a limited amount through our proxy to Anthropic: by default a subject line and a preview of about 120 characters, and full message text only for features you turn on yourself. The proxy forwards each request without logging or keeping its contents, nothing is written to our database, and MiniBrief contains no analytics, telemetry, or behavioral tracking.",
-  },
-  {
-    q: "Which inboxes does it support?",
-    a: "Gmail and Outlook, both available now. MiniBrief runs alongside your existing webmail, so there is no separate app to open. Work or school Outlook accounts usually need a one-time approval from a Microsoft 365 admin before anyone in the organisation can connect.",
-  },
-  {
-    q: "Do I need to bring my own AI key?",
-    a: "No, and there is no option to. MiniBrief works with a built-in model from the moment you sign in. There is no key to manage, no separate AI bill, and no API key stored in your browser for anyone to extract.",
-  },
-  {
-    q: "Does the AI train on my email?",
-    a: "Email content is sent only to Anthropic to generate the response you asked for. Per Anthropic's API terms, inputs sent through the API are not used to train its models.",
-  },
-  {
-    q: "Is it available now, and what does it cost?",
-    a: "MiniBrief is live in beta for Gmail and Outlook — create an account, connect a mailbox, and you are in. Every account starts with a free trial; the plans are on the Billing page inside the app.",
-  },
-];
-
+/** FAQ schema, from the same array the FAQ section renders. Plain text only. */
 export function FaqJsonLd() {
   const data = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: FAQ_ENTRIES.map((f) => ({
+    mainEntity: faq.items.map((item) => ({
       "@type": "Question",
-      name: f.q,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: f.a,
-      },
+      name: item.q,
+      acceptedAnswer: { "@type": "Answer", text: item.a },
     })),
   };
-
   return <JsonLd data={data} />;
 }
