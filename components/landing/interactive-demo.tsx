@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useId, useRef, useState, type KeyboardEvent } from "react";
 import {
   ArrowRight,
@@ -125,12 +126,13 @@ export function InteractiveDemo() {
     >
       <div className="flex min-h-14 flex-wrap items-center justify-between gap-x-3 gap-y-2 border-b border-brand-ink/[0.08] bg-[#FCFCFD] px-4 py-3 sm:px-6">
         <div className="flex items-center gap-2.5">
-          <span
-            aria-hidden="true"
-            className="flex size-7 items-center justify-center rounded-lg bg-brand-blue text-white"
-          >
-            <Mail className="size-4" />
-          </span>
+          <Image
+            src="/photos/MiniBrief-Icon-Mono-Ink.png"
+            alt=""
+            width={28}
+            height={28}
+            className="size-7 shrink-0 rounded-[22%]"
+          />
           <span className="text-sm font-bold tracking-tight">MiniBrief</span>
         </div>
         <span className="inline-flex items-center gap-2 rounded-full border border-brand-ink/[0.08] bg-white px-2.5 py-1 text-[11px] font-medium text-[#616879] sm:text-xs">
