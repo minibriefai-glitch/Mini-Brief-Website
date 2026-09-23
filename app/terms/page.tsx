@@ -4,16 +4,16 @@ import { LegalShell } from "@/components/legal/legal-shell";
 export const metadata: Metadata = {
   title: "Terms of Service — MiniBrief",
   description:
-    "The terms for using the MiniBrief website, waitlist, and browser extension.",
+    "The terms for using the MiniBrief website and the MiniBrief web app.",
 };
 
 export default function TermsPage() {
   return (
-    <LegalShell title="Terms of Service" updated="June 3, 2026">
+    <LegalShell title="Terms of Service" updated="September 22, 2026">
       <section>
         <p>
-          These terms govern your use of MiniBrief — the website, the waitlist,
-          and the MiniBrief browser extension. By using any of them, you agree
+          These terms govern your use of MiniBrief — the website and the MiniBrief
+          web app at cloud.minibrief.app. By using either, you agree
           to these terms and to our <a href="/privacy">Privacy Policy</a>. If
           you do not agree, please do not use MiniBrief.
         </p>
@@ -22,9 +22,12 @@ export default function TermsPage() {
       <section>
         <h2>1. What MiniBrief is</h2>
         <p>
-          MiniBrief is an AI-powered browser extension that reads your Gmail and
-          Outlook email, together with your Google Calendar, and uses AI to
-          generate summaries, meeting briefs, action items, and triage. We may
+          MiniBrief is a web app that, with your permission, connects to your Gmail and
+          Outlook mailboxes and your Google or Microsoft calendar, and uses AI to sort
+          your inbox, draft replies, track commitments, write a daily brief, and warn
+          you about risky mail. To do that when no browser of yours is open, a MiniBrief
+          server reads the mailboxes you connect; what it keeps is set out in our{" "}
+          <a href="/privacy">Privacy Policy</a>. We may
           add, change, or remove features over time.
         </p>
       </section>
@@ -37,11 +40,11 @@ export default function TermsPage() {
           these requirements.
         </p>
         <p>
-          Using the extension requires a MiniBrief account. We grant you a
-          personal, revocable, non-exclusive, non-transferable license to use
-          the extension for its intended purpose. You are responsible for
+          Using MiniBrief requires an account. We grant you a personal, revocable,
+          non-exclusive, non-transferable license to use the service for its intended
+          purpose. You are responsible for
           keeping your credentials secure and for activity under your account.
-          You agree not to reverse engineer, resell, or misuse the extension,
+          You agree not to reverse engineer, resell, or misuse MiniBrief,
           and not to use it to violate the terms of your email provider or any
           law.
         </p>
@@ -62,15 +65,14 @@ export default function TermsPage() {
         <p>Some features require a paid subscription.</p>
         <ul>
           <li>
-            New users may begin with a <strong>14-day free trial</strong>. You
-            will not be charged during the trial, and you may cancel before it
-            ends to avoid being charged.
-          </li>
-          <li>
-            After the trial, your subscription begins and is billed in advance
-            on a recurring basis through our payment processor,{" "}
-            <strong>Stripe</strong>, and renews automatically until you cancel.
-          </li>
+          New users may begin with a <strong>14-day free trial</strong> after a
+          one-time phone verification. No card is needed and nothing is charged;
+          when the trial ends, AI features pause until you choose a plan.
+        </li>
+        <li>
+          A subscription is billed in advance on a recurring basis through our
+          payment processor, Stripe, and renews automatically until you cancel.
+        </li>
           <li>
             You can cancel at any time, effective at the end of the current
             billing period.
@@ -105,7 +107,8 @@ export default function TermsPage() {
         <h2>7. Fair use</h2>
         <p>
           To keep the Service reliable and affordable for everyone, AI features
-          are subject to a fair-use limit of 120 AI requests per user per day.
+          are subject to a daily fair-use limit on AI requests per account — currently
+          1,000 per day on a paid plan and 200 per day during the free trial.
           We may adjust this limit, and we may throttle, suspend, or limit
           accounts that materially exceed normal individual use or that attempt
           to circumvent the limit.
@@ -117,7 +120,7 @@ export default function TermsPage() {
         <p>
           The MiniBrief name, logo, site content, and design are owned by us
           and may not be copied or reused without permission. Third-party names
-          (such as Gmail, Outlook, Chrome, and Firefox) belong to their
+          (such as Gmail and Outlook) belong to their
           respective owners and are used only for description. You keep all
           rights to your own email and content; we claim no ownership of it.
         </p>
@@ -127,7 +130,8 @@ export default function TermsPage() {
         <h2>9. Third-party services</h2>
         <p>
           MiniBrief relies on third-party services including Google, Microsoft,
-          Anthropic, Supabase, and Stripe. Your use of those services is also
+          Anthropic, Supabase, Vercel, Railway, Stripe, Resend, and Twilio; our{" "}
+          <a href="/privacy">Privacy Policy</a> says what each one handles. Your use of those services is also
           subject to their terms, and we are not responsible for their acts or
           omissions.
         </p>
@@ -172,7 +176,8 @@ export default function TermsPage() {
       <section>
         <h2>13. Termination</h2>
         <p>
-          You may stop using MiniBrief and disconnect your accounts at any time.
+          You may stop using MiniBrief at any time: disconnect your mailboxes or delete
+          your account under Settings.
           We may suspend or terminate access if you violate these terms or to
           protect the service or other users. Sections that by their nature
           should survive termination (intellectual property, disclaimers,

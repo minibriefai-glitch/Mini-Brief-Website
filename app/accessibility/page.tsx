@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function AccessibilityPage() {
   return (
-    <LegalShell title="Accessibility" updated="May 15, 2026">
+    <LegalShell title="Accessibility" updated="September 22, 2026">
       <section>
         <p>
           We want MiniBrief to be usable by everyone, including people who
@@ -36,9 +36,9 @@ export default function AccessibilityPage() {
       <section>
         <h2>Known limitations</h2>
         <p>
-          This is a pre-launch site under active development. The animated
-          product preview is illustrative and primarily decorative; the
-          information it shows is also described in the surrounding text. If
+          This site is under active development. The product screenshots are
+          illustrative; everything they show is also described in the surrounding
+          text. If
           you encounter any element that is difficult to use, we want to hear
           about it.
         </p>

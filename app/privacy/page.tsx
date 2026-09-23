@@ -4,335 +4,168 @@ import { LegalShell } from "@/components/legal/legal-shell";
 export const metadata: Metadata = {
   title: "Privacy Policy — MiniBrief",
   description:
-    "How MiniBrief handles your data. Your email content is never stored on our servers; AI features route through a proxy that forwards without logging, and the waitlist collects only the email you submit.",
+    "What MiniBrief holds about you and your mailbox, why, for how long, who else touches it, and what you can do about it. Message bodies are not stored; metadata is kept for a rolling 90 days.",
 };
 
+// The text below is the product's own privacy policy (PRIVACY.md in the
+// product repository, September 2026), published here unchanged apart from
+// markup, the wordmark's spelling, and one bullet about a retired, never
+// used export that the draft itself marks as gone.
 export default function PrivacyPage() {
   return (
-    <LegalShell title="Privacy Policy" updated="July 15, 2026">
+    <LegalShell title="Privacy Policy" updated="September 22, 2026">
       <section>
-        <p>
-          MiniBrief is built so that we hold as little of your data as
-          possible. This policy explains, in plain terms, exactly what is and
-          is not collected. It covers two separate things: <strong>this
-          website</strong> (the waitlist) and <strong>the MiniBrief browser
-          extension</strong> (the product). They are deliberately kept apart.
-          See also our <a href="/terms">Terms of Service</a>.
-        </p>
+        <p>MiniBrief is a web app that triages your inbox: it sorts what arrives, tells you who is waiting on you and who you are waiting on, files mail into folders you define, drafts replies in your voice, and writes you a morning brief. To do that when no browser of yours is open, our server reads the mailbox you connect. This document explains what we hold, why, for how long, who else touches it, and what you can do about it.</p>
       </section>
 
       <section>
         <h2>The short version</h2>
         <ul>
-          <li>Your email content is never stored on our servers. AI features send a limited amount of it from your browser, through our AI proxy, to Anthropic — the proxy forwards each request without logging or keeping its contents, and nothing is ever written to our database.</li>
-          <li>Using the extension requires a MiniBrief account. We store the account details needed to run the product — never the contents of your email.</li>
-          <li>The extension contains no analytics, telemetry, or behavioral tracking.</li>
-          <li>We do not sell, rent, or share your data for advertising. Ever.</li>
-          <li>We never use your email content to train any AI model.</li>
+          <li><strong>You connect a mailbox on purpose.</strong> Signing up, subscribing or starting a trial does not connect one. Connecting is a separate step under Settings → Mailboxes, at Google&#39;s or Microsoft&#39;s own consent screen.</li>
+          <li><strong>We store your mail&#39;s metadata, not its bodies.</strong> For each connected mailbox we keep a rolling 90-day window of subjects, senders, recipients, dates, short previews and flags, plus what our software works out about each message. Message bodies are fetched from your mailbox when you open a message and are not kept.</li>
+          <li><strong>AI sees only what a feature needs.</strong> Sorting sends a subject and about 120 characters of preview per message. Reading features that need more (summaries, reply drafting, the Brief) send the message you opened or asked about, capped, and only when you use them. Nothing you send to the AI is logged or used to train models.</li>
+          <li><strong>No analytics, no tracking, no selling.</strong> There is no analytics service and no telemetry in the product. We do not sell your data or use it for advertising.</li>
+          <li><strong>Disconnecting a mailbox deletes what we read from it. Deleting your account deletes everything.</strong> Both are self-serve in Settings.</li>
         </ul>
       </section>
 
       <section>
-        <h2>1. This website (the waitlist)</h2>
-        <p>
-          If you submit the waitlist form, we collect the email address you
-          enter, the part of the page you submitted from, your browser&rsquo;s
-          user-agent string, and the time of submission. We use this only to
-          send you a confirmation and a single launch notification, and to
-          prevent duplicate or abusive signups. Waitlist entries are stored
-          with our database provider and emails are delivered through our email
-          provider (see <strong>Service providers</strong>). We keep waitlist
-          data until launch and a reasonable period afterward, or until you ask
-          us to delete it. This site sets no advertising or analytics cookies
-          and runs no third-party trackers.
-        </p>
+        <h2>Your account</h2>
+        <p>To offer paid accounts and a free trial we operate a backend (Supabase) that stores: your login email and account id, your subscription status, an integer count of AI calls per day for abuse prevention, the phone number you verified once to start a free trial, and — to prevent repeated free trials — the addresses of mailboxes you connect and the phone numbers that have already seeded a trial. Your password is held only as a hash by our authentication provider; if you turn on two-factor authentication, the secret is held there too.</p>
       </section>
 
       <section>
-        <h2>2. The MiniBrief extension</h2>
-        <p>
-          The extension reads your inbox <strong>inside your browser</strong> to
-          produce summaries, drafts, and triage. It connects to Gmail or
-          Outlook, whichever you use. Using
-          the extension requires a MiniBrief account, and we operate a backend
-          for that account. Your email content is never stored on that backend —
-          it is handled in your browser and sent for AI processing only as
-          described below.
-        </p>
-
-        <h3>Permissions we request</h3>
-        <p>
-          When you connect your Google account, we request only the access
-          needed to run the features you use. The exact Google OAuth scopes are:
-        </p>
+        <h2>The mailbox you connect</h2>
+        <h3>The permission</h3>
+        <p>The OAuth grant you give at Google&#39;s or Microsoft&#39;s consent screen is exchanged on our server, <strong>encrypted with AES-256-GCM before it is written</strong>, and stored only in that sealed form. The key that seals it lives only in the environment of our two server processes (the web app and the background worker) — never in the database, so a copy of the database alone cannot read any mailbox. Your browser never receives the grant. Disconnecting a mailbox in Settings revokes the grant at Google (Microsoft has no per-app revocation endpoint; you remove MiniBrief from your Microsoft account instead) <strong>and deletes the mailbox row together with every message row and verdict we read under it.</strong> You may connect more than one mailbox (two Gmail accounts, say); each is read through its own connection, shown as its own tab, and everything below applies to each of them separately.</p>
+        <h3>What we store about your mail</h3>
+        <p>For each connected mailbox, our background worker reads the mailbox through the Gmail API or Microsoft Graph and stores, per message: the subject, the sender&#39;s name and address, the recipients, a short preview (the first couple of hundred characters, as the provider supplies it), the date, read and starred flags, labels and categories, attachment names and sizes, a few header-derived signals (whether the message carries an unsubscribe header, whether its authentication checks passed), and the link back to the message in Gmail or Outlook. Alongside those we store what MiniBrief works out: importance and category, whether a reply is owed, order and delivery detection, the Sender Guard warning level, the risk layer&#39;s verdict (a tier, plain-English reasons and short evidence such as a domain — never a number from the message), and Smart Folder membership. For the risk layer we also keep, per connected mailbox, a relationship baseline: how often each address and domain has written to you or been written to, the display names an address has used, whether its mail passed authentication, and fingerprints (one-way hashes) of payment details a domain has sent before — never the details themselves. It personalises your own checks and trains nothing.</p>
+        <p>We also store, because the app&#39;s features need them:</p>
         <ul>
-          <li><strong>Read and manage your Gmail messages</strong> (<code>gmail.modify</code>) — to display your messages and generate summaries, triage, and drafts, and to carry out the inbox actions you take in MiniBrief: applying or removing labels, archiving, changing read/unread state, and sending the replies and forwards you approve. This one scope already covers sending, so we do <em>not</em> request the separate &ldquo;send&rdquo; or &ldquo;labels&rdquo; scopes.</li>
-          <li><strong>Manage Gmail filters and read basic settings</strong> (<code>gmail.settings.basic</code>) — to create and manage filters that block unwanted senders when you unsubscribe (auto-archiving their future mail), and to read your signature for reply formatting.</li>
-          <li><strong>Read your Google Calendar</strong> (<code>calendar.readonly</code>) — to build meeting prep. Read-only; we never modify your calendar.</li>
-          <li><strong>Basic profile</strong> (email and profile) — to identify the mailbox you connected.</li>
+          <li><strong>Per-thread bookkeeping</strong>: who wrote last and when, and whether a reply is awaited. Timestamps and flags, no content.</li>
+          <li><strong>Sender memory</strong>: one person-or-automated verdict per correspondent address, so a sender is asked about once; and the addresses you have written to, with a count and a date, which is how we tell a stranger from someone you correspond with.</li>
+          <li><strong>Your corrections</strong>: a message you filed by hand, and — for the triage corrections that teach the classifier — the sender, the change you made, the subject and a short preview of the message you corrected (the newest 100).</li>
+          <li><strong>Senders you blocked</strong>, with the id of the Gmail filter that trashes their future mail, so the block can be listed and undone.</li>
+          <li><strong>The Brief and meeting preps</strong>: the daily Brief as generated (the subjects, senders and previews it cites and the model&#39;s prose), kept so you can read it back and send it on; and, per calendar event, the event&#39;s title and attendees, the related mail&#39;s subjects and previews, and the model&#39;s notes.</li>
+          <li><strong>A record that you have already been notified about something</strong>, so two open tabs or two devices stay quiet instead of telling you twice.</li>
         </ul>
-        <p>
-          You can review and revoke this access at any time at{" "}
-          <a href="https://myaccount.google.com/connections" target="_blank" rel="noopener noreferrer">myaccount.google.com/connections</a>.
-          If you connect Outlook instead, we request the equivalent Microsoft
-          Graph permissions: <strong>Mail.ReadWrite</strong> and
-          <strong>Mail.Send</strong> (to display your messages and carry out the
-          inbox actions you take in MiniBrief, including sending the replies you
-          approve), <strong>Calendars.Read</strong> (read-only, for meeting prep),
-          and <strong>User.Read</strong> with <strong>openid</strong>,
-          <strong>profile</strong> and <strong>offline_access</strong> to identify
-          the mailbox and keep the connection alive. You can review and revoke this
-          access at{" "}
-          <a href="https://myaccount.microsoft.com/permissions" target="_blank" rel="noopener noreferrer">myaccount.microsoft.com/permissions</a>.
-        </p>
-
-        <h3>Your MiniBrief account</h3>
-        <p>
-          To use the extension you create an account. On our backend we store
-          only the data needed to operate it: your account identifier and
-          authentication details, your settings and preferences (such as your
-          VIP list), and your plan or subscription status. If you start a free
-          trial, we also store the phone number you verify once for that trial
-          and, to prevent the same person from claiming repeated free trials, a
-          normalized form of your sign-up email, of the mailbox addresses you
-          connect, and of that phone number. If you enable two-factor
-          authentication, its secret is held in our authentication provider&rsquo;s
-          managed vault, never in our own tables. <strong>Your account never
-          contains the contents of your emails, their subject lines, preview
-          snippets, or any AI request.</strong>
-        </p>
-
-        <h3>Keeping your devices in step</h3>
-        <p>
-          If you use MiniBrief on more than one computer, the two need to agree
-          about what you have already dealt with &mdash; otherwise a follow-up you
-          finished on one machine comes back on the other and reminds you again.
-          To do that we store, against your account:
-        </p>
-        <ul>
-          <li>
-            <strong>What you decided about a message, and nothing about the
-            message.</strong> A status (done, snoozed until Friday, dismissed),
-            the times that go with it, and a <strong>one-way hash</strong> of the
-            conversation&rsquo;s identifier. We do not store the identifier itself,
-            and we could not work out which message a hash refers to &mdash; only a
-            device that already has your mailbox can. There is no subject line, no
-            sender, no preview text and no message body in this record.
-          </li>
-          <li>
-            <strong>A record that we have already notified you about
-            something</strong>, so a second device stays quiet instead of telling
-            you twice.
-          </li>
-          <li>
-            <strong>Things you typed yourself:</strong> your client list &mdash;
-            their names, email addresses, domains, tags and your own notes &mdash;
-            your team roster, your signature, your saved filters and your
-            settings. Some of these contain other people&rsquo;s contact details,
-            which is why we name them here rather than filing them under
-            &ldquo;settings&rdquo;.
-          </li>
-        </ul>
-        <p>
-          What is deliberately <em>not</em> in that list is your mail. Subjects,
-          senders, previews, message bodies, anything our AI wrote for you, and
-          the counts we derive from your mailbox all stay on your device. Your
-          second computer gets those the same way your first one did &mdash;
-          from Google or Microsoft directly. Every row is protected by
-          row-level security tied to your account, and deleting your account
-          deletes all of it.
-        </p>
-
-        <h3>Account security</h3>
-        <ul>
-          <li><strong>Email verification is required.</strong> You cannot activate an account until you confirm your email address.</li>
-          <li><strong>Two-factor authentication (2FA) is optional.</strong> You can turn on TOTP-based 2FA in Settings; once enabled, it is enforced on our backend, not just in the interface.</li>
-          <li><strong>Phone verification is a one-time anti-abuse step.</strong> It is required only to start a free trial — not to create or hold an account — and it is separate from 2FA.</li>
-        </ul>
-
-        <h3>What is sent for AI processing</h3>
-        <p>
-          To generate AI output, a limited amount of content is sent from your
-          browser to Anthropic <strong>through our AI proxy</strong> — a
-          server-side function whose only job is to attach our Anthropic
-          credentials and forward the request, so no API key is ever shipped in
-          the extension or exposed to your browser. The proxy does not log or
-          store the contents of these requests; it keeps only an anonymous
-          per-account count of how many calls you have made, for rate-limiting
-          and billing. How much is sent depends on the feature:
-        </p>
-        <ul>
-          <li><strong>Triage, classification, briefings, executive report, and VIP:</strong> the subject line and a short preview snippet only (about 120 characters). No message bodies.</li>
-          <li><strong>Meeting prep:</strong> details of the calendar event you are preparing for — the event title, description (up to 500 characters), location, and the attendee names and email addresses — from your connected Google Calendar. This is calendar data, not email content, and it is not stored.</li>
-          <li><strong>Reply drafting:</strong> the body of the email you are replying to (so the draft can actually respond to it), plus any notes you have written on that thread or on that contact. This runs when you ask for a draft.</li>
-          <li><strong>Summaries and AI Brief:</strong> the cleaned body of the message being summarized — the body is the input the feature works on.</li>
-          <li><strong>Commitments and open questions:</strong> when you open an email, MiniBrief automatically scans the latest message body — with quoted replies and signatures stripped out — to surface promises you or the other party made and questions still awaiting an answer.</li>
-          <li><strong>Tone check:</strong> the draft text you wrote and asked us to check.</li>
-        </ul>
-        <p>
-          Two additional features read message bodies and are <strong>off by
-          default</strong> — they run only if you turn them on in Settings, where
-          each discloses what it sends:
-        </p>
-        <ul>
-          <li><strong>&ldquo;Deeper reasons&rdquo;</strong> — lets MiniBrief read a relevant message body in the background, without you opening the email, to explain why it needs your attention.</li>
-          <li><strong>&ldquo;Match my writing voice&rdquo;</strong> — samples the body of <em>your own</em> sent emails so the AI can learn and mirror your writing style.</li>
-        </ul>
-        <p>
-          Forwarding an email is <strong>not</strong> an AI feature: forwards go
-          straight through the Gmail API and send nothing to Anthropic.
-        </p>
-        <p>
-          Content sent for AI processing is used solely to generate the response
-          you requested. The proxy does not retain it and our database never
-          stores it. We do not use your email content — or any Google user data —
-          to train, develop, or improve any AI or machine-learning model, and
-          Anthropic does not use data submitted through its API to train its
-          models. Anthropic processes the request under its own terms; we
-          encourage you to review{" "}
-          <a href="https://www.anthropic.com/legal/privacy" target="_blank" rel="noopener noreferrer">Anthropic&rsquo;s privacy policy</a>.
-        </p>
-
-        <h3>What stays on your device</h3>
-        <p>
-          Email parsing and AI prompts are built in your browser. Some features —
-          such as your productivity and ROI history — read only message{" "}
-          <em>metadata</em> (subject, sender, preview snippet, date, and labels,
-          never full message bodies), classify it on your device, and cache it in
-          your browser&rsquo;s local extension storage for roughly half a day.
-          That metadata is never sent to our AI proxy or any third party. Any
-          other local cache also stays in your browser&rsquo;s local extension
-          storage. Uninstalling the extension removes this local data; account
-          data on our backend persists until you ask us to delete it.
-        </p>
+        <p><strong>Message bodies are not stored.</strong> When you open a message on the web, its body is fetched live from your mailbox through our server and shown to you. The same is true of attachments: an attachment you open is fetched from your mailbox and handed to your browser (a large one through a link that works for five minutes and names only that file); it is not kept on our side. A short-lived body cache exists in our database schema for a future reading feature; it is evicted 21 days after a body was last read, and nothing writes to it at the time of this policy. If that changes, this paragraph will change first.</p>
+        <h3>How long we keep it</h3>
+        <p>Mail rows are kept for a rolling <strong>90 days</strong> from the message&#39;s date, capped at the newest 25,000 messages per mailbox; a message you delete or archive away is tombstoned and removed after 30 days; the body cache, when it is in use, is evicted 21 days after a body was last read. Disconnecting a mailbox deletes everything read under it immediately. Deleting your account deletes all of it.</p>
+        <h3>Who can read it</h3>
+        <p>Every table is protected by row-level security keyed to your account: the web app reads only your rows, with your session. The background worker connects as the database owner and is scoped in code to one mailbox at a time. No MiniBrief staff tool reads mail rows; the support tooling sees account and subscription fields only.</p>
       </section>
 
       <section>
-        <h2>3. Google API Services User Data Policy (Limited Use)</h2>
-        <p>
-          MiniBrief&rsquo;s use of information received from Google APIs adheres
-          to the{" "}
-          <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener noreferrer">Google API Services User Data Policy</a>,
-          including the Limited Use requirements. In particular, MiniBrief:
-        </p>
+        <h2>Things you tell us yourself</h2>
+        <p>Some of what MiniBrief holds is not mail but your own words and choices, stored against your account so every browser you sign in from agrees:</p>
         <ul>
-          <li>limits its use of Google user data to providing or improving the user-facing features described in this policy;</li>
-          <li>does not transfer Google user data to others except as necessary to provide or improve those features, to comply with applicable law, or as part of a merger or acquisition with notice to users;</li>
-          <li>does not use or transfer Google user data for advertising, including personalized or interest-based advertising;</li>
-          <li>does not use Google user data to train generalized or non-personalized AI or machine-learning models, and does not transfer it for that purpose; and</li>
-          <li>does not allow humans to read Google user data unless we have your affirmative consent to read specific messages, it is necessary for security or to comply with law, or the data has been aggregated and anonymized.</li>
+          <li><strong>Your client list</strong> (names, addresses, domains, tags and your own notes), your team&#39;s domains, your signature, your settings and preferences.</li>
+          <li><strong>Your Smart Folder rules.</strong> A folder&#39;s name, your description of it, and the rule you built from it — which may quote a sender address or a subject word you typed or confirmed in the folder builder — plus your per-folder &quot;always file this sender&quot; / &quot;never this one&quot; choices and your muted senders (a mute is such a rule).</li>
+          <li><strong>Your decisions about senders.</strong> The senders you rescued from Junk, the ones you marked safe, the ones you added to Orders, and the senders you told us are a person or a machine, or always a given priority. These are addresses and domains you chose, kept readable so arriving mail can be matched against them.</li>
+          <li><strong>Which emails you stored under a client, and where.</strong> For each email you file into a client&#39;s Stored Correspondence we keep the client, the subfolder, when you filed it, and the identifier Gmail or Outlook uses for that message — an opaque code that means nothing without your mailbox — plus the names you gave your subfolders.</li>
+          <li><strong>What you decided about a conversation</strong> — dismissed, or closed as dealt with — recorded against a one-way hash of the conversation&#39;s identifier, with no subject, sender or preview.</li>
+        </ul>
+        <p>Every row is protected by row-level security keyed to your account, and deleting your account deletes all of it.</p>
+      </section>
+
+      <section>
+        <h2>AI features — exactly what the model sees</h2>
+        <p>MiniBrief&#39;s AI features run on Anthropic&#39;s models. Two of our processes call them: our background worker, for the sorting that happens whether or not a browser is open, and the web app itself, for the things you ask for while reading. In both cases the request is scoped to the feature, <strong>neither the request nor the response is logged or stored</strong>, and we keep only token counts and operation labels per call. Google user data is not used to develop, improve or train generalized AI or machine-learning models, is not used for advertising, and is not sold.</p>
+        <p>What each feature sends:</p>
+        <ul>
+          <li><strong>Sorting your inbox</strong> — importance, person-or-automated category, order and delivery detection, Sender Guard, and Smart Folder intents — sends the <strong>subject and a preview of at most about 120 characters</strong> per message. A sender is asked about once; a message is asked about once per folder wording.</li>
+          <li><strong>The Brief and the executive report</strong> send the subject lines, senders and short previews of the mail in the window, and the model returns the prose the Brief shows.</li>
+          <li><strong>Meeting prep</strong> sends calendar-event details — the event title, description (up to 500 characters), location, and the attendee names and addresses — from your connected calendar, and the subjects and previews of related mail.</li>
+          <li><strong>Reply drafting</strong> sends up to <strong>4,000 characters of the cleaned thread you are replying into</strong>, plus any thread or client notes you yourself wrote (each capped at 2,000 characters).</li>
+          <li><strong>Summaries and &quot;Ask about this thread&quot;</strong> send up to 3,000–4,000 characters of the cleaned body of the message or thread you opened, because that is the input. The thread assistant can see nothing but that one thread; your questions and its answers are held while you read and are not stored.</li>
+          <li><strong>Commitment extraction and open-question analysis</strong> send up to 3,000 characters of the latest message you open, to surface follow-ups and unanswered questions.</li>
+          <li><strong>Tone and writing checks</strong> send the draft text you are checking.</li>
+          <li><strong>Ask your inbox</strong> sends the question you typed and, as the assistant works, the subjects, senders and previews of the messages it finds; a thread it opens is sent as the Brief would send it.</li>
+          <li><strong>Smart Folder compilation</strong> sends the plain-English description you typed (up to 300 characters, plus your own address so &quot;my team&quot; resolves) once, to turn it into a rule.</li>
+          <li><strong>Forwarding an email sends nothing to the AI</strong> — the message and your own typed note go straight to Gmail or Outlook.</li>
         </ul>
       </section>
 
       <section>
-        <h2>4. Service providers</h2>
-        <p>We rely on a small number of third parties, each for a narrow purpose:</p>
+        <h2>What MiniBrief changes in your mailbox</h2>
+        <p>With your permission, MiniBrief acts on your inbox through the Gmail API or Microsoft Graph. Every action below is initiated by you except where noted as background; all of them are carried out by our server with the sealed grant described above.</p>
+        <div className="legal-table" role="region" aria-label="What MiniBrief changes in your mailbox" tabIndex={0}>
+          <table>
+            <thead><tr><th>Action</th><th>Trigger</th><th>Gmail API used</th></tr></thead>
+            <tbody>
+            <tr><td>Read emails, labels, threads, and your Drafts folder</td><td>Background sync, on demand; Drafts when you open the Drafts tab</td><td><code>gmail.modify</code> (read)</td></tr>
+            <tr><td>Send replies, forwards and new mail</td><td>You click Send</td><td><code>gmail.modify</code></td></tr>
+            <tr><td>Apply or remove labels (categorisation, archive)</td><td>You click an action; auto-categorisation on incoming mail when you have allowed the label mirror</td><td><code>gmail.modify</code></td></tr>
+            <tr><td>Move messages to Trash</td><td>You click Delete</td><td><code>gmail.modify</code></td></tr>
+            <tr><td><strong>Save a reply as a draft in your mailbox</strong></td><td>You click Draft in the composer</td><td><code>gmail.modify</code></td></tr>
+            <tr><td>Update that draft in place when you save the same reply again</td><td>You click Draft again</td><td><code>gmail.modify</code></td></tr>
+            <tr><td><strong>Create a server-side filter that auto-trashes future mail from a sender</strong></td><td>You click &quot;Unsubscribe &amp; block sender&quot;</td><td><code>gmail.settings.basic</code></td></tr>
+            <tr><td><strong>Delete a previously created block filter</strong></td><td>You click &quot;Unblock&quot;</td><td><code>gmail.settings.basic</code></td></tr>
+            <tr><td>Attempt one-click unsubscribe (RFC 8058) or send the prescribed unsubscribe email</td><td>You click &quot;Unsubscribe &amp; block sender&quot;</td><td><code>gmail.modify</code> for the <code>mailto:</code> form; a direct HTTPS POST to the sender&#39;s unsubscribe endpoint for one-click</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>The block filter is a real Gmail server-side rule. It will continue to auto-trash mail from the sender even if you disconnect the mailbox or delete your account. You can remove it under Settings → Blocked senders or directly from <a href="https://mail.google.com/mail/u/0/#settings/filters" target="_blank" rel="noopener noreferrer">Gmail settings → Filters</a>. On Outlook the equivalent actions use Microsoft Graph with the same triggers.</p>
+      </section>
+
+      <section>
+        <h2>Calendar</h2>
+        <p>Connecting Gmail also grants <code>calendar.readonly</code>, and connecting Outlook the equivalent Graph permission, used by the Meetings view to show upcoming events and the mail history with their attendees. Calendar events are read by our server for that purpose and are not stored; a meeting prep, once generated, is stored as described above.</p>
+      </section>
+
+      <section>
+        <h2>Notifications</h2>
+        <p>The web app sends a private, per-account notice to your open browser tabs when your inbox changes. That notice carries counts only — never a subject, sender or preview.</p>
+        <p><strong>Browser notifications.</strong> If you turn them on in Settings → Notifications, a MiniBrief server can alert your browser when new mail lands in your Inbox, Response Needed, Orders &amp; Deliveries or one of your Smart Folders, when a follow-up or a client check-in is due, an email has waited too long for your reply, a meeting is about to start, or your morning brief is ready. Each alert names the <strong>sender and the subject line</strong>, says <strong>where the message was filed</strong> (a tab, or the name you gave a Smart Folder) and links to the message — never a preview or a body. Alerts are encrypted to your browser before they are sent, so the push service your browser uses (Google&#39;s, Apple&#39;s or Mozilla&#39;s) relays them without being able to read them. Turn them off in the same place, or in your browser&#39;s site settings.</p>
+        <p><strong>The morning briefing by email.</strong> Off unless you turn it on. At the hour and on the days you choose, in the time zone you set, we generate your Brief for the day and email it to your account address. <strong>That email contains the subject lines, senders and short previews the Brief cites, and what our AI wrote about them</strong> — the same content the Brief shows on screen. It is sent through Resend, our email provider, which processes it only to deliver it. The email carries an unsubscribe header, and the switch is in Settings → Notifications.</p>
+      </section>
+
+      <section>
+        <h2>In your browser</h2>
+        <p>The web app keeps a copy of your working state in your browser&#39;s own storage (IndexedDB), per account, so the inbox opens quickly: cached message metadata, your settings and folders, the AI outputs you have already seen, and your unsent drafts. Signing out of the web app on that browser clears it. Your session cookie is what keeps you signed in.</p>
+      </section>
+
+      <section>
+        <h2>Third parties</h2>
         <ul>
-          <li><strong>Anthropic</strong> — processes the limited email content described above to generate AI results (<a href="https://www.anthropic.com/legal/privacy" target="_blank" rel="noopener noreferrer">privacy policy</a>).</li>
-          <li><strong>Supabase</strong> — our application backend; stores your account, settings, and subscription status, and runs the AI proxy. It never stores your email content (<a href="https://supabase.com/privacy" target="_blank" rel="noopener noreferrer">privacy policy</a>).</li>
-          <li><strong>Resend</strong> — delivers waitlist confirmation and launch emails (<a href="https://resend.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">privacy policy</a>).</li>
-          <li><strong>Stripe</strong> — processes subscription payments. We never receive or store your full card number (<a href="https://stripe.com/privacy" target="_blank" rel="noopener noreferrer">privacy policy</a>).</li>
-          <li><strong>Our hosting provider</strong> — serves this website and may process standard server request logs for security and reliability.</li>
+          <li><strong>Google</strong> receives Gmail and Calendar API requests from our server, authenticated with your OAuth grant, for a connected Gmail mailbox. See <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google&#39;s privacy policy</a>.</li>
+          <li><strong>Microsoft</strong> likewise receives Microsoft Graph requests for a connected Outlook mailbox. See <a href="https://privacy.microsoft.com/privacystatement" target="_blank" rel="noopener noreferrer">Microsoft&#39;s privacy statement</a>.</li>
+          <li><strong>Anthropic</strong> receives AI requests, scoped as described above, from our worker and from the web app&#39;s AI proxy. See <a href="https://www.anthropic.com/legal/privacy" target="_blank" rel="noopener noreferrer">Anthropic&#39;s privacy policy</a>.</li>
+          <li><strong>Supabase</strong> hosts MiniBrief&#39;s authentication, the account and subscription database, the mail store and everything else described above, and the AI proxy.</li>
+          <li><strong>Vercel</strong> hosts the web app at cloud.minibrief.app, including the server-side routes that exchange your OAuth code and seal the grant, and the marketing site at www.minibrief.app.</li>
+          <li><strong>Railway</strong> runs the background worker that reads connected mailboxes, classifies their mail, sends notifications and calls Anthropic.</li>
+          <li><strong>Stripe</strong> processes subscription payments. MiniBrief never sees or stores your card details. See <a href="https://stripe.com/privacy" target="_blank" rel="noopener noreferrer">Stripe&#39;s privacy policy</a>.</li>
+          <li><strong>Twilio</strong> delivers the one-time text message used to verify your phone number when you start a free trial. It receives your phone number and nothing else.</li>
+          <li><strong>Resend</strong> delivers MiniBrief&#39;s own email: sign-up confirmation, password recovery, and — if you turn it on — the morning briefing described above. It receives your address and that message.</li>
+          <li><strong>Sender unsubscribe endpoints</strong> receive a one-click POST or a <code>mailto:</code> email when you click &quot;Unsubscribe &amp; block sender&quot;. The HTTPS POST contains the literal body <code>List-Unsubscribe=One-Click</code> and no other identifying data; the email follows whatever address and subject the sender prescribed in the <code>List-Unsubscribe</code> header.</li>
+        </ul>
+        <p>There is no analytics service, no advertising network and no data broker in this list, because none is used.</p>
+      </section>
+
+      <section>
+        <h2>Google API Services User Data Policy</h2>
+        <p>MiniBrief&#39;s use and transfer to any other app of information received from Google APIs will adhere to the <a href="https://developers.google.com/terms/api-services-user-data-policy#additional_requirements_for_specific_api_scopes" target="_blank" rel="noopener noreferrer">Google API Services User Data Policy</a>, including the Limited Use requirements.</p>
+      </section>
+
+      <section>
+        <h2>Your choices and rights</h2>
+        <ul>
+          <li><strong>Disconnect a mailbox</strong> under Settings → Mailboxes: the grant is revoked at Google and every row read under that mailbox is deleted at once.</li>
+          <li><strong>Delete your account</strong> under Settings: every row described in this policy is deleted.</li>
+          <li><strong>Turn notifications and the briefing off</strong> under Settings → Notifications; <strong>remove a block filter</strong> under Settings → Blocked senders.</li>
+          <li><strong>Ask us</strong> for a copy of what we hold, or to correct or delete it, at the address below. We answer from the same tables described here; there is no other store.</li>
         </ul>
       </section>
 
       <section>
-        <h2>5. How we protect your data</h2>
-        <p>
-          We treat the email and calendar data you access through Google as{" "}
-          <strong>sensitive data</strong> and protect it with layered,
-          industry-standard safeguards:
-        </p>
-        <ul>
-          <li>
-            <strong>Encryption in transit.</strong> All data moving between the
-            extension, our backend, the Google APIs, and our AI provider travels
-            over encrypted connections (HTTPS/TLS). Nothing is transmitted in
-            cleartext.
-          </li>
-          <li>
-            <strong>Encryption at rest.</strong> The limited account data we do
-            store — your account identifier, authentication details, settings,
-            subscription status, trial-verification data, and the cross-device
-            records described above — is held in a
-            managed database that encrypts data at rest using industry-standard
-            AES-256 encryption. Your email content, subjects, and snippets are
-            never stored on our servers at all.
-          </li>
-          <li>
-            <strong>Data minimization.</strong> By design, the contents of your
-            messages and calendar events stay in your browser. Only the minimum
-            each feature needs ever leaves your device — a subject line and a
-            short preview snippet for triage and briefings, or, for features that
-            work on a full message (summaries, reply drafts, and the automatic
-            commitment and open-question scan when you open an email), the body of
-            that one message. The two body-reading features noted above are off by
-            default and run only if you enable them.
-          </li>
-          <li>
-            <strong>Authenticated, least-privilege access.</strong> Requests to
-            our backend and AI proxy require your authenticated account token,
-            which the server verifies before processing, and are rate-limited per
-            user. Our database restricts each account to its own records, and
-            billing and subscription status can be written only by verified
-            server-side processes — never by the browser.
-          </li>
-          <li>
-            <strong>Secret management.</strong> API keys and other secrets,
-            including our Anthropic credentials, are stored only in server-side
-            secret storage and are never shipped in the extension or exposed to
-            your browser.
-          </li>
-          <li>
-            <strong>Restricted human access.</strong> We do not allow our staff
-            to read your Google user data except in the limited circumstances
-            described in the Limited Use section above (for example, with your
-            affirmative consent, where necessary for security, or to comply with
-            applicable law).
-          </li>
-          <li>
-            <strong>On-device protection.</strong> Any local cache lives in your
-            browser&rsquo;s sandboxed extension storage, isolated from websites
-            and other extensions. You can clear it at any time by disconnecting
-            the mailbox or uninstalling the extension.
-          </li>
-        </ul>
+        <h2>Changes to this policy</h2>
+        <p>When what we store or send changes, this document changes first, and the &quot;Last updated&quot; line moves. A change that widens what leaves your mailbox will be announced in the app before it takes effect.</p>
       </section>
 
       <section>
-        <h2>6. Your choices and rights</h2>
-        <ul>
-          <li>You can ask us to access or delete your waitlist data or account data at any time by emailing <a href="mailto:privacy@minibrief.app">privacy@minibrief.app</a>.</li>
-          <li>You can uninstall the extension, which removes its local data from your browser; contact us to delete the account itself.</li>
-          <li>Depending on where you live (for example, under GDPR or CCPA), you may have additional rights to access, correct, or delete personal data. Contact us and we will honor applicable requests.</li>
-        </ul>
-        <p>
-          When you ask us to delete your account, we remove the associated data
-          within 30 days, except where we are legally required to retain it.
-        </p>
-      </section>
-
-      <section>
-        <h2>7. Children</h2>
-        <p>
-          MiniBrief is intended for working professionals and is not directed
-          to children. We do not knowingly collect data from anyone under 16.
-        </p>
-      </section>
-
-      <section>
-        <h2>8. Changes</h2>
-        <p>
-          We may update this policy as the product evolves. If we change how we
-          use Google user data in a materially different way than disclosed here,
-          we will notify you and, where required, ask for your consent before the
-          new use takes effect. Material changes are reflected by the
-          &ldquo;Last updated&rdquo; date above.
-        </p>
-        <p>
-          Questions? Email{" "}
-          <a href="mailto:privacy@minibrief.app">privacy@minibrief.app</a>.
-        </p>
+        <h2>Contact</h2>
+        <p>Questions, requests, or to exercise your rights over the data described here: <a href="mailto:support@minibrief.app">support@minibrief.app</a>.</p>
       </section>
     </LegalShell>
   );

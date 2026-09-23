@@ -20,7 +20,7 @@ export const nav = {
 export const hero = {
   eyebrow: "In beta · Gmail & Outlook · Free trial",
   h1: "Your Gmail and Outlook, in one brief.",
-  sub: "MiniBrief reads your inbox, flags what actually needs you, drafts the replies, and keeps track of what you promised. Your email is never stored on our servers.",
+  sub: "MiniBrief reads your inbox, flags what actually needs you, drafts the replies, and keeps track of what you promised. Message bodies are not stored on our servers.",
   primary: { label: "Get started", href: PORTAL_GET_STARTED_URL },
   secondary: { label: "See how it works", href: "#how-it-works" },
   shot: "hero" satisfies ShotKey,
@@ -57,7 +57,7 @@ export const whatItDoes = {
     },
     {
       title: "Every inbox, one place.",
-      body: "Connect Gmail and Outlook side by side, including the shared mailboxes your team works out of, and get one brief across all of them.",
+      body: "Connect Gmail and Outlook side by side, more than one of each if you like, and get one brief across all of them.",
       shot: "inboxes" satisfies ShotKey,
     },
   ],
@@ -68,12 +68,12 @@ export const whatItDoes = {
 export const privacy = {
   id: "privacy",
   eyebrow: "Private by design",
-  h2: "Your email is never stored on our servers.",
+  h2: "Message bodies are not stored on our servers.",
   lines: [
-    "Your mail is read and sorted in your browser.",
-    "AI requests pass through our proxy to one named provider, Anthropic, and are never logged or kept. Anthropic's terms forbid training on your data.",
+    "Our server reads the mailboxes you connect, keeps a rolling 90 days of subjects, senders and previews, and never keeps a message body.",
+    "AI requests go to one named provider, Anthropic, and are never logged or kept. Anthropic's terms forbid training on your data.",
     "No analytics, no telemetry, no tracking.",
-    "Your account syncs your settings across devices, never your messages.",
+    "Disconnect a mailbox and everything read from it is deleted at once; delete your account and everything goes.",
   ],
   link: { label: "How it's built", href: "/security" },
 } as const;
@@ -87,46 +87,86 @@ export const security = {
   eyebrow: "Security",
   h2: "Secure by construction.",
   intro: "These are not policies we promise to follow. They are how MiniBrief is built.",
-  items: [
+  groups: [
     {
-      title: "Your email is never stored.",
-      body: "Your messages are never written to our database, so there is nothing on our side to leak, sell, or hand over.",
-      // /security: "The short version"
+      title: "Protection in your inbox",
+      items: [
+        {
+          title: "A risk verdict on every message.",
+          body: "Sender Guard judges each incoming message against a baseline built from your own mail: who writes to you, how often, and whether their mail passes authentication. A tier, the reasons and the evidence, and you can overturn any verdict.",
+          // security plan S0/S1 (shipped 2026-09-22); PRIVACY.md "What we store about your mail"
+        },
+        {
+          title: "Look-alike domains, caught on arrival.",
+          body: "A sender imitating a domain you correspond with is called out, and MiniBrief watches about 150 look-alikes of your own domain so mail from one that gets registered is high risk from its first message.",
+          // security plan S4 (shipped, DNS-only)
+        },
+        {
+          title: "Links and attachments checked first.",
+          body: "For the messages a phish arrives as, links and attachments are judged on the server before you open the mail, and a high-risk finding is pushed to your browser within minutes.",
+          // security plan S1 (shipped)
+        },
+        {
+          title: "A guard on Send.",
+          body: "A look-alike of a domain you write to, or bank details and credentials headed to an outside address, stop a send until you confirm. A normal reply adds no step.",
+          // security plan S3 (shipped)
+        },
+        {
+          title: "A mailbox audit every six hours.",
+          body: "Filters that forward, delete or hide your mail are the classic sign of a compromised account. MiniBrief finds them in Gmail, tells you, and removes a bad one with one click.",
+          // security plan S2 (shipped, Gmail-first)
+        },
+        {
+          title: "Your domain's posture.",
+          body: "SPF, DKIM, DMARC and MTA-STS for your own domain, checked weekly straight from DNS, with the record to add for each gap where there is one.",
+          // security plan S4 (shipped)
+        },
+      ],
     },
     {
-      title: "A subject line and about 120 characters, by default.",
-      body: "That is all most features send to the AI. Full message text goes out only for features you switch on yourself, and only for the message you opened.",
-      // /security: "The short version"
-    },
-    {
-      title: "The AI proxy keeps nothing.",
-      body: "It forwards each request to Anthropic and returns the answer without logging or storing the request body. Anthropic's terms forbid training on your data.",
-      // /security: "How your email flows"; CASA 6.5.1
-    },
-    {
-      title: "Mailbox tokens are sealed at rest.",
-      body: "The tokens that connect Gmail and Outlook are encrypted at rest with AES-256-GCM, and no provider token is ever sent to your browser.",
-      // CASA 4.1.3, 3.2.1
-    },
-    {
-      title: "Sign-in built to resist brute force.",
-      body: "Passwords are at least 12 characters, checked against leaked-password lists, and stored only as bcrypt hashes by our auth provider. Sign-in and code entry are rate-limited.",
-      // CASA 1.1.1, 1.1.3, 1.3.4
-    },
-    {
-      title: "Short-lived access tokens.",
-      body: "Access tokens expire after an hour and refresh tokens rotate; signing out revokes every session. Session cookies are HttpOnly, Secure, and SameSite.",
-      // CASA 2.2.1, 2.2.3, 2.3.1, 2.3.2
-    },
-    {
-      title: "Every row is guarded in the database.",
-      body: "Access control runs as PostgreSQL row-level security on every table, below the API, so the database itself decides what each signed-in user can see.",
-      // CASA 3.1.1
-    },
-    {
-      title: "Card details never touch us.",
-      body: "Card details are entered on Stripe's own checkout page, a PCI-DSS Level 1 provider, and never reach MiniBrief.",
-      // /security: "Payments"; CASA 6.5.1
+      title: "Under the hood",
+      items: [
+        {
+          title: "Message bodies are not stored.",
+          body: "Our server keeps a rolling 90 days of subjects, senders and previews so your brief is ready when you open it. A message's body is fetched from your mailbox only when you open it, and is not kept.",
+          // PRIVACY.md "The short version", "How long we keep it"
+        },
+        {
+          title: "A subject line and about 120 characters, by default.",
+          body: "That is all sorting sends to the AI. Full message text goes out only for the features you use on a message you opened, capped in length.",
+          // PRIVACY.md "AI features"
+        },
+        {
+          title: "Nothing sent to the AI is kept.",
+          body: "Both the web app and the background worker call Anthropic, scoped to the feature. Neither the request nor the response is logged or stored, and Anthropic's terms forbid training on your data.",
+          // PRIVACY.md "AI features"; CASA 6.5.1
+        },
+        {
+          title: "Mailbox grants are sealed at rest.",
+          body: "The OAuth grant that connects Gmail or Outlook is encrypted with AES-256-GCM before it is written, under a key that never lives in the database, and your browser never receives it.",
+          // PRIVACY.md "The permission"; CASA 4.1.3, 3.2.1
+        },
+        {
+          title: "Sign-in built to resist brute force.",
+          body: "Passwords are at least 12 characters, checked against leaked-password lists, and stored only as bcrypt hashes by our auth provider. Two-factor authentication is a switch away. Sign-in and code entry are rate-limited.",
+          // CASA 1.1.1, 1.1.3, 1.3.4; portal MfaSection
+        },
+        {
+          title: "Short-lived access tokens.",
+          body: "Access tokens expire after an hour and refresh tokens rotate; signing out revokes every session and wipes the local cache. Session cookies are HttpOnly, Secure, and SameSite.",
+          // CASA 2.2.1, 2.2.3, 2.3.1, 2.3.2, 6.6.1
+        },
+        {
+          title: "Every row is guarded in the database.",
+          body: "Access control runs as PostgreSQL row-level security on every table, below the API, so the database itself decides what each signed-in user can see. No staff tool reads mail rows.",
+          // CASA 3.1.1; PRIVACY.md "Who can read it"
+        },
+        {
+          title: "Card details never touch us.",
+          body: "Card details are entered on Stripe's own checkout page, a PCI-DSS Level 1 provider, and never reach MiniBrief.",
+          // /security "Payments"; CASA 6.5.1
+        },
+      ],
     },
   ],
   alsoLead: "Also:",
@@ -136,9 +176,9 @@ export const security = {
     "Only the OAuth scopes a feature needs, with access you can revoke at any time",
     "Dependencies audited for known vulnerabilities",
     "Secrets kept in a secrets store, never in the app",
-    "The local cache wiped when you sign out",
+    "Auto-quarantine of high-risk mail, if you switch it on",
   ],
-  // CASA 4.1.1, 2.3.2, 6.1.1, 6.7.1, 6.6.1; /security: "Access and authentication"
+  // CASA 4.1.1, 2.3.2, 6.1.1, 6.7.1; security plan S1 (auto-quarantine opt-in)
   link: { label: "Read the full Security page", href: "/security" },
 } as const;
 
@@ -147,13 +187,13 @@ export const different = {
   h2: "A different deal with your data.",
   columns: { usual: "The usual approach", us: "MiniBrief" },
   rows: [
-    { label: "Where your email lives", usual: "Uploaded to their servers", us: "Read in your browser, never stored" },
+    { label: "Where your email lives", usual: "Whole mailboxes copied and kept", us: "Metadata for 90 days, message bodies not stored" },
     { label: "How much goes to the AI", usual: "Whole threads, by default", us: "A subject line and about 120 characters, unless you opt in" },
     { label: "Who the AI provider is", usual: "Unnamed, or several", us: "One named provider, Anthropic, under terms that forbid training on your data" },
     { label: "Where the AI key lives", usual: "Often in your browser", us: "Server-side, with nothing to extract" },
     { label: "Drafts in your voice", usual: "A generic AI tone", us: "Learned from your own sent mail, when you turn it on" },
     { label: "What you promised", usual: "Not tracked", us: "The Promise Ledger keeps commitments in both directions" },
-    { label: "Gmail and Outlook", usual: "One or the other", us: "Both, side by side, including shared mailboxes" },
+    { label: "Gmail and Outlook", usual: "One or the other", us: "Both, side by side, in one brief" },
   ],
 } as const;
 
@@ -200,7 +240,7 @@ export const faq = {
   items: [
     {
       q: "Do you store or read my email?",
-      a: "No. Your mail is parsed and sorted in your browser, and we store none of it. AI features send a limited amount through our proxy to Anthropic to generate the result you asked for; the proxy keeps nothing and writes nothing to our database. The full picture is on the Security page.",
+      a: "Our server reads the mailboxes you connect so your brief is ready whenever you open it. It keeps a rolling 90 days of metadata: subjects, senders, previews, dates and what MiniBrief worked out about each message. Message bodies are not stored; one is fetched from your mailbox when you open it. The AI sees a subject and a short preview per message for sorting, which runs in the background, and the message you opened for the features you use on it; nothing sent is logged or kept. The full picture is on the Security page.",
       link: { text: "Security page", href: "/security" },
     },
     {
@@ -209,11 +249,11 @@ export const faq = {
     },
     {
       q: "Can my team use it on shared inboxes?",
-      a: "Yes. Connect the Gmail or Outlook mailboxes your team works out of and MiniBrief builds one brief across all of them.",
+      a: "Not yet. Today MiniBrief connects the Gmail and Outlook mailboxes you sign into yourself and builds one brief across all of them; a team edition with shared mailboxes is planned.",
     },
     {
       q: "What does it cost?",
-      a: "Every account starts with a free trial. After that, pricing is per mailbox. Email michael@minibrief.app and we'll walk you through it.",
+      a: "Every account starts with a free trial. After that, one paid plan unlocks everything. Email michael@minibrief.app and we'll walk you through it.",
     },
     {
       q: "Do I need my own AI key?",
@@ -229,7 +269,7 @@ export const cta = {
 } as const;
 
 export const footer = {
-  tagline: "Email for Gmail and Outlook, private by design. Your email is never stored on our servers.",
+  tagline: "Email for Gmail and Outlook, private by design. Message bodies are not stored on our servers.",
   product: {
     heading: "Product",
     links: [
@@ -255,7 +295,7 @@ export const footer = {
 export const metadata = {
   title: "MiniBrief — Your Gmail and Outlook, in one brief",
   description:
-    "MiniBrief reads your Gmail and Outlook, flags what needs a reply, drafts it, and tracks what you promised. Your email is never stored on our servers. Now in beta.",
+    "MiniBrief reads your Gmail and Outlook, flags what needs a reply, drafts it, and tracks what you promised. Message bodies are not stored on our servers. Now in beta.",
 } as const;
 
 export interface DemoVideoConfig {

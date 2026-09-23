@@ -1939,53 +1939,76 @@ details[open] .faq-chevron {
 
 /* ───────── Legal pages ───────── */
 .legal-prose h2 {
-  font-family: var(--font-display), Outfit, sans-serif;
-  font-size: 19px;
-  font-weight: 700;
-  letter-spacing: -0.01em;
-  color: #fff;
-  margin: 32px 0 10px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: #07091A;
+  margin: 2.5rem 0 0.75rem;
 }
 .legal-prose h3 {
-  font-family: var(--font-display), Outfit, sans-serif;
-  font-size: 15px;
+  font-size: 1.125rem;
   font-weight: 600;
-  color: #fff;
-  margin: 22px 0 6px;
+  color: #07091A;
+  margin: 1.75rem 0 0.5rem;
 }
 .legal-prose p {
-  margin: 0 0 14px;
+  margin: 0 0 1rem;
 }
 .legal-prose ul {
-  margin: 0 0 14px;
-  padding-left: 20px;
+  margin: 0 0 1rem;
+  padding-left: 1.25rem;
   list-style: disc;
 }
 .legal-prose li {
-  margin: 0 0 7px;
+  margin: 0 0 0.5rem;
 }
 .legal-prose a {
-  color: var(--accent-b);
+  color: #3A5FDC;
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
 .legal-prose a:hover {
-  text-decoration: underline;
+  text-decoration: none;
 }
 .legal-prose strong {
-  color: #fff;
+  color: #07091A;
   font-weight: 600;
 }
 .legal-prose code {
-  font-family: var(--font-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 0.86em;
-  color: #e6ebff;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 0.9em;
+  color: #07091A;
+  background: rgba(7, 9, 26, 0.05);
+  border: 1px solid rgba(7, 9, 26, 0.08);
   border-radius: 5px;
   padding: 1px 5px;
   white-space: nowrap;
 }
-.legal-prose section + section {
-  margin-top: 8px;
+.legal-table {
+  margin: 0 0 1rem;
+  overflow-x: auto;
+  border: 1px solid rgba(7, 9, 26, 0.1);
+  border-radius: 12px;
+  background: #fff;
+}
+.legal-table table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+}
+.legal-table th,
+.legal-table td {
+  text-align: left;
+  vertical-align: top;
+  padding: 0.75rem 1rem;
+  border-top: 1px solid rgba(7, 9, 26, 0.08);
+}
+.legal-table th {
+  border-top: 0;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #475569;
 }
 
 /* ───────── Reduce motion ───────── */
