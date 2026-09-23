@@ -27,8 +27,8 @@ export default async function OpengraphImage() {
           height: "100%",
           display: "flex",
           flexDirection: "column",
-          background: "#080d1b",
-          color: "#ffffff",
+          background: "#F5F5F7",
+          color: "#07091A",
           padding: "48px 64px",
           position: "relative",
           overflow: "hidden",
@@ -44,7 +44,7 @@ export default async function OpengraphImage() {
             width: 650,
             display: "flex",
             background:
-              "radial-gradient(ellipse at 100% 45%, rgba(58,95,220,0.24), rgba(8,13,27,0) 75%)",
+              "radial-gradient(ellipse at 100% 45%, rgba(58,95,220,0.08), rgba(245,245,247,0) 75%)",
           }}
         />
 
@@ -74,7 +74,7 @@ export default async function OpengraphImage() {
               {WORDMARK}
             </div>
           </div>
-          <div style={{ display: "flex", fontSize: 16, color: "#a7b0c4" }}>
+          <div style={{ display: "flex", fontSize: 16, color: "#475569" }}>
             minibrief.app
           </div>
         </div>
@@ -85,7 +85,7 @@ export default async function OpengraphImage() {
             display: "flex",
             alignItems: "center",
             gap: 12,
-            color: "#a4b8ff",
+            color: "#3A5FDC",
             fontSize: 13,
             fontWeight: 600,
             letterSpacing: "0.14em",
@@ -97,7 +97,7 @@ export default async function OpengraphImage() {
               display: "flex",
               width: 28,
               height: 1,
-              background: "#a4b8ff",
+              background: "#3A5FDC",
             }}
           />
           Gmail + Outlook. One clear brief.
@@ -116,7 +116,7 @@ export default async function OpengraphImage() {
           }}
         >
           <div style={{ display: "flex" }}>{hero.h1}</div>
-          <div style={{ display: "flex", color: "#a4b8ff" }}>
+          <div style={{ display: "flex", color: "#3A5FDC" }}>
             {hero.accent}
           </div>
         </div>
@@ -126,7 +126,7 @@ export default async function OpengraphImage() {
             marginTop: 25,
             fontSize: 21,
             lineHeight: 1.5,
-            color: "#a7b0c4",
+            color: "#475569",
             width: 510,
             display: "flex",
             flexDirection: "column",
@@ -153,8 +153,8 @@ export default async function OpengraphImage() {
               gap: 20,
               padding: "16px 22px",
               borderRadius: 10,
-              background: "#a4b8ff",
-              color: "#080d1b",
+              background: "#3A5FDC",
+              color: "#ffffff",
               fontSize: 17,
               fontWeight: 600,
             }}
@@ -162,7 +162,7 @@ export default async function OpengraphImage() {
             {hero.primary.label}
             <span style={{ fontSize: 21 }}>↗</span>
           </div>
-          <div style={{ display: "flex", fontSize: 15, color: "#a7b0c4" }}>
+          <div style={{ display: "flex", fontSize: 15, color: "#475569" }}>
             Now in beta
           </div>
         </div>
@@ -178,9 +178,9 @@ export default async function OpengraphImage() {
             display: "flex",
             flexDirection: "column",
             borderRadius: 17,
-            border: "1px solid rgba(164,184,255,0.28)",
-            background: "#10182b",
-            boxShadow: "0 28px 90px rgba(0,0,0,0.4)",
+            border: "1px solid rgba(7,9,26,0.12)",
+            background: "#ffffff",
+            boxShadow: "0 28px 90px rgba(7,9,26,0.15)",
             overflow: "hidden",
           }}
         >
@@ -191,14 +191,14 @@ export default async function OpengraphImage() {
               justifyContent: "space-between",
               height: 42,
               padding: "0 20px",
-              background: "#111a2f",
-              borderBottom: "1px solid rgba(164,184,255,0.15)",
-              color: "#c5cde0",
+              background: "#F5F5F7",
+              borderBottom: "1px solid rgba(7,9,26,0.08)",
+              color: "#07091A",
               fontSize: 12,
             }}
           >
             <span>Your morning brief</span>
-            <span style={{ color: "#8996b2" }}>MiniBrief</span>
+            <span style={{ color: "#475569" }}>MiniBrief</span>
           </div>
           <div
             style={{

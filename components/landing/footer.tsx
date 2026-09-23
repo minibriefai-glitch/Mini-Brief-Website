@@ -6,9 +6,9 @@ import { Logo } from "./logo";
 import { Container } from "./section";
 
 const heading =
-  "text-[10px] font-medium uppercase tracking-[0.16em] text-[#7e8da9]";
+  "text-[10px] font-medium uppercase tracking-[0.16em] text-[#64748b]";
 const link =
-  "-ml-2 inline-flex min-h-10 items-center rounded-md px-2 text-sm text-[#a7b0c4] transition-colors hover:text-[#d4deff]";
+  "-ml-2 inline-flex min-h-10 items-center rounded-md px-2 text-sm text-[#475569] transition-colors hover:text-[#3A5FDC]";
 
 function LinkColumn({
   id,
@@ -45,12 +45,12 @@ function LinkColumn({
 
 export function Footer() {
   return (
-    <footer className="overflow-hidden border-t border-white/10 bg-[#080d1b] text-[#f4f6ff]">
+    <footer className="overflow-hidden border-t border-brand-ink/10 bg-[#ffffff] text-[#07091A]">
       <Container className="pt-14 md:pt-16">
         <div className="grid grid-cols-2 gap-x-8 gap-y-10 lg:grid-cols-[1.6fr_0.8fr_0.8fr_1fr]">
           <div className="col-span-2 max-w-xs lg:col-span-1">
             <Logo />
-            <p className="mt-4 text-sm leading-relaxed text-[#a7b0c4]">
+            <p className="mt-4 text-sm leading-relaxed text-[#475569]">
               {footer.tagline}
             </p>
           </div>
@@ -92,15 +92,15 @@ export function Footer() {
             </ul>
           </nav>
         </div>
-        <div className="mt-14 flex flex-wrap items-center justify-between gap-4 border-t border-white/10 pt-6 text-xs text-[#7e8da9]">
+        <div className="mt-14 flex flex-wrap items-center justify-between gap-4 border-t border-brand-ink/10 pt-6 text-xs text-[#64748b]">
           <p>{footer.copyright}</p>
           <p>Less noise. More room for your day.</p>
         </div>
         <p
           aria-hidden="true"
-          className="-mb-[0.1em] mt-8 select-none text-center text-[clamp(4rem,16.3vw,13rem)] font-semibold leading-[1.06] tracking-[-0.075em] text-[#16213a]"
+          className="-mb-[0.1em] mt-8 select-none text-center text-[clamp(4rem,16.3vw,13rem)] font-semibold leading-[1.06] tracking-[-0.075em] text-[#e6eaf3]"
         >
-          MiniBrief<span className="text-[#263b67]">.</span>
+          MiniBrief<span className="text-[#cdd6ed]">.</span>
         </p>
       </Container>
     </footer>

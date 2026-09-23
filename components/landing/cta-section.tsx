@@ -7,11 +7,11 @@ export function CtaSection() {
     <Section className="pb-16 pt-0 md:pb-20 md:pt-0">
       <div
         data-tone="pale"
-        className="relative isolate overflow-hidden rounded-[28px] bg-[#b5c5ff] px-7 py-12 text-[#0a1230] sm:px-12 sm:py-16 lg:px-16"
+        className="relative isolate overflow-hidden rounded-[28px] bg-[#edf1ff] px-7 py-12 text-[#0a1230] sm:px-12 sm:py-16 lg:px-16"
       >
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute -right-24 -top-36 -z-10 h-[500px] w-[500px] rounded-full border-[70px] border-white/10"
+          className="pointer-events-none absolute -right-24 -top-36 -z-10 h-[500px] w-[500px] rounded-full border-[70px] border-brand-blue/[0.04]"
         />
         <div className="grid items-end gap-10 lg:grid-cols-[1.35fr_1fr] lg:gap-20">
           <div>
@@ -28,7 +28,7 @@ export function CtaSection() {
             </p>
             <a
               href={cta.primary.href}
-              className="landing-action mt-6 inline-flex min-h-12 items-center justify-center gap-5 rounded-xl bg-[#0a1230] px-6 text-sm font-semibold text-white hover:bg-[#1a2850]"
+              className="landing-action mt-6 inline-flex min-h-12 items-center justify-center gap-5 rounded-xl bg-brand-blue px-6 text-sm font-semibold text-white hover:bg-brand-blue-hover"
             >
               {cta.primary.label}
               <ArrowUpRight className="h-4 w-4" aria-hidden="true" />

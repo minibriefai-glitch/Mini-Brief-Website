@@ -9,7 +9,7 @@ import { Container } from "./section";
 import { cn } from "@/lib/utils";
 
 const navLink =
-  "inline-flex min-h-11 items-center rounded-lg px-3 text-sm font-medium text-[#a7b0c4] transition-colors hover:bg-white/[0.04] hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blue motion-reduce:transition-none";
+  "inline-flex min-h-11 items-center rounded-lg px-3 text-sm font-medium text-[#475569] transition-colors hover:bg-brand-blue/[0.04] hover:text-brand-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blue motion-reduce:transition-none";
 
 export function Nav() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -119,7 +119,7 @@ export function Nav() {
       onClickCapture={(event) => {
         if ((event.target as HTMLElement).closest("a")) setMenuOpen(false);
       }}
-      className="sticky top-0 z-40 border-b border-white/[0.08] bg-[#080d1b]/95 text-[#f4f6ff] backdrop-blur-md"
+      className="sticky top-0 z-40 border-b border-brand-ink/[0.08] bg-[#ffffff]/95 text-[#07091A] backdrop-blur-md"
     >
       <Container className="flex h-16 items-center justify-between gap-2 sm:gap-4">
         <Logo />
@@ -135,7 +135,7 @@ export function Nav() {
                   className={cn(
                     navLink,
                     activeSection === item.href &&
-                      "bg-white/[0.06] text-[#b5c5ff]",
+                      "bg-brand-blue/[0.06] text-[#3A5FDC]",
                   )}
                 >
                   {item.label}
@@ -153,7 +153,7 @@ export function Nav() {
             href={nav.getStarted.href}
             className={cn(
               buttonVariants({ variant: "primary", size: "md" }),
-              "rounded-xl bg-[#b5c5ff] text-[#0a1230] hover:bg-[#cbd6ff]",
+              "rounded-xl bg-[#3A5FDC] text-white hover:bg-[#3352C8]",
             )}
           >
             {nav.getStarted.label}
@@ -165,7 +165,7 @@ export function Nav() {
             aria-expanded={menuOpen}
             aria-controls={menuId}
             onClick={() => setMenuOpen((open) => !open)}
-            className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-white/15 bg-white/[0.04] transition-colors hover:border-white/30 hover:text-[#a4b8ff] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blue motion-reduce:transition-none lg:hidden"
+            className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-brand-ink/15 bg-brand-blue/[0.04] transition-colors hover:border-brand-ink/30 hover:text-[#3A5FDC] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blue motion-reduce:transition-none lg:hidden"
           >
             {menuOpen ? (
               <X className="h-5 w-5" aria-hidden="true" />
@@ -176,7 +176,7 @@ export function Nav() {
           <div
             id={menuId}
             hidden={!menuOpen}
-            className="absolute inset-x-0 top-full max-h-[calc(100dvh-4rem)] overflow-y-auto overscroll-contain border-b border-white/15 bg-[#10182a] shadow-card lg:hidden"
+            className="absolute inset-x-0 top-full max-h-[calc(100dvh-4rem)] overflow-y-auto overscroll-contain border-b border-brand-ink/15 bg-[#F5F5F7] shadow-card lg:hidden"
           >
             <ul className="mx-auto flex max-w-7xl flex-col gap-1 px-6 py-4">
               {nav.anchors.map((item) => (
@@ -191,20 +191,20 @@ export function Nav() {
                       navLink,
                       "w-full justify-between text-base",
                       activeSection === item.href &&
-                        "bg-white/[0.06] text-[#b5c5ff]",
+                        "bg-brand-blue/[0.06] text-[#3A5FDC]",
                     )}
                   >
                     {item.label}
                     {activeSection === item.href && (
                       <span
                         aria-hidden="true"
-                        className="h-1.5 w-1.5 rounded-full bg-[#a4b8ff]"
+                        className="h-1.5 w-1.5 rounded-full bg-[#3A5FDC]"
                       />
                     )}
                   </a>
                 </li>
               ))}
-              <li className="mt-2 border-t border-white/10 pt-2">
+              <li className="mt-2 border-t border-brand-ink/10 pt-2">
                 <a
                   href={nav.signIn.href}
                   onClick={() => setMenuOpen(false)}
@@ -220,7 +220,7 @@ export function Nav() {
       <div
         ref={progressRef}
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-0.5 origin-left bg-[#a4b8ff]/80"
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-0.5 origin-left bg-[#3A5FDC]/80"
         style={{ transform: "scaleX(0)" }}
       />
     </header>

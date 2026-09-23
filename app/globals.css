@@ -2103,23 +2103,23 @@ details[open] .faq-chevron {
 /* Homepage design system, scoped away from account and policy pages. */
 html:has([data-page="home"]),
 html:has([data-page="home"]) body {
-  background: #080d1b;
+  background: #ffffff;
 }
 [data-page="home"] ::selection {
-  background: #b5c5ff;
+  background: #dce5ff;
   color: #0a1230;
 }
 .landing-hero {
-  background: radial-gradient(ellipse 68% 52% at 80% 5%, rgba(66, 88, 162, 0.16), transparent 80%);
+  background: radial-gradient(ellipse 68% 52% at 80% 5%, rgba(58, 95, 220, 0.07), transparent 80%);
 }
 .landing-hero-grid {
-  background-image: linear-gradient(rgba(164, 184, 255, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(164, 184, 255, 0.035) 1px, transparent 1px);
+  background-image: linear-gradient(rgba(58, 95, 220, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(58, 95, 220, 0.035) 1px, transparent 1px);
   background-size: 80px 80px;
   mask-image: linear-gradient(to bottom, black, transparent 58%);
 }
 [data-page="home"] :is(button, a, textarea, select, summary, [tabindex="0"]):focus-visible {
-  outline: 2px solid #a4b8ff;
+  outline: 2px solid #3a5fdc;
   outline-offset: 4px;
 }
 [data-page="home"] [data-demo] :is(button, a, textarea, select, [tabindex="0"]):focus-visible {
@@ -2133,7 +2133,7 @@ html:has([data-page="home"]) body {
 }
 .landing-action:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 28px -12px rgba(164, 184, 255, 0.35);
+  box-shadow: 0 10px 28px -12px rgba(58, 95, 220, 0.25);
 }
 .landing-action:active { transform: translateY(0); }
 .landing-enter { animation: landing-enter 600ms ease-out both; }

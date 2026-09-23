@@ -16,7 +16,7 @@ export default function HomePage() {
   return (
     <div
       data-page="home"
-      className="flex min-h-screen flex-col bg-[#080d1b] text-[#f4f6ff]"
+      className="flex min-h-screen flex-col bg-white text-brand-ink"
     >
       <FaqJsonLd />
       <Nav />

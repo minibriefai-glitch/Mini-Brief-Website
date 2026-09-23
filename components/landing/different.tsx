@@ -32,12 +32,12 @@ export function Different() {
   return (
     <section
       aria-labelledby="different-heading"
-      className="bg-[#080d1b] py-20 text-white md:py-28 lg:py-32"
+      className="bg-[#F5F5F7] py-20 text-[#07091A] md:py-28 lg:py-32"
     >
       <Container>
         <div className="grid gap-6 lg:grid-cols-[1.3fr_0.7fr] lg:items-end lg:gap-20">
           <div>
-            <p className="text-xs font-medium uppercase tracking-[0.18em] text-[#a4b8ff]">
+            <p className="text-xs font-medium uppercase tracking-[0.18em] text-[#3A5FDC]">
               {different.eyebrow}
             </p>
             <h2
@@ -46,41 +46,41 @@ export function Different() {
             >
               Built around your day.
               <br />
-              <span className="text-[#a7b0c4]">And your boundaries.</span>
+              <span className="text-[#475569]">And your boundaries.</span>
             </h2>
           </div>
-          <p className="max-w-md text-base leading-relaxed text-[#a7b0c4] lg:pb-1">
+          <p className="max-w-md text-base leading-relaxed text-[#475569] lg:pb-1">
             A useful assistant should fit the way you work. That means a clearer
             view of your inbox, a little less to remember, and control over what
             you share.
           </p>
         </div>
 
-        <ol className="mt-12 grid border-b border-white/10 sm:mt-16 md:grid-cols-2">
+        <ol className="mt-12 grid border-b border-[#07091A]/10 sm:mt-16 md:grid-cols-2">
           {principles.map((principle) => (
             <li
               key={principle.number}
-              className="group border-t border-white/10 py-8 md:py-10 md:odd:pr-10 md:even:border-l md:even:pl-10 lg:odd:pr-14 lg:even:pl-14"
+              className="group border-t border-[#07091A]/10 py-8 md:py-10 md:odd:pr-10 md:even:border-l md:even:pl-10 lg:odd:pr-14 lg:even:pl-14"
             >
               <div className="mb-7 flex items-center justify-between">
                 <span
                   aria-hidden="true"
-                  className="text-sm tabular-nums tracking-[-0.02em] text-[#a4b8ff]"
+                  className="text-sm tabular-nums tracking-[-0.02em] text-[#3A5FDC]"
                 >
                   {principle.number}
                 </span>
                 <span
                   aria-hidden="true"
-                  className="h-px w-10 bg-white/15 transition-[width,background-color] duration-300 group-hover:w-16 group-hover:bg-[#a4b8ff]/60 motion-reduce:transition-none"
+                  className="h-px w-10 bg-[#07091A]/15 transition-[width,background-color] duration-300 group-hover:w-16 group-hover:bg-[#3A5FDC]/60 motion-reduce:transition-none"
                 />
               </div>
               <h3 className="max-w-lg text-[25px] font-medium leading-tight tracking-[-0.035em] sm:text-[29px]">
                 {principle.title}
               </h3>
-              <p className="mt-4 max-w-lg text-sm leading-[1.8] text-[#a7b0c4] sm:text-base">
+              <p className="mt-4 max-w-lg text-sm leading-[1.8] text-[#475569] sm:text-base">
                 {principle.body}
               </p>
-              <p className="mt-7 text-[10px] font-medium uppercase tracking-[0.13em] text-[#8f9bb3]">
+              <p className="mt-7 text-[10px] font-medium uppercase tracking-[0.13em] text-[#475569]">
                 {principle.detail}
               </p>
             </li>
