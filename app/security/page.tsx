@@ -9,11 +9,12 @@ export const metadata: Metadata = {
 
 // Every statement here is drawn from the product's privacy policy (September
 // 2026), its security plan (S0–S4 shipped 2026-09-22), and the CASA evidence
-// pack for cloud.minibrief.app. Keep it that way: this page is read by people
-// who check.
+// pack for cloud.minibrief.app (assessment status, publisher verification,
+// per-provider DPA status, breach-notice window). Keep it that way: this page
+// is read by people who check.
 export default function SecurityPage() {
   return (
-    <LegalShell title="Security" updated="September 22, 2026">
+    <LegalShell title="Security" updated="September 23, 2026">
       <section>
         <p>
           MiniBrief is a web app. To sort your inbox, warn you about risky mail and have
@@ -35,6 +36,23 @@ export default function SecurityPage() {
           <li><strong>No analytics, no telemetry, no tracking.</strong> There is no analytics service in the product, and no data broker or advertising network in our subprocessor list.</li>
           <li><strong>Disconnecting a mailbox deletes what we read from it; deleting your account deletes everything.</strong> Both are self-serve in Settings.</li>
         </ul>
+      </section>
+
+      <section>
+        <h2>Independent assessment</h2>
+        <p>
+          Two things here matter more than anything we say about ourselves.
+        </p>
+        <ul>
+          <li><strong>Google verification is in progress.</strong> Because MiniBrief requests restricted Gmail scopes, Google requires an independent security assessment under the Cloud Application Security Assessment (CASA) framework, carried out by an accredited third-party lab rather than by us. Our web application is in that assessment now, and no Letter of Validation has been issued yet. We would rather state the stage we are at than imply more than is true; this page changes when it completes.</li>
+          <li><strong>Microsoft publisher verification is complete.</strong> Our Microsoft application registration has been through publisher verification, which is what lets your administrator see a named, verified publisher on the consent screen instead of an unknown developer.</li>
+        </ul>
+        <p>
+          On Microsoft 365, connecting MiniBrief usually needs a one-time approval from
+          your administrator. That is a Microsoft tenant policy covering the mail and
+          calendar permissions we ask for, not something we can or would want to route
+          around.
+        </p>
       </section>
 
       <section>
@@ -118,14 +136,117 @@ export default function SecurityPage() {
       <section>
         <h2>Subprocessors</h2>
         <p>
-          Anthropic (AI requests, scoped as above), Supabase (authentication, the account and
-          mail-metadata database, and the AI proxy), Vercel (the web app and this site),
-          Railway (the background worker), Stripe (payments), Twilio (the one-time trial
-          verification text), and Resend (sign-up and recovery email, and the morning
-          briefing if you turn it on). Google and Microsoft are the sources of your mail at
-          your direction, not subprocessors. Our <a href="/privacy">Privacy Policy</a> says
-          what each one receives.
+          A short list, each doing one narrow thing. Only one of them ever receives
+          content derived from your mailbox, and one more does if you switch the morning
+          briefing on. Google and Microsoft are the sources of your mail, at your
+          direction, not our subprocessors.
         </p>
+        <div className="legal-table" role="region" aria-label="Subprocessors" tabIndex={0}>
+          <table>
+            <thead>
+              <tr>
+                <th>Provider</th>
+                <th>Purpose</th>
+                <th>Receives mailbox content?</th>
+                <th>Data processing agreement</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Anthropic</td>
+                <td>The AI behind sorting, summaries, drafts and the Brief</td>
+                <td>Yes. The only one, by default.</td>
+                <td>In force, under its commercial terms</td>
+              </tr>
+              <tr>
+                <td>Supabase</td>
+                <td>Authentication, the account and mail-metadata database, the AI proxy</td>
+                <td>Metadata, never a message body</td>
+                <td>Executed July 2026</td>
+              </tr>
+              <tr>
+                <td>Railway</td>
+                <td>The background worker that reads your mailbox</td>
+                <td>In transit, never stored there</td>
+                <td>Being confirmed</td>
+              </tr>
+              <tr>
+                <td>Vercel</td>
+                <td>Hosting for the web app and this site</td>
+                <td>In transit, never stored there</td>
+                <td>Being confirmed</td>
+              </tr>
+              <tr>
+                <td>Stripe</td>
+                <td>Payments, on Stripe-hosted pages</td>
+                <td>No</td>
+                <td>In force. PCI-DSS Level 1</td>
+              </tr>
+              <tr>
+                <td>Resend</td>
+                <td>Sign-up and recovery email, and the morning briefing if you turn it on</td>
+                <td>Only in the briefing, which is off by default</td>
+                <td>In force</td>
+              </tr>
+              <tr>
+                <td>Twilio</td>
+                <td>The one-time text that verifies a phone number for a free trial</td>
+                <td>No. Your phone number and nothing else.</td>
+                <td>In force, with standard contractual clauses</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          One honest note on Stripe: for payments it acts both as our processor and, for
+          fraud screening and its own regulatory obligations, as an independent
+          controller setting its own purposes. That is inherent to regulated payments
+          rather than a gap. If you ask whether every subprocessor is purely a processor,
+          the accurate answer is no, and Stripe is the exception.
+        </p>
+      </section>
+
+      <section>
+        <h2>Incident response</h2>
+        <p>
+          Our providers are contractually bound to tell us about a personal data breach;
+          the windows are not uniform, and the database that holds your account and mail
+          metadata commits to written notice within 48 hours. If an incident affected
+          your data we would tell you what happened, what it touched and what we did,
+          without waiting to have a tidy story. Because message bodies are never written
+          to our database, the blast radius of a database incident is metadata and
+          account records rather than your correspondence.
+        </p>
+      </section>
+
+      <section>
+        <h2>Deleting your data</h2>
+        <p>
+          Both paths are self-serve in Settings, and neither needs to go through us.
+          Disconnecting a mailbox revokes the grant at Google and deletes the mailbox row
+          together with every message row and verdict read under it, at once. Deleting
+          your account removes everything described on this page and in the{" "}
+          <a href="/privacy">Privacy Policy</a>. One thing deliberately outlives us: if
+          you used &ldquo;Unsubscribe &amp; block sender&rdquo;, that filter is a real
+          rule in your own mailbox and keeps working after you leave. You can remove it
+          in Gmail&rsquo;s own settings.
+        </p>
+      </section>
+
+      <section>
+        <h2>What we do not have yet</h2>
+        <p>
+          A security page that lists only strengths is not much use, so here is the other
+          column, accurate as of the date above.
+        </p>
+        <ul>
+          <li>No SOC 2 report of our own. We rely on our providers&rsquo; certifications, not on one we hold.</li>
+          <li>No published penetration test. The CASA assessment described above includes security testing of the web application, and that is the independent review we can point to.</li>
+          <li>The CASA Letter of Validation has not been issued yet.</li>
+          <li>Data processing agreements with the two providers added when the web app launched, our host and the worker&rsquo;s host, are being confirmed and recorded.</li>
+          <li>The mailbox audit reads Gmail today. Outlook inbox rules need a further Microsoft permission and are not covered yet.</li>
+          <li>We are not a mail gateway, we do not detonate attachments in a sandbox, and we are not watching your inbox in real time. MiniBrief sees mail after delivery, on the schedule described above.</li>
+        </ul>
       </section>
 
       <section>
