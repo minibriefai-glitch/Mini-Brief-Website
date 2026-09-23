@@ -23,7 +23,7 @@ export function Logo({ className }: { className?: string }) {
         height={32}
         className="rounded-[22%]"
       />
-      <span className="text-lg font-semibold tracking-tight">{WORDMARK}</span>
+      <span className="text-lg font-semibold tracking-tight max-[359px]:sr-only">{WORDMARK}</span>
     </Link>
   );
 }
