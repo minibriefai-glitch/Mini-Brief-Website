@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { CheckCircle2, Clock, AlertTriangle } from "lucide-react";
+import { PORTAL_SIGN_IN_URL } from "@/lib/portal";
 
 /**
  * Email-confirmation landing page.
@@ -69,7 +70,7 @@ export default function ConfirmedPage() {
       icon: <CheckCircle2 className="h-8 w-8" style={{ color: "#22d3a0" }} />,
       tint: "#22d3a0",
       title: "Email confirmed",
-      body: "Your MiniBrief account is active. Head back to the extension and sign in to start your 14-day free trial.",
+      body: "Your MiniBrief account is active. Sign in to MiniBrief to start your free trial.",
     },
     expired: {
       icon: <Clock className="h-8 w-8" style={{ color: "#5b72ff" }} />,
@@ -113,8 +114,16 @@ export default function ConfirmedPage() {
             <p className="text-sm leading-relaxed text-fg-2">{views[state].body}</p>
 
             <a
+              href={PORTAL_SIGN_IN_URL}
+              className="mt-6 inline-flex min-h-11 items-center text-sm font-medium"
+              style={{ color: "#5b72ff" }}
+            >
+              Sign in to MiniBrief
+            </a>
+            <br />
+            <a
               href="https://www.minibrief.app"
-              className="mt-8 inline-block text-xs font-medium text-fg-3 transition hover:text-fg-2"
+              className="mt-4 inline-block text-xs font-medium text-fg-3 transition hover:text-fg-2"
             >
               minibrief.app
             </a>

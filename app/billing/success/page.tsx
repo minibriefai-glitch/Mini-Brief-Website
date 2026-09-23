@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Logo } from "@/components/landing/logo";
 import { Button } from "@/components/ui/button";
+import { PORTAL_URL } from "@/lib/portal";
 
 export const metadata: Metadata = {
   title: "You're all set — MiniBrief",
@@ -32,15 +33,16 @@ export default function BillingSuccess() {
         </p>
 
         <p className="font-body text-fg-3 mb-9 text-[clamp(14px,1.6vw,16px)] max-w-[520px] leading-[1.65]">
-          Head back to the MiniBrief extension &mdash; open the popup and
-          you&rsquo;ll have full access. If your status doesn&rsquo;t update
-          within a minute, close and reopen the popup.
+          Head back to{" "}
+          <a href={PORTAL_URL} className="text-accent-b link-underline">
+            MiniBrief
+          </a>
+          . Your plan updates within a minute; if it hasn&rsquo;t, refresh the
+          page.
         </p>
 
         <Button asChild variant="primary" size="lg">
-          <a href="https://mail.google.com" target="_blank" rel="noopener noreferrer">
-            Open Gmail
-          </a>
+          <a href={PORTAL_URL}>Open MiniBrief</a>
         </Button>
       </section>
     </main>

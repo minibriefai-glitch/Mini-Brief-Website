@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Logo } from "@/components/landing/logo";
 import { Button } from "@/components/ui/button";
+import { PORTAL_URL } from "@/lib/portal";
 
 export const metadata: Metadata = {
   title: "Checkout canceled — MiniBrief",
@@ -29,8 +30,11 @@ export default function BillingCancel() {
         </h1>
 
         <p className="font-body text-fg-2 mb-4 text-[clamp(15px,1.8vw,18px)] max-w-[520px] leading-[1.65]">
-          No charge was made. You can upgrade any time from the MiniBrief
-          extension &mdash; just open the popup and click Subscribe.
+          No charge was made. You can subscribe any time from Billing in{" "}
+          <a href={PORTAL_URL} className="text-accent-b link-underline">
+            MiniBrief
+          </a>
+          .
         </p>
 
         <p className="font-body text-fg-3 mb-9 text-[clamp(14px,1.6vw,16px)] max-w-[520px] leading-[1.65]">

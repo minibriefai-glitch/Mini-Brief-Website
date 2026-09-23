@@ -191,7 +191,7 @@ export default function ResetPasswordPage() {
       icon: <CheckCircle2 className="h-8 w-8" style={{ color: "#22d3a0" }} />,
       tint: "#22d3a0",
       title: "Password updated",
-      body: "Head back to the MiniBrief extension and sign in with your new password.",
+      body: "Sign in to MiniBrief with your new password.",
     },
     expired: {
       icon: <Clock className="h-8 w-8" style={{ color: "#5b72ff" }} />,
@@ -238,7 +238,7 @@ export default function ResetPasswordPage() {
           >
             <h1 className="mb-1 font-display text-xl font-semibold">Choose a new password</h1>
             <p className="mb-6 text-sm text-fg-2">
-              You’ll use this to sign in to the MiniBrief extension.
+              You’ll use this to sign in to MiniBrief.
             </p>
 
             <label className="mb-1.5 block text-xs font-medium text-fg-2" htmlFor="new-password">
