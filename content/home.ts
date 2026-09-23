@@ -8,8 +8,9 @@ import type { ShotKey } from "./shots";
 
 export const nav = {
   anchors: [
-    { label: "How it works", href: "#how-it-works" },
     { label: "Privacy", href: "#privacy" },
+    { label: "Security", href: "#security" },
+    { label: "How it works", href: "#how-it-works" },
     { label: "FAQ", href: "#faq" },
   ],
   signIn: { label: "Sign in", href: PORTAL_SIGN_IN_URL },
@@ -75,6 +76,85 @@ export const privacy = {
     "Your account syncs your settings across devices, never your messages.",
   ],
   link: { label: "How it's built", href: "/security" },
+} as const;
+
+/**
+ * Every control here is documented on /security or in the CASA evidence
+ * pack for cloud.minibrief.app; the source is noted per item.
+ */
+export const security = {
+  id: "security",
+  eyebrow: "Security",
+  h2: "Secure by construction.",
+  intro: "These are not policies we promise to follow. They are how MiniBrief is built.",
+  items: [
+    {
+      title: "Your email is never stored.",
+      body: "Your messages are never written to our database, so there is nothing on our side to leak, sell, or hand over.",
+      // /security: "The short version"
+    },
+    {
+      title: "A subject line and about 120 characters, by default.",
+      body: "That is all most features send to the AI. Full message text goes out only for features you switch on yourself, and only for the message you opened.",
+      // /security: "The short version"
+    },
+    {
+      title: "The AI proxy keeps nothing.",
+      body: "It forwards each request to Anthropic and returns the answer without logging or storing the request body. Anthropic's terms forbid training on your data.",
+      // /security: "How your email flows"; CASA 6.5.1
+    },
+    {
+      title: "Mailbox tokens are sealed at rest.",
+      body: "The tokens that connect Gmail and Outlook are encrypted at rest with AES-256-GCM, and no provider token is ever sent to your browser.",
+      // CASA 4.1.3, 3.2.1
+    },
+    {
+      title: "Sign-in built to resist brute force.",
+      body: "Passwords are at least 12 characters, checked against leaked-password lists, and stored only as bcrypt hashes by our auth provider. Sign-in and code entry are rate-limited.",
+      // CASA 1.1.1, 1.1.3, 1.3.4
+    },
+    {
+      title: "Short-lived access tokens.",
+      body: "Access tokens expire after an hour and refresh tokens rotate; signing out revokes every session. Session cookies are HttpOnly, Secure, and SameSite.",
+      // CASA 2.2.1, 2.2.3, 2.3.1, 2.3.2
+    },
+    {
+      title: "Every row is guarded in the database.",
+      body: "Access control runs as PostgreSQL row-level security on every table, below the API, so the database itself decides what each signed-in user can see.",
+      // CASA 3.1.1
+    },
+    {
+      title: "Card details never touch us.",
+      body: "Card details are entered on Stripe's own checkout page, a PCI-DSS Level 1 provider, and never reach MiniBrief.",
+      // /security: "Payments"; CASA 6.5.1
+    },
+  ],
+  alsoLead: "Also:",
+  also: [
+    "TLS 1.2 or better on every connection",
+    "A Content Security Policy that forbids embedding MiniBrief in another site",
+    "Only the OAuth scopes a feature needs, with access you can revoke at any time",
+    "Dependencies audited for known vulnerabilities",
+    "Secrets kept in a secrets store, never in the app",
+    "The local cache wiped when you sign out",
+  ],
+  // CASA 4.1.1, 2.3.2, 6.1.1, 6.7.1, 6.6.1; /security: "Access and authentication"
+  link: { label: "Read the full Security page", href: "/security" },
+} as const;
+
+export const different = {
+  eyebrow: "Why MiniBrief",
+  h2: "A different deal with your data.",
+  columns: { usual: "The usual approach", us: "MiniBrief" },
+  rows: [
+    { label: "Where your email lives", usual: "Uploaded to their servers", us: "Read in your browser, never stored" },
+    { label: "How much goes to the AI", usual: "Whole threads, by default", us: "A subject line and about 120 characters, unless you opt in" },
+    { label: "Who the AI provider is", usual: "Unnamed, or several", us: "One named provider, Anthropic, under terms that forbid training on your data" },
+    { label: "Where the AI key lives", usual: "Often in your browser", us: "Server-side, with nothing to extract" },
+    { label: "Drafts in your voice", usual: "A generic AI tone", us: "Learned from your own sent mail, when you turn it on" },
+    { label: "What you promised", usual: "Not tracked", us: "The Promise Ledger keeps commitments in both directions" },
+    { label: "Gmail and Outlook", usual: "One or the other", us: "Both, side by side, including shared mailboxes" },
+  ],
 } as const;
 
 export const howItWorks = {

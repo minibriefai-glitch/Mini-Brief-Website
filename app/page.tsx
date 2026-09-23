@@ -1,4 +1,5 @@
 import { CtaSection } from "@/components/landing/cta-section";
+import { Different } from "@/components/landing/different";
 import { DemoVideo } from "@/components/landing/demo-video";
 import { Faq } from "@/components/landing/faq";
 import { Footer } from "@/components/landing/footer";
@@ -8,6 +9,7 @@ import { HowItWorks } from "@/components/landing/how-it-works";
 import { Nav } from "@/components/landing/nav";
 import { Privacy } from "@/components/landing/privacy";
 import { Problem } from "@/components/landing/problem";
+import { Security } from "@/components/landing/security";
 import { WhatItDoes } from "@/components/landing/what-it-does";
 import { FaqJsonLd } from "@/components/seo/json-ld";
 
@@ -22,6 +24,8 @@ export default function HomePage() {
         <Problem />
         <WhatItDoes />
         <Privacy />
+        <Security />
+        <Different />
         <HowItWorks />
         <FounderNote />
         <Faq />
