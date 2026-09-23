@@ -1,6 +1,7 @@
 /**
  * The product screenshots, by key. Dimensions are CSS pixels (the files are
- * 2x). hero and brief are captured from the product demo; reply, promises and
+ * 2x). hero and brief are captured from the product demo (its cream palette
+ * recoloured to white for the site); reply, promises and
  * inboxes are stand-ins drawn in the product's style until real captures
  * replace them. Only this file changes when they do.
  */
